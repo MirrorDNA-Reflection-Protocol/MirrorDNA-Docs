@@ -2,6 +2,11 @@
 
 The unified documentation site for the **MirrorDNA Ecosystem**—a comprehensive suite of tools and frameworks for building trustworthy, observable, and compliant AI systems.
 
+**Canonical Reference:**
+This documentation set corresponds to **Master Citation v15.2 (Continuity-Perfected Edition)**.
+
+All diagrams, architecture descriptions, terminology, and examples must be interpreted through v15.2 governance rules.
+
 ## Overview
 
 This repository contains the complete documentation for all MirrorDNA ecosystem components:
