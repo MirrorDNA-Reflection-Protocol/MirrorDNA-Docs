@@ -1,0 +1,112 @@
+{
+  "repositories": [
+    {
+      "name": "MirrorDNA-Standard",
+      "visibility": "public",
+      "role": "spec",
+      "description": "Core specification for AI agent observability and reflection"
+    },
+    {
+      "name": "MirrorDNA-Docs",
+      "visibility": "public",
+      "role": "docs",
+      "description": "Unified documentation site for the MirrorDNA ecosystem (Docusaurus)"
+    },
+    {
+      "name": "ActiveMirrorOS",
+      "visibility": "public",
+      "role": "product",
+      "description": "Runtime and storage infrastructure for collecting and querying MirrorDNA traces"
+    },
+    {
+      "name": "LingOS-Lite",
+      "visibility": "public",
+      "role": "product",
+      "description": "Open-source conversational AI framework with native MirrorDNA tracing"
+    },
+    {
+      "name": "LingOS-Pro",
+      "visibility": "private",
+      "role": "product",
+      "description": "Enterprise conversational AI framework with advanced features and support"
+    },
+    {
+      "name": "TrustByDesign",
+      "visibility": "public",
+      "role": "product",
+      "description": "Compliance framework supporting GDPR, HIPAA, SOC2, and automated audit reporting"
+    },
+    {
+      "name": "AgentDNA",
+      "visibility": "public",
+      "role": "product",
+      "description": "Persona engine for defining, versioning, and testing agent personalities"
+    },
+    {
+      "name": "Glyphtrail",
+      "visibility": "public",
+      "role": "product",
+      "description": "Interactive timeline viewer for exploring and visualizing MirrorDNA traces"
+    },
+    {
+      "name": "Vault-Manager",
+      "visibility": "private",
+      "role": "product",
+      "description": "Enterprise-grade secure storage with encryption, access control, and compliance profiles"
+    },
+    {
+      "name": "MirrorDNA-Python-SDK",
+      "visibility": "public",
+      "role": "sdk",
+      "description": "Python SDK for implementing MirrorDNA tracing in custom applications"
+    },
+    {
+      "name": "MirrorDNA-TypeScript-SDK",
+      "visibility": "public",
+      "role": "sdk",
+      "description": "TypeScript/JavaScript SDK for implementing MirrorDNA tracing"
+    },
+    {
+      "name": "MirrorDNA-Go-SDK",
+      "visibility": "public",
+      "role": "sdk",
+      "description": "Go SDK for high-performance MirrorDNA trace generation"
+    },
+    {
+      "name": "quickstart",
+      "visibility": "public",
+      "role": "playground",
+      "description": "Quick start examples and docker-compose setup for trying MirrorDNA locally"
+    },
+    {
+      "name": "examples",
+      "visibility": "public",
+      "role": "playground",
+      "description": "Example implementations and integration patterns across the ecosystem"
+    },
+    {
+      "name": "mirrordna-helm-charts",
+      "visibility": "public",
+      "role": "playground",
+      "description": "Kubernetes Helm charts for deploying MirrorDNA components"
+    },
+    {
+      "name": "research-multi-modal",
+      "visibility": "private",
+      "role": "r&d",
+      "description": "Research project for MirrorDNA v2.0 with multi-modal trace support"
+    },
+    {
+      "name": "research-distributed-tracing",
+      "visibility": "private",
+      "role": "r&d",
+      "description": "R&D for distributed tracing across multiple agents"
+    },
+    {
+      "name": "benchmark-suite",
+      "visibility": "public",
+      "role": "r&d",
+      "description": "Performance benchmarks and testing tools for MirrorDNA implementations"
+    }
+  ]
+}
