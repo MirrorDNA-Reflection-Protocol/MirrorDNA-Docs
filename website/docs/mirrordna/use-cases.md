@@ -23,19 +23,19 @@ Discover how organizations are using MirrorDNA to build trustworthy, observable 
 
 ### 2. Financial Services AI
 
-**Challenge**: Meet strict regulatory requirements (SOX, FINRA) while using AI for trading recommendations and fraud detection.
+**Challenge**: Meet strict regulatory requirements (SOX, FINRA) while using AI for trading information and fraud detection.
 
 **Solution**: Complete MirrorDNA traces provide:
 - Explainable AI decisions for regulators
-- Audit trails for every recommendation
+- Audit trails for every output
 - Detection of model drift or bias
 - Compliance reporting automation
 
 **Impact**: Passed regulatory audits with zero findings
 
-### 3. Healthcare Decision Support
+### 3. Healthcare Information System
 
-**Challenge**: Use AI to assist medical diagnoses while maintaining patient safety and HIPAA compliance.
+**Challenge**: Use AI for medical information only while maintaining patient safety and HIPAA compliance.
 
 **Solution**: MirrorDNA enables:
 - Traceable clinical reasoning paths
@@ -199,10 +199,10 @@ Agent Tests → MirrorDNA Traces → Quality Gates
 
 ## Case Studies
 
-Detailed case studies available:
-- [Enterprise Customer Service Deployment](#)
-- [Healthcare AI Compliance Success](#)
-- [Financial Services Audit Trail](#)
+Detailed case studies (coming soon):
+- Enterprise Customer Service Deployment
+- Healthcare AI Compliance Success
+- Financial Services Audit Trail
 
 ---
 

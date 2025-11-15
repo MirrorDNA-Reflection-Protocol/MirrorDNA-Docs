@@ -1,11 +1,45 @@
 # MirrorDNA Ecosystem Documentation
 
+⟡⟦CANONICAL⟧
+
+![Reflective AI Compliance](https://img.shields.io/badge/Reflective_AI-Compliant-brightgreen)
+![Master Citation](https://img.shields.io/badge/Master_Citation-v15.2-blue)
+![FEU Enforcement](https://img.shields.io/badge/FEU-Enforced-orange)
+
 The unified documentation site for the **MirrorDNA Ecosystem**—a comprehensive suite of tools and frameworks for building trustworthy, observable, and compliant AI systems.
 
-**Canonical Reference:**
-This documentation set corresponds to **Master Citation v15.2 (Continuity-Perfected Edition)**.
+---
+
+## 📜 Bound to Master Citation v15.2
+
+**This documentation set is bound to and governed by:**
+**Master Citation v15.2 (Continuity-Perfected Edition)**
 
 All diagrams, architecture descriptions, terminology, and examples must be interpreted through v15.2 governance rules.
+
+### Fact/Estimate/Unknown (FEU) Contract
+
+All outputs from MirrorDNA-based systems adhere to the FEU semantic contract:
+
+- **FACT** — Verifiable, grounded in source material or system state
+- **ESTIMATE** — Inferred, probabilistic, or derived through reasoning
+- **UNKNOWN** — Explicitly acknowledged gaps in knowledge
+
+This contract ensures **epistemic transparency** and prevents hallucination masquerading as certainty.
+
+---
+
+## ⚠️ Legal Notice
+
+**IMPORTANT:** Please review the [LEGAL_NOTICE.md](./LEGAL_NOTICE.md) before using this documentation or software.
+
+**Key Points:**
+- **Research-only** — Not for production use
+- **Zero medical advice** — No clinical guidance
+- **No autonomy** — Requires human oversight
+- **Non-advisory outputs** — Information only, not decision support
+
+© 2025 N1 Intelligence (OPC) Private Limited. All Rights Reserved.
 
 ## Overview
 

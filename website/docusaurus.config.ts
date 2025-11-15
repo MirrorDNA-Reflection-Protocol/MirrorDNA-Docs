@@ -1,3 +1,7 @@
+// FEU Enforcement: Fact/Estimate/Unknown contract enforced
+// Bound to Master Citation v15.2 (Continuity-Perfected Edition)
+// © 2025 N1 Intelligence (OPC) Private Limited
+
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';

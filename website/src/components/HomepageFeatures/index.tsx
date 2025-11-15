@@ -1,3 +1,7 @@
+// FEU Enforcement: Fact/Estimate/Unknown contract enforced
+// Bound to Master Citation v15.2 (Continuity-Perfected Edition)
+// © 2025 N1 Intelligence (OPC) Private Limited
+
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';

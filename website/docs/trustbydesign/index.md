@@ -375,7 +375,7 @@ Meet FINRA, SOX, and regional banking regulations with complete AI audit trails.
 
 ### 2. Healthcare
 
-HIPAA-compliant AI for clinical decision support, patient communication.
+HIPAA-compliant AI for clinical information only, patient communication.
 
 ### 3. HR & Recruiting
 

@@ -1,3 +1,7 @@
+// FEU Enforcement: Fact/Estimate/Unknown contract enforced
+// Bound to Master Citation v15.2 (Continuity-Perfected Edition)
+// © 2025 N1 Intelligence (OPC) Private Limited
+
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)

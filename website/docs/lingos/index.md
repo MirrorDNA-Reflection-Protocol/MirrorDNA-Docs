@@ -51,7 +51,7 @@ response = agent.chat("Hello!")
 agent = Agent(model="gpt-4")
 
 # Thought process
-agent.think("User wants product recommendations")
+agent.think("User wants product information")
 
 # Tool use
 results = agent.use_tool("search_products", query="laptops")

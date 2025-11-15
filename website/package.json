@@ -1,7 +1,19 @@
 {
-  "name": "website",
-  "version": "0.0.0",
+  "name": "mirrordna-docs",
+  "version": "0.2.0-hardening",
   "private": true,
+  "description": "MirrorDNA Ecosystem Documentation - Reflective AI Stack",
+  "keywords": [
+    "MirrorDNA",
+    "Reflective AI",
+    "ActiveMirrorOS",
+    "LingOS",
+    "TrustByDesign",
+    "AgentDNA",
+    "Glyphtrail",
+    "AI Observability",
+    "AI Compliance"
+  ],
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
