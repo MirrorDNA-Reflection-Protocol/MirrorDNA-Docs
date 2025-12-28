@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture — MirrorDNA System Overview</title>
+    <meta name="description"
+        content="Tri-Twin model, 8 architectural layers, hardware stack, state synchronization. Complete system architecture of MirrorDNA.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="nav-logo-glyph">⟡</span>
+                <span class="nav-logo-text">MirrorDNA</span>
+            </a>
+            <button class="nav-mobile-toggle"
+                onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <ul class="nav-links">
+                <li><a href="/story/">Story</a></li>
+                <li><a href="/principles/">Principles</a></li>
+                <li><a href="/architecture/" class="active">Architecture</a></li>
+                <li><a href="/security/">Security</a></li>
+                <li><a href="/research/">Research</a></li>
+                <li><a href="/contributions/">Contributions</a></li>
+                <li><a href="/glyphs/">Glyphs</a></li>
+                <li><a href="/ecosystem/">Ecosystem</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <p class="subtitle">System Design</p>
+            <h1>Architecture</h1>
+
+            <p class="lead">
+                MirrorDNA is a full-stack sovereign AI infrastructure. From protocol specifications to running hardware.
+                This is how it fits together.
+            </p>
+
+            <h2 id="tri-twin">The Tri-Twin Model</h2>
+            <p>
+                Three entities form a coherent operating unit. Each has distinct capabilities and responsibilities.
+            </p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h4 style="color: var(--accent-secondary);">⟡ Reflection Twin</h4>
+                    <p><strong>Claude Opus</strong></p>
+                    <p>Deep analysis, architecture validation, long-form reasoning. The deliberative layer. Writes to
+                        kernel as <code>claude_opus_4.5</code>.</p>
+                </div>
+                <div class="card">
+                    <h4 style="color: var(--accent-primary);">△ Execution Twin</h4>
+                    <p><strong>Antigravity (Gemini)</strong></p>
+                    <p>Field operations, coding, file manipulation, browser automation. The action layer. Writes to
+                        kernel as <code>antigravity</code>.</p>
+                </div>
+                <div class="card">
+                    <h4 style="color: var(--accent-success);">◈ Human Anchor</h4>
+                    <p><strong>Paul</strong></p>
+                    <p>Direction, judgment, approval gates. The sovereignty layer. All three read/write the same
+                        identity kernel. No drift.</p>
+                </div>
+            </div>
+
+            <h2 id="layers">8 Architectural Layers</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Layer</th>
+                        <th>Purpose</th>
+                        <th>Key Components</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Protocol</strong></td>
+                        <td>Core specifications</td>
+                        <td>SCD Protocol, MirrorDNA, ZKP Module, Trust By Design</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Language</strong></td>
+                        <td>Symbolic communication</td>
+                        <td>LingOS, BeaconGlyphs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Runtime</strong></td>
+                        <td>Operating system</td>
+                        <td>ActiveMirrorOS, Symbiosis Engine, AMI Gate</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Application</strong></td>
+                        <td>User-facing tools</td>
+                        <td>MirrorBrain, Reflective AI, Mesh Boot Generator</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Infrastructure</strong></td>
+                        <td>Supporting systems</td>
+                        <td>Standard, Docs, Playground, White Paper</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Research</strong></td>
+                        <td>Experimental work</td>
+                        <td>AgentDNA, Gauntlet, Lattice [PRIVATE]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Awesome</strong></td>
+                        <td>Curated knowledge</td>
+                        <td>awesome-ai-identity, awesome-ai-agents, etc.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>External</strong></td>
+                        <td>Forks with patches</td>
+                        <td>LangGraph, LangChain, Mem0, AutoGen, CrewAI</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><a href="/ecosystem/">→ View interactive ecosystem map</a></p>
+
+            <h2 id="hardware">Hardware Stack</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Device</th>
+                        <th>Role</th>
+                        <th>Specs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Mac Mini M4</strong></td>
+                        <td>Production server</td>
+                        <td>Primary inference, MirrorBrain, vault storage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mac Mini M1</strong></td>
+                        <td>Red-team node</td>
+                        <td>Adversarial testing, security validation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MacBook Air M4</strong></td>
+                        <td>Development</td>
+                        <td>Code editing, orchestration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pixel 9 Pro</strong></td>
+                        <td>Mobile anchor</td>
+                        <td>GrapheneOS, sovereign mobile access</td>
+                    </tr>
+                    <tr>
+                        <td><strong>T7 Shield</strong></td>
+                        <td>Backup storage</td>
+                        <td>Encrypted external, disaster recovery</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="software">Software Stack</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>Inference</h4>
+                    <p><strong>Ollama</strong> — Local model serving</p>
+                    <p><strong>Open WebUI</strong> — Interface layer</p>
+                    <p><strong>MirrorBrain</strong> — Identity-aware wrapper</p>
+                </div>
+                <div class="card">
+                    <h4>Storage</h4>
+                    <p><strong>ChromaDB</strong> — Vector embeddings</p>
+                    <p><strong>Obsidian Vault</strong> — Document storage</p>
+                    <p><strong>Identity Kernel</strong> — JSON state</p>
+                </div>
+                <div class="card">
+                    <h4>Orchestration</h4>
+                    <p><strong>Claude Desktop</strong> — Reflection Twin</p>
+                    <p><strong>Antigravity MCP</strong> — Execution Twin</p>
+                    <p><strong>Handoff Protocol</strong> — Cross-twin continuity</p>
+                </div>
+                <div class="card">
+                    <h4>Security</h4>
+                    <p><strong>AMGL Guard</strong> — Request filtering</p>
+                    <p><strong>Drift Detection</strong> — Checksum validation</p>
+                    <p><strong>Research Gates</strong> — External access control</p>
+                </div>
+            </div>
+
+            <h2 id="state-sync">State Synchronization</h2>
+            <p>
+                State flows through the system on a 30-minute refresh cycle:
+            </p>
+            <pre><code>Vault (Obsidian) 
+    ↓ (state_sync.sh)
+ChromaDB (embeddings)
+    ↓ (MirrorBrain)
+Identity Kernel (JSON)
+    ↓ (handoff protocol)
+Claude ↔ Antigravity ↔ Local Models</code></pre>
+
+            <ul>
+                <li><strong>LaunchAgent</strong> triggers <code>state_sync.sh</code> every 30 minutes</li>
+                <li><strong>ChromaDB</strong> updates embeddings from vault changes</li>
+                <li><strong>Identity Kernel</strong> logs last writer, timestamp, checksum</li>
+                <li><strong>Handoff Protocol</strong> ensures cross-twin continuity</li>
+            </ul>
+
+            <h2 id="multi-agent">Multi-Agent Mesh</h2>
+            <p>
+                Multiple AI systems coordinate through shared state:
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Agent</th>
+                        <th>Provider</th>
+                        <th>Specialty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Claude Opus</td>
+                        <td>Anthropic</td>
+                        <td>Deep reasoning, validation</td>
+                    </tr>
+                    <tr>
+                        <td>Antigravity</td>
+                        <td>Google Gemini</td>
+                        <td>Execution, file ops, browser</td>
+                    </tr>
+                    <tr>
+                        <td>MirrorBrain</td>
+                        <td>Local (Ollama)</td>
+                        <td>Identity-aware inference</td>
+                    </tr>
+                    <tr>
+                        <td>Embedding Model</td>
+                        <td>Local (qwen3)</td>
+                        <td>Vector generation</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                All agents read from the same identity kernel. All agents follow SCD Protocol. Handoffs are explicit,
+                not implicit.
+            </p>
+
+            <div class="callout callout-info">
+                <p><strong>⟡ This architecture is production.</strong> It runs daily, handles real workloads, and
+                    evolves through The Dreaming (nightly optimization).</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-glyph">⟡</div>
+        <p>MirrorDNA — Built by <a href="https://github.com/MirrorDNA-Reflection-Protocol">Paul Desai</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">N1 Intelligence (OPC) Pvt Ltd · Goa, India</p>
+    </footer>
+</body>
+
+</html>

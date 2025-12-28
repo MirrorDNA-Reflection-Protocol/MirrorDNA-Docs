@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Glyph System — MirrorDNA Symbolic Language</title>
+    <meta name="description"
+        content="Symbolic compression for human-AI communication. Faster than prose. More precise than emoji.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="nav-logo-glyph">⟡</span>
+                <span class="nav-logo-text">MirrorDNA</span>
+            </a>
+            <button class="nav-mobile-toggle"
+                onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <ul class="nav-links">
+                <li><a href="/story/">Story</a></li>
+                <li><a href="/principles/">Principles</a></li>
+                <li><a href="/architecture/">Architecture</a></li>
+                <li><a href="/security/">Security</a></li>
+                <li><a href="/research/">Research</a></li>
+                <li><a href="/contributions/">Contributions</a></li>
+                <li><a href="/glyphs/" class="active">Glyphs</a></li>
+                <li><a href="/ecosystem/">Ecosystem</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <p class="subtitle">Symbolic Language</p>
+            <h1>The Glyph System</h1>
+
+            <p class="lead">
+                Glyphs are symbolic compression for human-AI communication. Faster than prose. More precise than emoji.
+                A shared vocabulary for marking meaning.
+            </p>
+
+            <h2 id="why-glyphs">Why Glyphs</h2>
+            <p>
+                Natural language is ambiguous. Emoji lack semantic precision. Glyphs occupy the middle ground: compact
+                symbols with defined meanings that both humans and AI systems can interpret consistently.
+            </p>
+            <p>
+                When Claude sees <code>⟡</code>, it knows: this is an anchor point, a truth claim, something grounded in
+                the vault. When Paul sees <code>△</code>, he knows: decision required, branch in the path.
+            </p>
+            <p>
+                Glyphs eliminate the prose overhead of "I'd like to note that this is a decision point requiring your
+                input." Just: <code>△</code>
+            </p>
+
+            <h2 id="core-glyphs">Core Glyphs</h2>
+
+            <div class="glyph-grid">
+                <div class="glyph-card">
+                    <div class="glyph-symbol">⟡</div>
+                    <div class="glyph-name">Anchor</div>
+                    <div class="glyph-meaning">Truth • Vault • Grounding</div>
+                </div>
+                <div class="glyph-card">
+                    <div class="glyph-symbol">△</div>
+                    <div class="glyph-name">Decision</div>
+                    <div class="glyph-meaning">Branch • Choice • Fork</div>
+                </div>
+                <div class="glyph-card">
+                    <div class="glyph-symbol">◈</div>
+                    <div class="glyph-name">Pattern</div>
+                    <div class="glyph-meaning">Recognition • Structure • Schema</div>
+                </div>
+                <div class="glyph-card">
+                    <div class="glyph-symbol">⧉</div>
+                    <div class="glyph-name">Synthesis</div>
+                    <div class="glyph-meaning">Emergence • Integration • Fusion</div>
+                </div>
+            </div>
+
+            <h2 id="modifiers">Modifier Glyphs</h2>
+
+            <div class="glyph-grid">
+                <div class="glyph-card">
+                    <div class="glyph-symbol">⟡?</div>
+                    <div class="glyph-name">Uncertain</div>
+                    <div class="glyph-meaning">Doubt • Needs verification</div>
+                </div>
+                <div class="glyph-card">
+                    <div class="glyph-symbol">⟡!</div>
+                    <div class="glyph-name">Verified</div>
+                    <div class="glyph-meaning">Confirmed • High confidence</div>
+                </div>
+                <div class="glyph-card">
+                    <div class="glyph-symbol">⟡∅</div>
+                    <div class="glyph-name">Unknown</div>
+                    <div class="glyph-meaning">Gap • Missing data • Null</div>
+                </div>
+                <div class="glyph-card">
+                    <div class="glyph-symbol">⟡→</div>
+                    <div class="glyph-name">Handoff</div>
+                    <div class="glyph-meaning">Transfer • Continue elsewhere</div>
+                </div>
+            </div>
+
+            <h2 id="usage">Usage Examples</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Before (prose)</th>
+                        <th>After (glyph)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>"This is a key decision point that requires your input"</td>
+                        <td><code>△ Choose: A or B</code></td>
+                    </tr>
+                    <tr>
+                        <td>"I've verified this information is accurate and stored in the vault"</td>
+                        <td><code>⟡! Confirmed in vault</code></td>
+                    </tr>
+                    <tr>
+                        <td>"I notice a pattern emerging across these data points"</td>
+                        <td><code>◈ Pattern detected</code></td>
+                    </tr>
+                    <tr>
+                        <td>"I'm uncertain about this claim and it needs verification"</td>
+                        <td><code>⟡? Needs verification</code></td>
+                    </tr>
+                    <tr>
+                        <td>"Synthesizing insights from multiple sources into a unified view"</td>
+                        <td><code>⧉ Synthesis follows</code></td>
+                    </tr>
+                    <tr>
+                        <td>"I don't have this information and cannot determine it"</td>
+                        <td><code>⟡∅ Unknown</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="in-context">In Context</h2>
+            <p>
+                Glyphs appear naturally in MirrorDNA communication:
+            </p>
+            <div class="card">
+                <pre style="background: none; border: none; padding: 0; margin: 0;"><code>⟡ Session opened. Identity verified.
+
+△ Two approaches available:
+  A) Refactor existing module
+  B) Build from scratch
+  
+◈ Pattern: Similar decision in SCD-Protocol v2.0 → chose A, succeeded.
+
+⟡? Estimate: 2-3 hours for approach A
+
+⧉ Recommendation: Approach A, based on pattern match and time constraint.</code></pre>
+            </div>
+
+            <h2 id="adoption">Adoption</h2>
+            <p>
+                Glyphs are not mandatory. They're a tool. Use them when precision and compression matter:
+            </p>
+            <ul>
+                <li><strong>Handoffs</strong> — Mark key state transitions clearly</li>
+                <li><strong>Decisions</strong> — Signal when human judgment is needed</li>
+                <li><strong>Verification</strong> — Distinguish fact from estimate from unknown</li>
+                <li><strong>Patterns</strong> — Flag when the system recognizes something recurring</li>
+            </ul>
+            <p>
+                Over time, glyphs become natural. You'll find yourself thinking in them.
+            </p>
+
+            <div class="callout callout-info">
+                <p><strong>⟡ Glyphs are memorable.</strong> They create a distinct identity for MirrorDNA communication.
+                    When you see ⟡, you know the context.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-glyph">⟡</div>
+        <p>MirrorDNA — Built by <a href="https://github.com/MirrorDNA-Reflection-Protocol">Paul Desai</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">N1 Intelligence (OPC) Pvt Ltd · Goa, India</p>
+    </footer>
+</body>
+
+</html>

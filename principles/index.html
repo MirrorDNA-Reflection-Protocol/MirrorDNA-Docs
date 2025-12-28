@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principles — MirrorDNA Design Philosophy</title>
+    <meta name="description"
+        content="The core laws that govern MirrorDNA systems: Truth-State Law, Zero Drift, Vault Supremacy, Fail-Closed Security.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="nav-logo-glyph">⟡</span>
+                <span class="nav-logo-text">MirrorDNA</span>
+            </a>
+            <button class="nav-mobile-toggle"
+                onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <ul class="nav-links">
+                <li><a href="/story/">Story</a></li>
+                <li><a href="/principles/" class="active">Principles</a></li>
+                <li><a href="/architecture/">Architecture</a></li>
+                <li><a href="/security/">Security</a></li>
+                <li><a href="/research/">Research</a></li>
+                <li><a href="/contributions/">Contributions</a></li>
+                <li><a href="/glyphs/">Glyphs</a></li>
+                <li><a href="/ecosystem/">Ecosystem</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <p class="subtitle">Design Philosophy</p>
+            <h1>Principles</h1>
+
+            <p class="lead">
+                These are the laws that govern MirrorDNA systems. They exist because AI without constraints is AI
+                without trust.
+            </p>
+
+            <div class="principle">
+                <div class="principle-header">
+                    <span class="principle-icon">⟡</span>
+                    <h3 class="principle-title">Truth-State Law</h3>
+                </div>
+                <p class="principle-def">
+                    Every claim is classified as FACT, ESTIMATE, or UNKNOWN. No invention. No hallucination. No
+                    confident wrongness.
+                </p>
+                <p class="principle-why">
+                    <strong>Why it exists:</strong> LLMs generate plausible-sounding text regardless of truth. This is
+                    the failure mode that erodes trust. Truth-State Law forces explicit uncertainty acknowledgment.
+                </p>
+                <p class="principle-how">
+                    <strong>How it's implemented:</strong> SCD Protocol v3.1 requires truth-state annotation on all
+                    outputs. Inference is wrapped — claims without classification are blocked. Verification against
+                    vault is mandatory for FACT status.
+                </p>
+            </div>
+
+            <div class="principle">
+                <div class="principle-header">
+                    <span class="principle-icon">△</span>
+                    <h3 class="principle-title">Zero Drift</h3>
+                </div>
+                <p class="principle-def">
+                    Identity and state are cryptographically anchored. SHA256 checksums on identity files. Automatic
+                    drift detection and alerting.
+                </p>
+                <p class="principle-why">
+                    <strong>Why it exists:</strong> AI systems can gradually diverge from intended behavior — prompt
+                    mutation, context contamination, subtle parameter drift. Zero Drift catches these before they
+                    compound.
+                </p>
+                <p class="principle-how">
+                    <strong>How it's implemented:</strong> Identity kernel files are checksummed at write. Every read
+                    validates against stored checksum. Mismatch triggers hard block. Protected fields cannot be
+                    overwritten by inference.
+                </p>
+            </div>
+
+            <div class="principle">
+                <div class="principle-header">
+                    <span class="principle-icon">◈</span>
+                    <h3 class="principle-title">Vault Supremacy</h3>
+                </div>
+                <p class="principle-def">
+                    The vault is the source of truth. Memory and inference defer to vault contents. Generated content
+                    does not override stored content.
+                </p>
+                <p class="principle-why">
+                    <strong>Why it exists:</strong> LLMs can generate convincing but incorrect information. When there's
+                    a conflict between what the model "thinks" and what's stored, storage wins. Always.
+                </p>
+                <p class="principle-how">
+                    <strong>How it's implemented:</strong> Vault reading happens before inference. Retrieved content is
+                    injected as context with higher priority than model weights. Write operations require explicit human
+                    approval or deterministic triggers.
+                </p>
+            </div>
+
+            <div class="principle">
+                <div class="principle-header">
+                    <span class="principle-icon">⧉</span>
+                    <h3 class="principle-title">Fail-Closed Security</h3>
+                </div>
+                <p class="principle-def">
+                    Errors block, not allow. When something goes wrong, the system denies access rather than granting
+                    it. Defense-first posture.
+                </p>
+                <p class="principle-why">
+                    <strong>Why it exists:</strong> Most security failures come from "fail-open" defaults — if the auth
+                    check errors, let them in anyway. Fail-closed means uncertainty = denial.
+                </p>
+                <p class="principle-how">
+                    <strong>How it's implemented:</strong> AMGL Guard wraps all inference. Any exception → block.
+                    Unknown request type → block. Validation failure → block. No silent passthrough.
+                </p>
+            </div>
+
+            <div class="principle">
+                <div class="principle-header">
+                    <span class="principle-icon">⟡</span>
+                    <h3 class="principle-title">Sovereign by Default</h3>
+                </div>
+                <p class="principle-def">
+                    Core functions run on your hardware with no external API dependencies. Cloud is optional
+                    enhancement, not requirement.
+                </p>
+                <p class="principle-why">
+                    <strong>Why it exists:</strong> Dependency on external APIs means dependency on external policy.
+                    OpenAI can change terms. Anthropic can deprecate endpoints. Your hardware, your rules.
+                </p>
+                <p class="principle-how">
+                    <strong>How it's implemented:</strong> Core inference runs on Ollama with local models. ChromaDB for
+                    vector storage. Vault on local filesystem. Cloud APIs (Claude, Gemini) are used for capability
+                    extension only, never core identity.
+                </p>
+            </div>
+
+            <div class="principle">
+                <div class="principle-header">
+                    <span class="principle-icon">⧉</span>
+                    <h3 class="principle-title">Lineage Tracking</h3>
+                </div>
+                <p class="principle-def">
+                    Every document has predecessors and successors. Version genealogy is explicit. You can always trace
+                    back to origin.
+                </p>
+                <p class="principle-why">
+                    <strong>Why it exists:</strong> Without lineage, you can't audit. Without audit, you can't trust.
+                    Knowing where a document came from is as important as its content.
+                </p>
+                <p class="principle-how">
+                    <strong>How it's implemented:</strong> Master Citation format includes predecessor links. Git tracks
+                    file history. Vault operations log writer identity and timestamp. Chain of custody is explicit.
+                </p>
+            </div>
+
+            <div class="principle">
+                <div class="principle-header">
+                    <span class="principle-icon">△</span>
+                    <h3 class="principle-title">Cross-Vendor Portability</h3>
+                </div>
+                <p class="principle-def">
+                    Protocols work across Claude, Gemini, local models. Identity and memory are not locked to any
+                    vendor.
+                </p>
+                <p class="principle-why">
+                    <strong>Why it exists:</strong> Today's best model is tomorrow's legacy. Lock-in is technical debt.
+                    Portability is freedom.
+                </p>
+                <p class="principle-how">
+                    <strong>How it's implemented:</strong> Identity kernel is JSON — readable by any model. SCD Protocol
+                    is prompt-based, not API-specific. Handoffs work across Claude ↔ Gemini ↔ local models. No
+                    vendor-specific extensions in core.
+                </p>
+            </div>
+
+            <div class="callout callout-info">
+                <p><strong>⟡ These aren't aspirations.</strong> These are enforced constraints in production code. Every
+                    principle has corresponding validation logic.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-glyph">⟡</div>
+        <p>MirrorDNA — Built by <a href="https://github.com/MirrorDNA-Reflection-Protocol">Paul Desai</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">N1 Intelligence (OPC) Pvt Ltd · Goa, India</p>
+    </footer>
+</body>
+
+</html>

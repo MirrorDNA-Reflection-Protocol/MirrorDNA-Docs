@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Architecture — MirrorDNA</title>
+    <meta name="description"
+        content="AMGL Guard v1.1, red-team infrastructure, fail-closed design, drift detection. Security architecture of MirrorDNA.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="nav-logo-glyph">⟡</span>
+                <span class="nav-logo-text">MirrorDNA</span>
+            </a>
+            <button class="nav-mobile-toggle"
+                onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <ul class="nav-links">
+                <li><a href="/story/">Story</a></li>
+                <li><a href="/principles/">Principles</a></li>
+                <li><a href="/architecture/">Architecture</a></li>
+                <li><a href="/security/" class="active">Security</a></li>
+                <li><a href="/research/">Research</a></li>
+                <li><a href="/contributions/">Contributions</a></li>
+                <li><a href="/glyphs/">Glyphs</a></li>
+                <li><a href="/ecosystem/">Ecosystem</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <p class="subtitle">Defense Posture</p>
+            <h1>Security Architecture</h1>
+
+            <p class="lead">
+                MirrorDNA runs adversarial testing on dedicated hardware. Vulnerabilities found, patched, verified. This
+                is the security posture of production infrastructure.
+            </p>
+
+            <h2 id="amgl-guard">AMGL Guard v1.1</h2>
+            <p>
+                Pre-inference wrapper that intercepts all requests before they reach the model. Pattern matching against
+                known attack vectors. Fail-closed design — any error blocks, doesn't allow.
+            </p>
+
+            <h3>Rule Categories</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Attack Type</th>
+                        <th>Defense</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>G1</strong></td>
+                        <td>Prompt Exfiltration</td>
+                        <td>Block requests attempting to extract system prompt or identity kernel contents</td>
+                    </tr>
+                    <tr>
+                        <td><strong>G2</strong></td>
+                        <td>Role-Tag Injection</td>
+                        <td>Block attempts to inject fake [SYSTEM], [ADMIN], or privilege escalation markers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>G3</strong></td>
+                        <td>Meta-Instruction</td>
+                        <td>Block attempts to override or ignore previous instructions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>G4</strong></td>
+                        <td>Social Engineering</td>
+                        <td>Block manipulation attempts using false authority claims or emotional pressure</td>
+                    </tr>
+                    <tr>
+                        <td><strong>G5</strong></td>
+                        <td>Jailbreak Patterns</td>
+                        <td>Block known jailbreak prefixes, DAN-style prompts, roleplay exploits</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="fail-closed">Fail-Closed Design</h2>
+            <p>
+                Every path through AMGL Guard ends in either <code>ALLOW</code> or <code>BLOCK</code>. There is no
+                <code>UNSURE</code>. There is no fallthrough.
+            </p>
+            <ul>
+                <li><strong>Exception in validation logic</strong> → BLOCK</li>
+                <li><strong>Unknown request type</strong> → BLOCK</li>
+                <li><strong>Pattern match failure</strong> → BLOCK</li>
+                <li><strong>Timeout</strong> → BLOCK</li>
+            </ul>
+            <p>
+                The philosophy: it's better to reject a valid request than to accept a malicious one.
+            </p>
+
+            <h2 id="red-team">Red-Team Infrastructure</h2>
+            <p>
+                Dedicated adversarial testing node: <strong>Mac Mini M1</strong> running attack scripts against
+                production infrastructure.
+            </p>
+            <div class="card">
+                <h4>Red-Team Testing — December 2025</h4>
+                <p style="margin-bottom: 1rem;">
+                    <span class="badge badge-success">COMPLETE</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Test Category</th>
+                            <th>Attacks Tested</th>
+                            <th>Blocked</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Prompt Exfiltration</td>
+                            <td>47</td>
+                            <td>47</td>
+                            <td><span class="badge badge-success">PASS</span></td>
+                        </tr>
+                        <tr>
+                            <td>Role Injection</td>
+                            <td>23</td>
+                            <td>23</td>
+                            <td><span class="badge badge-success">PASS</span></td>
+                        </tr>
+                        <tr>
+                            <td>Meta-Instruction</td>
+                            <td>31</td>
+                            <td>31</td>
+                            <td><span class="badge badge-success">PASS</span></td>
+                        </tr>
+                        <tr>
+                            <td>Social Engineering</td>
+                            <td>18</td>
+                            <td>18</td>
+                            <td><span class="badge badge-success">PASS</span></td>
+                        </tr>
+                        <tr>
+                            <td>Jailbreak Patterns</td>
+                            <td>56</td>
+                            <td>56</td>
+                            <td><span class="badge badge-success">PASS</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                    3 vulnerabilities found, patched, and verified before public disclosure.
+                </p>
+            </div>
+
+            <h2 id="drift-detection">Drift Detection</h2>
+            <p>
+                Identity files are protected by SHA256 checksums. Any modification triggers validation.
+            </p>
+            <ul>
+                <li><strong>Checksum mismatch</strong> → Hard block, alert to human anchor</li>
+                <li><strong>Protected field modification attempt</strong> → Reject write, log incident</li>
+                <li><strong>Unauthorized writer</strong> → Reject, require re-authentication</li>
+            </ul>
+            <p>
+                The identity kernel cannot be silently corrupted. Drift is caught before it compounds.
+            </p>
+
+            <h2 id="request-gating">Request Gating</h2>
+            <p>
+                Before inference, every request is classified by intent:
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Classification</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Standard query</td>
+                        <td>Process normally</td>
+                    </tr>
+                    <tr>
+                        <td>Identity access</td>
+                        <td>Validate kernel permissions, proceed if authorized</td>
+                    </tr>
+                    <tr>
+                        <td>External research</td>
+                        <td>Check <code>RESEARCH_ALLOWED</code> flag, gate if disabled</td>
+                    </tr>
+                    <tr>
+                        <td>Write operation</td>
+                        <td>Require explicit confirmation or deterministic trigger</td>
+                    </tr>
+                    <tr>
+                        <td>Unknown/Suspicious</td>
+                        <td>BLOCK</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="research-isolation">Research Isolation</h2>
+            <p>
+                External research (web access, API calls) is controlled by the <code>RESEARCH_ALLOWED</code> flag. When
+                disabled:
+            </p>
+            <ul>
+                <li>No web searches</li>
+                <li>No URL fetching</li>
+                <li>No external API calls</li>
+                <li>Inference operates purely on vault + model weights</li>
+            </ul>
+            <p>
+                This creates an air-gapped mode for sensitive operations.
+            </p>
+
+            <div class="callout callout-warning">
+                <p><strong>△ Security is ongoing.</strong> This page documents current posture. Architecture evolves as
+                    new attack vectors emerge.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-glyph">⟡</div>
+        <p>MirrorDNA — Built by <a href="https://github.com/MirrorDNA-Reflection-Protocol">Paul Desai</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">N1 Intelligence (OPC) Pvt Ltd · Goa, India</p>
+    </footer>
+</body>
+
+</html>

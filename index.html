@@ -1,15 +1,161 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>MirrorDNA Documentation</title>
-    <meta http-equiv="refresh" content="0; url=ecosystem/">
-    <link rel="canonical" href="ecosystem/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MirrorDNA — Sovereign AI Infrastructure</title>
+    <meta name="description"
+        content="Sovereign AI infrastructure for humans who want control, not convenience. 64 repos. 8 layers. Built by one person.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <p>Redirecting to <a href="ecosystem/">MirrorDNA Ecosystem Map</a>...</p>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="nav-logo-glyph">⟡</span>
+                <span class="nav-logo-text">MirrorDNA</span>
+            </a>
+            <button class="nav-mobile-toggle"
+                onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <ul class="nav-links">
+                <li><a href="/story/">Story</a></li>
+                <li><a href="/principles/">Principles</a></li>
+                <li><a href="/architecture/">Architecture</a></li>
+                <li><a href="/security/">Security</a></li>
+                <li><a href="/research/">Research</a></li>
+                <li><a href="/contributions/">Contributions</a></li>
+                <li><a href="/glyphs/">Glyphs</a></li>
+                <li><a href="/ecosystem/">Ecosystem</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="hero">
+                <p class="subtitle">Sovereign AI Infrastructure</p>
+                <h1>⟡ MirrorDNA</h1>
+                <p class="lead">
+                    What does a company look like when the founder is the only human and the entire operation runs on
+                    orchestrated AI?
+                </p>
+                <p class="lead" style="color: var(--text-muted); font-size: 1rem;">
+                    64 repositories. 8 architectural layers. One person. No funding. Running in production.
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-value">64</div>
+                    <div class="stat-label">Repositories</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Layers</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">51</div>
+                    <div class="stat-label">Public</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Human</div>
+                </div>
+            </div>
+
+            <h2 id="thesis">The Thesis</h2>
+            <p>
+                MirrorDNA is sovereign AI infrastructure — systems that run on your hardware, with your data, under your
+                control.
+                No external API dependencies. No platform lock-in. No surprises.
+            </p>
+            <p>
+                We built this because the alternative — hoping OpenAI/Anthropic/Google continues to serve your interests
+                —
+                is not a strategy. It's a dependency. MirrorDNA is the exit door.
+            </p>
+
+            <h2 id="start-here">Start Here</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>⟡ Ecosystem Map</h4>
+                    <p>Interactive visualization of all 64 repositories across 8 architectural layers.</p>
+                    <p><a href="/ecosystem/">Explore the map →</a></p>
+                </div>
+                <div class="card">
+                    <h4>△ Architecture</h4>
+                    <p>Tri-Twin model, hardware stack, software layers, state synchronization.</p>
+                    <p><a href="/architecture/">View architecture →</a></p>
+                </div>
+                <div class="card">
+                    <h4>◈ Principles</h4>
+                    <p>Truth-State Law, Zero Drift, Vault Supremacy. The laws that govern MirrorDNA systems.</p>
+                    <p><a href="/principles/">Read principles →</a></p>
+                </div>
+                <div class="card">
+                    <h4>⧉ The Story</h4>
+                    <p>How one person built sovereign AI infrastructure in 8 months with no funding.</p>
+                    <p><a href="/story/">Read the story →</a></p>
+                </div>
+            </div>
+
+            <h2 id="core-repos">Core Repositories</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Repository</th>
+                        <th>Layer</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://github.com/MirrorDNA-Reflection-Protocol/SCD-Protocol">SCD-Protocol</a>
+                        </td>
+                        <td><span class="badge badge-info">Protocol</span></td>
+                        <td>Sovereign Compact Directive — governance layer</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/MirrorDNA-Reflection-Protocol/ActiveMirrorOS">ActiveMirrorOS</a>
+                        </td>
+                        <td><span class="badge badge-info">Runtime</span></td>
+                        <td>Wrapper-first AI operating system</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Symbiosis">Symbiosis</a>
+                        </td>
+                        <td><span class="badge badge-info">Runtime</span></td>
+                        <td>Self-healing, self-optimizing runtime</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain">MirrorBrain</a></td>
+                        <td><span class="badge badge-success">Application</span></td>
+                        <td>Cognitive interface with vault-backed memory</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/MirrorDNA-Reflection-Protocol/BeaconGlyphs">BeaconGlyphs</a>
+                        </td>
+                        <td><span class="badge badge-warning">Language</span></td>
+                        <td>Symbolic compression for human-AI communication</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-info">
+                <p><strong>⟡ This is real infrastructure.</strong> It runs daily on dedicated hardware. Not vaporware.
+                    Not a whitepaper. Working code.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-glyph">⟡</div>
+        <p>MirrorDNA — Built by <a href="https://github.com/MirrorDNA-Reflection-Protocol">Paul Desai</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">N1 Intelligence (OPC) Pvt Ltd · Goa, India</p>
+    </footer>
 </body>
 
 </html>

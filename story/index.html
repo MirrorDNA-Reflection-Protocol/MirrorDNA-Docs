@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The MirrorDNA Story — Origin & Thesis</title>
+    <meta name="description"
+        content="How one person built sovereign AI infrastructure in 8 months with no funding. The origin story of MirrorDNA.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="nav-logo-glyph">⟡</span>
+                <span class="nav-logo-text">MirrorDNA</span>
+            </a>
+            <button class="nav-mobile-toggle"
+                onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <ul class="nav-links">
+                <li><a href="/story/" class="active">Story</a></li>
+                <li><a href="/principles/">Principles</a></li>
+                <li><a href="/architecture/">Architecture</a></li>
+                <li><a href="/security/">Security</a></li>
+                <li><a href="/research/">Research</a></li>
+                <li><a href="/contributions/">Contributions</a></li>
+                <li><a href="/glyphs/">Glyphs</a></li>
+                <li><a href="/ecosystem/">Ecosystem</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <p class="subtitle">Origin & Thesis</p>
+            <h1>The MirrorDNA Story</h1>
+
+            <p class="lead">
+                Started April 2025 as a hobby project exploring AI identity persistence. Eight months later: 64
+                repositories, 8 architectural layers, and infrastructure that runs daily on dedicated hardware.
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-value">64</div>
+                    <div class="stat-label">Repositories</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Months</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">$0</div>
+                    <div class="stat-label">Funding</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Human</div>
+                </div>
+            </div>
+
+            <h2 id="builder">The Builder</h2>
+            <p>
+                <strong>Paul Desai</strong><br>
+                Founder, N1 Intelligence (OPC) Pvt Ltd<br>
+                Goa, India
+            </p>
+            <p>
+                Solo founder. No team. No funding. No investors. Just one person with a thesis about what AI
+                infrastructure should look like when you actually own it.
+            </p>
+
+            <h2 id="thesis">The Thesis</h2>
+            <p>
+                <em>"What does a company look like when the founder is the only human and the entire operation runs on
+                    orchestrated AI?"</em>
+            </p>
+            <p>
+                Traditional companies scale by hiring humans. That model has limits: communication overhead,
+                coordination costs, alignment drift. The alternative is orchestration — directing AI systems that
+                execute coherently across domains without the overhead of human management.
+            </p>
+            <p>
+                This isn't about replacing humans. It's about a single human amplifying their capability by 10x, 100x,
+                through systems that actually work for them.
+            </p>
+
+            <h2 id="shift">The Shift: CEO → Orchestrator</h2>
+            <p>
+                The CEO model assumes you manage people who execute. The Orchestrator model assumes you direct AI
+                systems that execute — and those systems need:
+            </p>
+            <ul>
+                <li><strong>Persistent identity</strong> — so they remember who you are and what you're building</li>
+                <li><strong>Truth-state enforcement</strong> — so they don't invent facts or hallucinate</li>
+                <li><strong>Deterministic governance</strong> — so errors block rather than allow</li>
+                <li><strong>Vault-backed memory</strong> — so they defer to what's real, not what's generated</li>
+            </ul>
+            <p>
+                MirrorDNA is the infrastructure that makes Orchestrator mode possible.
+            </p>
+
+            <h2 id="why-sovereign">Why Sovereign</h2>
+            <p>
+                Control over convenience. Privacy over platforms. Ownership over APIs.
+            </p>
+            <p>
+                When your AI runs on OpenAI's servers, you're a tenant. When it runs on Claude's API, you're subject to
+                Anthropic's policy changes. When it runs on your hardware, with your model weights, with your data —
+                you're sovereign.
+            </p>
+            <p>
+                Sovereignty isn't ideology. It's risk management. The only AI you can trust is the AI you control.
+            </p>
+
+            <h2 id="scale">The Scale</h2>
+            <table>
+                <tr>
+                    <td><strong>64</strong></td>
+                    <td>Total repositories</td>
+                </tr>
+                <tr>
+                    <td><strong>51</strong></td>
+                    <td>Public repositories</td>
+                </tr>
+                <tr>
+                    <td><strong>13</strong></td>
+                    <td>Private repositories</td>
+                </tr>
+                <tr>
+                    <td><strong>8</strong></td>
+                    <td>Architectural layers</td>
+                </tr>
+                <tr>
+                    <td><strong>23</strong></td>
+                    <td>Open PRs to external projects</td>
+                </tr>
+                <tr>
+                    <td><strong>4</strong></td>
+                    <td>PRs merged in past week</td>
+                </tr>
+            </table>
+
+            <h2 id="timeline">Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">April 2025</div>
+                    <div class="timeline-title">First Experiment</div>
+                    <div class="timeline-desc">Initial exploration of AI identity persistence. What if an AI could
+                        remember you across sessions?</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">May 2025</div>
+                    <div class="timeline-title">SCD Protocol v1.0</div>
+                    <div class="timeline-desc">Structured Contextual Distillation. The governance layer that prevents
+                        hallucination.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">June 2025</div>
+                    <div class="timeline-title">LingOS Development</div>
+                    <div class="timeline-desc">The language layer. Symbolic schema for structured human-AI
+                        communication.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">August 2025</div>
+                    <div class="timeline-title">ActiveMirrorOS v1.0</div>
+                    <div class="timeline-desc">Wrapper-first AI operating system. Deterministic gating before inference.
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">October 2025</div>
+                    <div class="timeline-title">MirrorBrain Launch</div>
+                    <div class="timeline-desc">Production cognitive interface with vault-backed memory and identity
+                        awareness.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">November 2025</div>
+                    <div class="timeline-title">Hardware Dedicated</div>
+                    <div class="timeline-desc">Mac Mini M4 (production), Mac Mini M1 (red-team), dedicated
+                        infrastructure.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">December 2025</div>
+                    <div class="timeline-title">SCD Protocol v3.1</div>
+                    <div class="timeline-desc">Published on Zenodo. DOI: 10.5281/zenodo.17787619. Academic-grade
+                        documentation.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">December 2025</div>
+                    <div class="timeline-title">AMGL Guard v1.1</div>
+                    <div class="timeline-desc">Security hardening. Red-team tested. Vulnerabilities found, patched,
+                        verified.</div>
+                </div>
+            </div>
+
+            <div class="callout callout-info">
+                <p><strong>⟡ This is not a pitch deck.</strong> This is documentation of working infrastructure. No
+                    projections. No promises. Just code that runs.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-glyph">⟡</div>
+        <p>MirrorDNA — Built by <a href="https://github.com/MirrorDNA-Reflection-Protocol">Paul Desai</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">N1 Intelligence (OPC) Pvt Ltd · Goa, India</p>
+    </footer>
+</body>
+
+</html>

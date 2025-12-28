@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Source Contributions — MirrorDNA</title>
+    <meta name="description"
+        content="PRs merged into LangChain, Mem0, AutoGen, GitPython, and other major open source projects.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <span class="nav-logo-glyph">⟡</span>
+                <span class="nav-logo-text">MirrorDNA</span>
+            </a>
+            <button class="nav-mobile-toggle"
+                onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <ul class="nav-links">
+                <li><a href="/story/">Story</a></li>
+                <li><a href="/principles/">Principles</a></li>
+                <li><a href="/architecture/">Architecture</a></li>
+                <li><a href="/security/">Security</a></li>
+                <li><a href="/research/">Research</a></li>
+                <li><a href="/contributions/" class="active">Contributions</a></li>
+                <li><a href="/glyphs/">Glyphs</a></li>
+                <li><a href="/ecosystem/">Ecosystem</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <p class="subtitle">Giving Back</p>
+            <h1>Open Source Contributions</h1>
+
+            <p class="lead">
+                We don't just take from open source. We contribute back. Bug fixes, improvements, and sovereign-first
+                patterns pushed upstream to major projects.
+            </p>
+
+            <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="stat">
+                    <div class="stat-value">23</div>
+                    <div class="stat-label">PRs Open</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Merged (7d)</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Repos</div>
+                </div>
+            </div>
+
+            <h2 id="merged">Merged PRs</h2>
+
+            <div class="pr-list">
+                <div class="pr-item">
+                    <div class="pr-icon">✓</div>
+                    <div class="pr-content">
+                        <div class="pr-title">fix(huggingface): Helper logic for init_chat_model with HuggingFace
+                            backend</div>
+                        <div class="pr-meta"><a
+                                href="https://github.com/langchain-ai/langchain">langchain-ai/langchain</a> · Merged
+                            December 2025</div>
+                    </div>
+                </div>
+                <div class="pr-item">
+                    <div class="pr-icon">✓</div>
+                    <div class="pr-content">
+                        <div class="pr-title">fix(core): prevent async task garbage collection (RUF006)</div>
+                        <div class="pr-meta"><a
+                                href="https://github.com/langchain-ai/langchain">langchain-ai/langchain</a> · Merged
+                            December 2025</div>
+                    </div>
+                </div>
+                <div class="pr-item">
+                    <div class="pr-icon">✓</div>
+                    <div class="pr-content">
+                        <div class="pr-title">feat(sovereign): Add local memory example and fix Ollama error handling
+                        </div>
+                        <div class="pr-meta"><a href="https://github.com/agiresearch/A-mem">agiresearch/A-mem</a> ·
+                            Merged December 2025</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="pending">Pending PRs</h2>
+
+            <h3>Memory Systems</h3>
+            <div class="pr-list">
+                <div class="pr-item">
+                    <div class="pr-icon" style="color: var(--accent-warning);">◌</div>
+                    <div class="pr-content">
+                        <div class="pr-title">feat(rest-api): enable chat endpoint with session_id support</div>
+                        <div class="pr-meta"><a href="https://github.com/mem0ai/mem0/pull/3812">mem0ai/mem0 #3812</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pr-item">
+                    <div class="pr-icon" style="color: var(--accent-warning);">◌</div>
+                    <div class="pr-content">
+                        <div class="pr-title">fix(embedchain): Lazy import optional Google dependencies in GmailLoader
+                        </div>
+                        <div class="pr-meta"><a href="https://github.com/mem0ai/mem0/pull/3811">mem0ai/mem0 #3811</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pr-item">
+                    <div class="pr-icon" style="color: var(--accent-warning);">◌</div>
+                    <div class="pr-content">
+                        <div class="pr-title">fix: Preserve http_auth and connection_class in _safe_deepcopy_config
+                        </div>
+                        <div class="pr-meta"><a href="https://github.com/mem0ai/mem0/pull/3816">mem0ai/mem0 #3816</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pr-item">
+                    <div class="pr-icon" style="color: var(--accent-warning);">◌</div>
+                    <div class="pr-content">
+                        <div class="pr-title">docs: Add docstrings to internal memory methods</div>
+                        <div class="pr-meta"><a href="https://github.com/mem0ai/mem0/pull/3818">mem0ai/mem0 #3818</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Agent Frameworks</h3>
+            <div class="pr-list">
+                <div class="pr-item">
+                    <div class="pr-icon" style="color: var(--accent-warning);">◌</div>
+                    <div class="pr-content">
+                        <div class="pr-title">feat: Add Sovereign Agent example (Ollama + Tavily)</div>
+                        <div class="pr-meta"><a
+                                href="https://github.com/langchain-ai/langgraph/pull/6575">langchain-ai/langgraph
+                                #6575</a></div>
+                    </div>
+                </div>
+                <div class="pr-item">
+                    <div class="pr-icon" style="color: var(--accent-warning);">◌</div>
+                    <div class="pr-content">
+                        <div class="pr-title">fix: replace bare except with specific exceptions in async queue</div>
+                        <div class="pr-meta"><a
+                                href="https://github.com/langchain-ai/langgraph/pull/6554">langchain-ai/langgraph
+                                #6554</a></div>
+                    </div>
+                </div>
+                <div class="pr-item">
+                    <div class="pr-icon" style="color: var(--accent-warning);">◌</div>
+                    <div class="pr-content">
+                        <div class="pr-title">fix(clients): Improve ImportError messages for optional dependencies</div>
+                        <div class="pr-meta"><a href="https://github.com/microsoft/autogen/pull/7138">microsoft/autogen
+                                #7138</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Python Libraries</h3>
+            <div class="pr-list">
+                <div class="pr-item">
+                    <div class="pr-icon" style="color: var(--accent-warning);">◌</div>
+                    <div class="pr-content">
+                        <div class="pr-title">Fix diff parsing to support mnemonicPrefix configuration</div>
+                        <div class="pr-meta"><a
+                                href="https://github.com/gitpython-developers/GitPython/pull/2092">gitpython-developers/GitPython
+                                #2092</a></div>
+                    </div>
+                </div>
+                <div class="pr-item">
+                    <div class="pr-icon" style="color: var(--accent-warning);">◌</div>
+                    <div class="pr-content">
+                        <div class="pr-title">Fix UnicodeDecodeError when reading packed-refs with non-UTF8 characters
+                        </div>
+                        <div class="pr-meta"><a
+                                href="https://github.com/gitpython-developers/GitPython/pull/2091">gitpython-developers/GitPython
+                                #2091</a></div>
+                    </div>
+                </div>
+                <div class="pr-item">
+                    <div class="pr-icon" style="color: var(--accent-warning);">◌</div>
+                    <div class="pr-content">
+                        <div class="pr-title">Fix commit hooks to respect core.hooksPath configuration</div>
+                        <div class="pr-meta"><a
+                                href="https://github.com/gitpython-developers/GitPython/pull/2090">gitpython-developers/GitPython
+                                #2090</a></div>
+                    </div>
+                </div>
+                <div class="pr-item">
+                    <div class="pr-icon" style="color: var(--accent-warning);">◌</div>
+                    <div class="pr-content">
+                        <div class="pr-title">Fix _get_padding_width() to respect pad_edge setting</div>
+                        <div class="pr-meta"><a href="https://github.com/Textualize/rich/pull/3909">Textualize/rich
+                                #3909</a></div>
+                    </div>
+                </div>
+                <div class="pr-item">
+                    <div class="pr-icon" style="color: var(--accent-warning);">◌</div>
+                    <div class="pr-content">
+                        <div class="pr-title">Support show_default string in prompts</div>
+                        <div class="pr-meta"><a href="https://github.com/pallets/click/pull/3165">pallets/click
+                                #3165</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Awesome Lists</h3>
+            <div class="pr-list">
+                <div class="pr-item">
+                    <div class="pr-icon" style="color: var(--accent-warning);">◌</div>
+                    <div class="pr-content">
+                        <div class="pr-title">Add MirrorDNA - reflective AI alignment framework</div>
+                        <div class="pr-meta"><a
+                                href="https://github.com/dit7ya/awesome-ai-alignment/pull/2">dit7ya/awesome-ai-alignment
+                                #2</a></div>
+                    </div>
+                </div>
+                <div class="pr-item">
+                    <div class="pr-icon" style="color: var(--accent-warning);">◌</div>
+                    <div class="pr-content">
+                        <div class="pr-title">Add MirrorDNA - reflective AI alignment protocol</div>
+                        <div class="pr-meta"><a
+                                href="https://github.com/Hannibal046/Awesome-LLM/pull/264">Hannibal046/Awesome-LLM
+                                #264</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout callout-success">
+                <p><strong>⟡ Contribution is continuous.</strong> New bugs found during development → fixes submitted
+                    upstream. The ecosystem benefits.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-glyph">⟡</div>
+        <p>MirrorDNA — Built by <a href="https://github.com/MirrorDNA-Reflection-Protocol">Paul Desai</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">N1 Intelligence (OPC) Pvt Ltd · Goa, India</p>
+    </footer>
+</body>
+
+</html>
