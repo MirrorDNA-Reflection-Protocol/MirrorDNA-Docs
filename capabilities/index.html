@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/MirrorDNA-Docs/">
+    <title>System Capabilities — What MirrorDNA Can Do</title>
+    <meta name="description"
+        content="Complete capabilities of MirrorDNA across Security, Identity, Inference, Orchestration, and Infrastructure layers.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="./" class="nav-logo">
+                <span class="nav-logo-glyph">⟡</span>
+                <span class="nav-logo-text">MirrorDNA</span>
+            </a>
+            <button class="nav-mobile-toggle"
+                onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <ul class="nav-links">
+                <li><a href="story/">Story</a></li>
+                <li><a href="principles/">Principles</a></li>
+                <li><a href="architecture/">Architecture</a></li>
+                <li><a href="capabilities/" class="active">Capabilities</a></li>
+                <li><a href="security/">Security</a></li>
+                <li><a href="research/">Research</a></li>
+                <li><a href="glyphs/">Glyphs</a></li>
+                <li><a href="ecosystem/">Ecosystem</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <p class="subtitle">System Capabilities</p>
+            <h1>What MirrorDNA Can Do</h1>
+
+            <p class="lead">
+                Production capabilities across five layers. Each component is tested, documented, and running daily on
+                dedicated hardware.
+            </p>
+
+            <!-- Security Layer -->
+            <h2 id="security">🛡️ Security Layer</h2>
+            <p>Defense-in-depth architecture. Fail-closed by default.</p>
+
+            <div class="capability-grid">
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⟡</span>
+                        <h4>AMGL Guard v1.1</h4>
+                    </div>
+                    <p>Pre-inference blocking for prompt exfiltration, role injection, and social engineering attacks.
+                    </p>
+                    <div class="capability-link">
+                        <a href="https://github.com/MirrorDNA-Reflection-Protocol/ActiveMirrorOS"
+                            target="_blank">ActiveMirrorOS →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">△</span>
+                        <h4>Request Gate</h4>
+                    </div>
+                    <p>Intent classification before inference. Requests are categorized and routed based on type.</p>
+                    <div class="capability-link">
+                        <a href="https://github.com/MirrorDNA-Reflection-Protocol/ActiveMirrorOS"
+                            target="_blank">ActiveMirrorOS →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">◈</span>
+                        <h4>Research Gate</h4>
+                    </div>
+                    <p>Controls external access via <code>RESEARCH_ALLOWED</code> flag. Air-gap mode for sensitive
+                        operations.</p>
+                    <div class="capability-link">
+                        <a href="https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain"
+                            target="_blank">MirrorBrain →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⧉</span>
+                        <h4>Drift Monitor</h4>
+                    </div>
+                    <p>Continuous SHA256 checksum verification on identity files. Alerts on any mismatch.</p>
+                    <div class="capability-link">
+                        <a href="https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Symbiosis"
+                            target="_blank">Symbiosis →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⟡</span>
+                        <h4>Fail-Closed Defaults</h4>
+                    </div>
+                    <p>Errors block, not allow. Unknown request types → BLOCK. Exception in validation → BLOCK.</p>
+                    <div class="capability-link">
+                        <a href="security/">Security Architecture →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Identity Layer -->
+            <h2 id="identity">🪪 Identity Layer</h2>
+            <p>Persistent, portable, cryptographically anchored identity.</p>
+
+            <div class="capability-grid">
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⟡</span>
+                        <h4>AMI Kernel v1.0</h4>
+                    </div>
+                    <p>10 modular identity components: human anchor, AI twins, context, protocols, hardware, projects,
+                        memory chain.</p>
+                    <div class="capability-link">
+                        <a href="https://github.com/MirrorDNA-Reflection-Protocol/ami_gate" target="_blank">ami_gate
+                            →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">△</span>
+                        <h4>Cross-Platform Portability</h4>
+                    </div>
+                    <p>Same identity across Claude, Antigravity (Gemini), Ollama, and any MCP-compatible client.</p>
+                    <div class="capability-link">
+                        <a href="architecture/">Architecture →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">◈</span>
+                        <h4>Cryptographic Anchoring</h4>
+                    </div>
+                    <p>SHA256 checksums on identity files. Protected fields cannot be overwritten by inference.</p>
+                    <div class="capability-link">
+                        <a href="https://github.com/MirrorDNA-Reflection-Protocol/mirrordna-zkp" target="_blank">ZKP
+                            Module →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⧉</span>
+                        <h4>Drift Detection</h4>
+                    </div>
+                    <p>Automatic alerts on identity mismatch. Hard block if checksum validation fails.</p>
+                    <div class="capability-link">
+                        <a href="https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Symbiosis"
+                            target="_blank">Symbiosis →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inference Layer -->
+            <h2 id="inference">🧠 Inference Layer</h2>
+            <p>Truth-enforced, vault-backed inference.</p>
+
+            <div class="capability-grid">
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⟡</span>
+                        <h4>MirrorBrain Unified v2.2</h4>
+                    </div>
+                    <p>Local LLM orchestration with Ollama. Identity-aware inference with vault integration.</p>
+                    <div class="capability-link">
+                        <a href="https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain"
+                            target="_blank">MirrorBrain →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">△</span>
+                        <h4>Truth-State Validator</h4>
+                    </div>
+                    <p>Enforces Fact/Estimate/Unknown classification on all claims. No confident wrongness.</p>
+                    <div class="capability-link">
+                        <a href="https://github.com/MirrorDNA-Reflection-Protocol/SCD-Protocol" target="_blank">SCD
+                            Protocol →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">◈</span>
+                        <h4>Semantic Vault</h4>
+                    </div>
+                    <p>4,700+ documents with glyph-aware embeddings. ChromaDB vector storage.</p>
+                    <div class="capability-link">
+                        <a href="https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain"
+                            target="_blank">vault_reader.py →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⧉</span>
+                        <h4>Context Injection</h4>
+                    </div>
+                    <p>Vault search before every response. Retrieved content takes priority over model weights.</p>
+                    <div class="capability-link">
+                        <a href="principles/">Vault Supremacy →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orchestration Layer -->
+            <h2 id="orchestration">🔄 Orchestration Layer</h2>
+            <p>Multi-agent coordination with continuous state sync.</p>
+
+            <div class="capability-grid">
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⟡</span>
+                        <h4>Multi-Agent Mesh</h4>
+                    </div>
+                    <p>Claude (Reflection) + Antigravity (Execution) + MirrorBrain (Local). All share same identity
+                        kernel.</p>
+                    <div class="capability-link">
+                        <a href="architecture/">Tri-Twin Model →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">△</span>
+                        <h4>State Sync</h4>
+                    </div>
+                    <p>Handoffs, fingerprints, LaunchAgent refresh every 30 minutes. No drift between agents.</p>
+                    <div class="capability-link">
+                        <a href="https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain"
+                            target="_blank">state_sync.sh →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">◈</span>
+                        <h4>Handoff Protocol</h4>
+                    </div>
+                    <p>Explicit handoffs between Claude ↔ Antigravity ↔ MirrorBrain. Summary, next actions, context
+                        preserved.</p>
+                    <div class="capability-link">
+                        <a href="https://github.com/MirrorDNA-Reflection-Protocol/ami_gate" target="_blank">ami_gate
+                            →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⧉</span>
+                        <h4>Self-Evolve Engine</h4>
+                    </div>
+                    <p>"The Dreaming" — Nightly autonomous improvement cycles. Knowledge synthesis and weight evolution.
+                    </p>
+                    <div class="capability-link">
+                        <a href="https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Symbiosis"
+                            target="_blank">run_dream.sh →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infrastructure Layer -->
+            <h2 id="infrastructure">🖥️ Infrastructure Layer</h2>
+            <p>Dedicated hardware. Sovereign stack.</p>
+
+            <div class="capability-grid">
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">🔴</span>
+                        <h4>Red-Team Node</h4>
+                    </div>
+                    <p>Mac Mini M1 — Dedicated adversarial testing. Runs attack scripts against production.</p>
+                    <div class="capability-link">
+                        <a href="security/">Red-Team Results →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">🟢</span>
+                        <h4>Production Node</h4>
+                    </div>
+                    <p>Mac Mini M4 — Sovereign stack. Ollama + Open WebUI + MirrorBrain + ChromaDB.</p>
+                    <div class="capability-link">
+                        <a href="architecture/">Hardware Stack →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">📱</span>
+                        <h4>Mobile Sync</h4>
+                    </div>
+                    <p>Pixel 9 Pro (GrapheneOS) — Sovereign mobile access. Encrypted sync.</p>
+                    <div class="capability-link">
+                        <a href="architecture/">Mobile Anchor →</a>
+                    </div>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">💾</span>
+                        <h4>Vault Persistence</h4>
+                    </div>
+                    <p>Obsidian → ChromaDB → iCloud. Triple-redundant document storage with vector embeddings.</p>
+                    <div class="capability-link">
+                        <a href="https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain"
+                            target="_blank">vault_ingest.py →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout callout-info" style="margin-top: 3rem;">
+                <p><strong>⟡ These are production capabilities.</strong> Not roadmap items. Not aspirations. Working
+                    systems running daily.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-glyph">⟡</div>
+        <p>MirrorDNA — Built by <a href="https://github.com/MirrorDNA-Reflection-Protocol">Paul Desai</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">N1 Intelligence (OPC) Pvt Ltd · Goa, India</p>
+    </footer>
+
+    <style>
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0 2.5rem;
+        }
+
+        .capability-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .capability-card:hover {
+            border-color: var(--border-medium);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .capability-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .capability-icon {
+            font-size: 1.25rem;
+        }
+
+        .capability-header h4 {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        .capability-card p {
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .capability-link {
+            font-size: 0.8rem;
+        }
+
+        .capability-link a {
+            color: var(--accent-secondary);
+        }
+
+        h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</body>
+
+</html>
