@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MirrorDNA Ecosystem | Interactive Architecture Map</title>
+    <meta name="description"
+        content="Explore the MirrorDNA ecosystem - a framework for sovereign AI identity and reflective intelligence.">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a24;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --accent-protocol: #6366f1;
+            --accent-language: #a855f7;
+            --accent-runtime: #22d3ee;
+            --accent-application: #10b981;
+            --accent-infra: #f59e0b;
+            --accent-external: #64748b;
+            --glow-intensity: 0.6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-glyph {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-protocol), var(--accent-language));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: 0.5rem;
+        }
+
+        /* Legend */
+        .legend {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 100;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.25rem;
+            backdrop-filter: blur(20px);
+        }
+
+        .legend-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* Controls */
+        .controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+        }
+
+        .control-btn:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: fixed;
+            padding: 1rem 1.25rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            max-width: 320px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+        }
+
+        .tooltip.visible {
+            opacity: 1;
+        }
+
+        .tooltip-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .tooltip-layer {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+
+        .tooltip-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .tooltip-hint {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 0.75rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Graph */
+        #graph {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .node {
+            cursor: pointer;
+        }
+
+        .node-circle {
+            stroke-width: 2;
+            transition: all 0.3s ease;
+        }
+
+        .node:hover .node-circle {
+            stroke-width: 3;
+        }
+
+        .node-label {
+            font-size: 11px;
+            font-weight: 500;
+            fill: var(--text-primary);
+            pointer-events: none;
+            text-anchor: middle;
+        }
+
+        .link {
+            stroke: rgba(255, 255, 255, 0.08);
+            stroke-width: 1;
+            fill: none;
+        }
+
+        .link-glow {
+            stroke-width: 4;
+            fill: none;
+            opacity: 0.3;
+        }
+
+        /* Info panel */
+        .info-panel {
+            position: fixed;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            z-index: 100;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 1.5rem;
+            width: 280px;
+            backdrop-filter: blur(20px);
+        }
+
+        .info-panel h3 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-protocol), var(--accent-language));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .architecture-note {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .glyph-accent {
+            color: var(--accent-protocol);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .info-panel {
+                display: none;
+            }
+
+            .legend {
+                bottom: 1rem;
+                left: 1rem;
+                padding: 1rem;
+            }
+
+            .controls {
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <span class="logo-glyph">⟡</span>
+            <span class="logo-text">MirrorDNA</span>
+            <span class="logo-subtitle">Ecosystem Map</span>
+        </div>
+    </header>
+
+    <div class="legend">
+        <div class="legend-title">Architecture Layers</div>
+        <div class="legend-items">
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--accent-protocol);"></div>
+                <span>Protocol Layer</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--accent-language);"></div>
+                <span>Language Layer</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--accent-runtime);"></div>
+                <span>Runtime Layer</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--accent-application);"></div>
+                <span>Application Layer</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--accent-infra);"></div>
+                <span>Infrastructure</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--accent-external);"></div>
+                <span>External / Forks</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="control-btn" id="zoomIn" title="Zoom In">+</button>
+        <button class="control-btn" id="zoomOut" title="Zoom Out">−</button>
+        <button class="control-btn" id="resetView" title="Reset View">⟲</button>
+    </div>
+
+    <div class="info-panel">
+        <h3>Ecosystem Overview</h3>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">6</div>
+                <div class="stat-label">Layers</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">24</div>
+                <div class="stat-label">Components</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">51</div>
+                <div class="stat-label">Public Repos</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">∞</div>
+                <div class="stat-label">Continuity</div>
+            </div>
+        </div>
+        <div class="architecture-note">
+            <span class="glyph-accent">⟡</span> <strong>Sovereign Identity</strong> — AI systems that remember, reflect,
+            and maintain truthful continuity across sessions.
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip">
+        <div class="tooltip-name"></div>
+        <div class="tooltip-layer"></div>
+        <div class="tooltip-desc"></div>
+        <div class="tooltip-hint">Click to open repository →</div>
+    </div>
+
+    <svg id="graph"></svg>
+
+    <script>
+        // Ecosystem data
+        const nodes = [
+            // Protocol Layer (Core)
+            { id: "SCD-Protocol", label: "SCD Protocol", layer: "protocol", desc: "Sovereign Compact Directive — The governance layer that enforces truth-state handling, memory rights, and continuity guarantees.", url: "https://github.com/MirrorDNA-Reflection-Protocol/SCD-Protocol", size: 35 },
+            { id: "MirrorDNA", label: "MirrorDNA", layer: "protocol", desc: "The architecture of persistence. Protocol/infrastructure tier defining how AI systems maintain identity across sessions.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA", size: 40 },
+            { id: "mirrordna-zkp", label: "ZKP Module", layer: "protocol", desc: "Zero-Knowledge Proof infrastructure for identity verification without exposing sensitive kernel data.", url: "https://github.com/MirrorDNA-Reflection-Protocol/mirrordna-zkp", size: 28 },
+            { id: "TrustByDesign", label: "Trust By Design", layer: "protocol", desc: "Framework and reference docs for deterministic trust — ensuring AI systems fail safely and transparently.", url: "https://github.com/MirrorDNA-Reflection-Protocol/TrustByDesign", size: 25 },
+
+            // Language Layer
+            { id: "LingOS", label: "LingOS", layer: "language", desc: "Language-layer symbolic schema for reflective dialogue. Defines how AI systems communicate with structured meaning.", url: "https://github.com/MirrorDNA-Reflection-Protocol/lingos-kernel", size: 32 },
+            { id: "BeaconGlyphs", label: "Beacon Glyphs", layer: "language", desc: "Symbolic glyph system for marking identity anchors, decision points, patterns, and synthesis across conversations.", url: "https://github.com/MirrorDNA-Reflection-Protocol/BeaconGlyphs", size: 24 },
+
+            // Runtime Layer
+            { id: "ActiveMirrorOS", label: "ActiveMirrorOS", layer: "runtime", desc: "Wrapper-first AI operating system. Real-time governance, deterministic gating, and temporal research validation.", url: "https://github.com/MirrorDNA-Reflection-Protocol/ActiveMirrorOS", size: 38 },
+            { id: "MirrorDNA-Symbiosis", label: "Symbiosis Engine", layer: "runtime", desc: "Self-healing, self-optimizing runtime. Includes SovereignHealer, QuantumObserver, and The Dreaming nightly evolution.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Symbiosis", size: 30 },
+            { id: "ami_gate", label: "AMI Gate", layer: "runtime", desc: "MCP server for identity kernel access. Enables AI agents to read/write the sovereign identity kernel.", url: "https://github.com/MirrorDNA-Reflection-Protocol/ami_gate", size: 22 },
+
+            // Application Layer
+            { id: "MirrorBrain", label: "MirrorBrain", layer: "application", desc: "The cognitive interface. WebUI integration for identity-aware AI interactions with vault-backed memory.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain", size: 34 },
+            { id: "Reflective-Ai", label: "Reflective AI", layer: "application", desc: "Reflection over Prediction. Application layer for AI systems that think before they act.", url: "https://github.com/MirrorDNA-Reflection-Protocol/Reflective-Ai", size: 26 },
+            { id: "mesh-boot-generator", label: "Mesh Boot", layer: "application", desc: "Generate your AI identity in 60 seconds. Quick-start tool for creating portable identity kernels.", url: "https://github.com/MirrorDNA-Reflection-Protocol/mesh-boot-generator", size: 22 },
+            { id: "mirrordna-examples", label: "Examples", layer: "application", desc: "Example implementations of MirrorDNA protocol across different AI platforms and use cases.", url: "https://github.com/MirrorDNA-Reflection-Protocol/mirrordna-examples", size: 20 },
+
+            // Infrastructure
+            { id: "MirrorDNA-Standard", label: "Standard", layer: "infra", desc: "Canonical specifications, schemas, and validation tools for MirrorDNA-compliant systems.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Standard", size: 26 },
+            { id: "MirrorDNA-Docs", label: "Documentation", layer: "infra", desc: "Comprehensive documentation, tutorials, and API references for the MirrorDNA ecosystem.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Docs", size: 22 },
+            { id: "MirrorDNA-Playground", label: "Playground", layer: "infra", desc: "Interactive sandbox for experimenting with MirrorDNA concepts and testing implementations.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Playground", size: 20 },
+            { id: "WhitePaper", label: "White Paper", layer: "infra", desc: "ActiveMirrorOS: Wrapper-First AI Systems for Governed Intelligence. The academic foundation.", url: "https://github.com/MirrorDNA-Reflection-Protocol/ActiveMirrorOS-WhitePaper", size: 24 },
+
+            // External / Research Forks
+            { id: "langgraph", label: "LangGraph", layer: "external", desc: "Build resilient language agents as graphs. Fork with sovereign agent examples and local-first patterns.", url: "https://github.com/MirrorDNA-Reflection-Protocol/langgraph", size: 22 },
+            { id: "langchain", label: "LangChain", layer: "external", desc: "Building applications with LLMs. Fork with identity-aware chain implementations.", url: "https://github.com/MirrorDNA-Reflection-Protocol/langchain", size: 22 },
+            { id: "autogen", label: "AutoGen", layer: "external", desc: "Microsoft's agentic AI framework. Fork with improved error handling and local model support.", url: "https://github.com/MirrorDNA-Reflection-Protocol/autogen", size: 22 },
+            { id: "mem0", label: "Mem0", layer: "external", desc: "Universal memory layer for AI agents. Fork exploring sovereign memory patterns.", url: "https://github.com/MirrorDNA-Reflection-Protocol/mem0", size: 20 },
+            { id: "letta", label: "Letta", layer: "external", desc: "Stateful LLM agents with long-term memory. Research fork for persistence patterns.", url: "https://github.com/MirrorDNA-Reflection-Protocol/letta", size: 20 },
+            { id: "open-webui", label: "Open WebUI", layer: "external", desc: "Self-hosted AI interface. Fork with MirrorBrain integration hooks.", url: "https://github.com/MirrorDNA-Reflection-Protocol/open-webui", size: 22 },
+            { id: "crewAI", label: "CrewAI", layer: "external", desc: "Multi-agent orchestration framework. Fork with sovereign coordination patterns.", url: "https://github.com/MirrorDNA-Reflection-Protocol/crewAI", size: 20 },
+        ];
+
+        const links = [
+            // Core protocol connections
+            { source: "MirrorDNA", target: "SCD-Protocol" },
+            { source: "MirrorDNA", target: "mirrordna-zkp" },
+            { source: "MirrorDNA", target: "TrustByDesign" },
+            { source: "SCD-Protocol", target: "LingOS" },
+
+            // Language to Runtime
+            { source: "LingOS", target: "ActiveMirrorOS" },
+            { source: "LingOS", target: "BeaconGlyphs" },
+            { source: "BeaconGlyphs", target: "MirrorBrain" },
+
+            // Runtime connections
+            { source: "ActiveMirrorOS", target: "MirrorDNA-Symbiosis" },
+            { source: "ActiveMirrorOS", target: "ami_gate" },
+            { source: "MirrorDNA-Symbiosis", target: "MirrorBrain" },
+            { source: "ami_gate", target: "MirrorBrain" },
+
+            // Application connections
+            { source: "MirrorBrain", target: "Reflective-Ai" },
+            { source: "MirrorDNA", target: "mesh-boot-generator" },
+            { source: "MirrorDNA", target: "mirrordna-examples" },
+
+            // Infrastructure
+            { source: "MirrorDNA", target: "MirrorDNA-Standard" },
+            { source: "MirrorDNA", target: "MirrorDNA-Docs" },
+            { source: "MirrorDNA-Standard", target: "MirrorDNA-Playground" },
+            { source: "ActiveMirrorOS", target: "WhitePaper" },
+
+            // External integrations
+            { source: "MirrorBrain", target: "open-webui" },
+            { source: "ActiveMirrorOS", target: "langgraph" },
+            { source: "ActiveMirrorOS", target: "langchain" },
+            { source: "ActiveMirrorOS", target: "autogen" },
+            { source: "MirrorDNA-Symbiosis", target: "mem0" },
+            { source: "MirrorDNA-Symbiosis", target: "letta" },
+            { source: "Reflective-Ai", target: "crewAI" },
+        ];
+
+        // Colors
+        const layerColors = {
+            protocol: "#6366f1",
+            language: "#a855f7",
+            runtime: "#22d3ee",
+            application: "#10b981",
+            infra: "#f59e0b",
+            external: "#64748b"
+        };
+
+        const layerNames = {
+            protocol: "Protocol Layer",
+            language: "Language Layer",
+            runtime: "Runtime Layer",
+            application: "Application Layer",
+            infra: "Infrastructure",
+            external: "External / Forks"
+        };
+
+        // Setup SVG
+        const svg = d3.select("#graph");
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        svg.attr("width", width).attr("height", height);
+
+        // Create gradient definitions
+        const defs = svg.append("defs");
+
+        // Glow filter
+        const filter = defs.append("filter")
+            .attr("id", "glow")
+            .attr("x", "-50%")
+            .attr("y", "-50%")
+            .attr("width", "200%")
+            .attr("height", "200%");
+
+        filter.append("feGaussianBlur")
+            .attr("stdDeviation", "3")
+            .attr("result", "coloredBlur");
+
+        const feMerge = filter.append("feMerge");
+        feMerge.append("feMergeNode").attr("in", "coloredBlur");
+        feMerge.append("feMergeNode").attr("in", "SourceGraphic");
+
+        // Create container for zoom
+        const container = svg.append("g");
+
+        // Zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.3, 3])
+            .on("zoom", (event) => {
+                container.attr("transform", event.transform);
+            });
+
+        svg.call(zoom);
+
+        // Simulation
+        const simulation = d3.forceSimulation(nodes)
+            .force("link", d3.forceLink(links).id(d => d.id).distance(120))
+            .force("charge", d3.forceManyBody().strength(-400))
+            .force("center", d3.forceCenter(width / 2, height / 2))
+            .force("collision", d3.forceCollide().radius(d => d.size + 20));
+
+        // Draw links
+        const link = container.append("g")
+            .selectAll("line")
+            .data(links)
+            .join("line")
+            .attr("class", "link");
+
+        // Draw nodes
+        const node = container.append("g")
+            .selectAll("g")
+            .data(nodes)
+            .join("g")
+            .attr("class", "node")
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+
+        // Node circles
+        node.append("circle")
+            .attr("class", "node-circle")
+            .attr("r", d => d.size)
+            .attr("fill", d => layerColors[d.layer])
+            .attr("stroke", d => layerColors[d.layer])
+            .attr("fill-opacity", 0.15)
+            .attr("filter", "url(#glow)");
+
+        // Node labels
+        node.append("text")
+            .attr("class", "node-label")
+            .attr("dy", d => d.size + 16)
+            .text(d => d.label);
+
+        // Tooltip
+        const tooltip = document.getElementById("tooltip");
+
+        node.on("mouseenter", (event, d) => {
+            tooltip.querySelector(".tooltip-name").textContent = d.label;
+            tooltip.querySelector(".tooltip-layer").textContent = layerNames[d.layer];
+            tooltip.querySelector(".tooltip-layer").style.color = layerColors[d.layer];
+            tooltip.querySelector(".tooltip-desc").textContent = d.desc;
+
+            tooltip.style.left = (event.pageX + 20) + "px";
+            tooltip.style.top = (event.pageY - 20) + "px";
+            tooltip.classList.add("visible");
+        });
+
+        node.on("mousemove", (event) => {
+            tooltip.style.left = (event.pageX + 20) + "px";
+            tooltip.style.top = (event.pageY - 20) + "px";
+        });
+
+        node.on("mouseleave", () => {
+            tooltip.classList.remove("visible");
+        });
+
+        node.on("click", (event, d) => {
+            if (d.url) {
+                window.open(d.url, "_blank");
+            }
+        });
+
+        // Update positions
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            node.attr("transform", d => `translate(${d.x},${d.y})`);
+        });
+
+        // Drag functions
+        function dragstarted(event) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            event.subject.fx = event.subject.x;
+            event.subject.fy = event.subject.y;
+        }
+
+        function dragged(event) {
+            event.subject.fx = event.x;
+            event.subject.fy = event.y;
+        }
+
+        function dragended(event) {
+            if (!event.active) simulation.alphaTarget(0);
+            event.subject.fx = null;
+            event.subject.fy = null;
+        }
+
+        // Controls
+        document.getElementById("zoomIn").addEventListener("click", () => {
+            svg.transition().call(zoom.scaleBy, 1.3);
+        });
+
+        document.getElementById("zoomOut").addEventListener("click", () => {
+            svg.transition().call(zoom.scaleBy, 0.7);
+        });
+
+        document.getElementById("resetView").addEventListener("click", () => {
+            svg.transition().call(zoom.transform, d3.zoomIdentity);
+        });
+
+        // Resize handler
+        window.addEventListener("resize", () => {
+            const newWidth = window.innerWidth;
+            const newHeight = window.innerHeight;
+            svg.attr("width", newWidth).attr("height", newHeight);
+            simulation.force("center", d3.forceCenter(newWidth / 2, newHeight / 2));
+            simulation.alpha(0.3).restart();
+        });
+    </script>
+</body>
+
+</html>
