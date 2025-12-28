@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MirrorDNA Ecosystem | Interactive Architecture Map</title>
+    <title>MirrorDNA Ecosystem | Complete Architecture Map</title>
     <meta name="description"
-        content="Explore the MirrorDNA ecosystem - a framework for sovereign AI identity and reflective intelligence.">
+        content="Explore the complete MirrorDNA ecosystem - 64 repositories across 8 architectural layers for sovereign AI identity.">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -22,8 +22,9 @@
             --accent-runtime: #22d3ee;
             --accent-application: #10b981;
             --accent-infra: #f59e0b;
+            --accent-research: #ec4899;
             --accent-external: #64748b;
-            --glow-intensity: 0.6;
+            --accent-awesome: #84cc16;
         }
 
         * {
@@ -40,7 +41,6 @@
             overflow: hidden;
         }
 
-        /* Header */
         .header {
             position: fixed;
             top: 0;
@@ -81,7 +81,6 @@
             margin-left: 0.5rem;
         }
 
-        /* Legend */
         .legend {
             position: fixed;
             bottom: 2rem;
@@ -92,6 +91,8 @@
             border-radius: 12px;
             padding: 1.25rem;
             backdrop-filter: blur(20px);
+            max-height: 70vh;
+            overflow-y: auto;
         }
 
         .legend-title {
@@ -112,7 +113,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
         }
 
@@ -122,7 +123,6 @@
             border-radius: 50%;
         }
 
-        /* Controls */
         .controls {
             position: fixed;
             bottom: 2rem;
@@ -153,7 +153,6 @@
             border-color: rgba(255, 255, 255, 0.15);
         }
 
-        /* Tooltip */
         .tooltip {
             position: fixed;
             padding: 1rem 1.25rem;
@@ -163,7 +162,7 @@
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.2s ease;
-            max-width: 320px;
+            max-width: 350px;
             backdrop-filter: blur(20px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             z-index: 1000;
@@ -200,7 +199,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Graph */
         #graph {
             width: 100vw;
             height: 100vh;
@@ -220,7 +218,7 @@
         }
 
         .node-label {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 500;
             fill: var(--text-primary);
             pointer-events: none;
@@ -228,18 +226,11 @@
         }
 
         .link {
-            stroke: rgba(255, 255, 255, 0.08);
+            stroke: rgba(255, 255, 255, 0.06);
             stroke-width: 1;
             fill: none;
         }
 
-        .link-glow {
-            stroke-width: 4;
-            fill: none;
-            opacity: 0.3;
-        }
-
-        /* Info panel */
         .info-panel {
             position: fixed;
             top: 50%;
@@ -273,7 +264,7 @@
         }
 
         .stat-value {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--accent-protocol), var(--accent-language));
             -webkit-background-clip: text;
@@ -282,35 +273,79 @@
         }
 
         .stat-label {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
-        .architecture-note {
+        .pr-status {
             margin-top: 1.5rem;
             padding-top: 1rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .pr-status h4 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .pr-item {
+            display: flex;
+            justify-content: space-between;
             font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pr-count {
+            color: var(--accent-application);
+            font-weight: 600;
+        }
+
+        .filter-buttons {
+            position: fixed;
+            top: 5rem;
+            left: 2rem;
+            z-index: 100;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            max-width: 200px;
+        }
+
+        .filter-btn {
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             color: var(--text-secondary);
-            line-height: 1.6;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: all 0.2s ease;
         }
 
-        .glyph-accent {
-            color: var(--accent-protocol);
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .info-panel {
+
+            .info-panel,
+            .filter-buttons {
                 display: none;
             }
 
             .legend {
                 bottom: 1rem;
                 left: 1rem;
-                padding: 1rem;
+                padding: 0.75rem;
+                font-size: 0.65rem;
             }
 
             .controls {
@@ -326,36 +361,48 @@
         <div class="logo">
             <span class="logo-glyph">⟡</span>
             <span class="logo-text">MirrorDNA</span>
-            <span class="logo-subtitle">Ecosystem Map</span>
+            <span class="logo-subtitle">Complete Ecosystem</span>
         </div>
     </header>
+
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-layer="all">All</button>
+        <button class="filter-btn" data-layer="protocol">Protocol</button>
+        <button class="filter-btn" data-layer="language">Language</button>
+        <button class="filter-btn" data-layer="runtime">Runtime</button>
+        <button class="filter-btn" data-layer="application">Application</button>
+        <button class="filter-btn" data-layer="infra">Infra</button>
+        <button class="filter-btn" data-layer="research">Research</button>
+        <button class="filter-btn" data-layer="awesome">Awesome</button>
+        <button class="filter-btn" data-layer="external">External</button>
+    </div>
 
     <div class="legend">
         <div class="legend-title">Architecture Layers</div>
         <div class="legend-items">
             <div class="legend-item">
-                <div class="legend-dot" style="background: var(--accent-protocol);"></div>
-                <span>Protocol Layer</span>
+                <div class="legend-dot" style="background: var(--accent-protocol);"></div><span>Protocol (Core)</span>
             </div>
             <div class="legend-item">
-                <div class="legend-dot" style="background: var(--accent-language);"></div>
-                <span>Language Layer</span>
+                <div class="legend-dot" style="background: var(--accent-language);"></div><span>Language Layer</span>
             </div>
             <div class="legend-item">
-                <div class="legend-dot" style="background: var(--accent-runtime);"></div>
-                <span>Runtime Layer</span>
+                <div class="legend-dot" style="background: var(--accent-runtime);"></div><span>Runtime Layer</span>
             </div>
             <div class="legend-item">
-                <div class="legend-dot" style="background: var(--accent-application);"></div>
-                <span>Application Layer</span>
+                <div class="legend-dot" style="background: var(--accent-application);"></div><span>Application</span>
             </div>
             <div class="legend-item">
-                <div class="legend-dot" style="background: var(--accent-infra);"></div>
-                <span>Infrastructure</span>
+                <div class="legend-dot" style="background: var(--accent-infra);"></div><span>Infrastructure</span>
             </div>
             <div class="legend-item">
-                <div class="legend-dot" style="background: var(--accent-external);"></div>
-                <span>External / Forks</span>
+                <div class="legend-dot" style="background: var(--accent-research);"></div><span>Research</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--accent-awesome);"></div><span>Awesome Lists</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--accent-external);"></div><span>External Forks</span>
             </div>
         </div>
     </div>
@@ -370,25 +417,27 @@
         <h3>Ecosystem Overview</h3>
         <div class="stats">
             <div class="stat">
-                <div class="stat-value">6</div>
+                <div class="stat-value">8</div>
                 <div class="stat-label">Layers</div>
             </div>
             <div class="stat">
-                <div class="stat-value">24</div>
-                <div class="stat-label">Components</div>
+                <div class="stat-value">64</div>
+                <div class="stat-label">Repos</div>
             </div>
             <div class="stat">
                 <div class="stat-value">51</div>
-                <div class="stat-label">Public Repos</div>
+                <div class="stat-label">Public</div>
             </div>
             <div class="stat">
-                <div class="stat-value">∞</div>
-                <div class="stat-label">Continuity</div>
+                <div class="stat-value">13</div>
+                <div class="stat-label">Private</div>
             </div>
         </div>
-        <div class="architecture-note">
-            <span class="glyph-accent">⟡</span> <strong>Sovereign Identity</strong> — AI systems that remember, reflect,
-            and maintain truthful continuity across sessions.
+        <div class="pr-status">
+            <h4>Open Source Status</h4>
+            <div class="pr-item"><span>Open PRs</span><span class="pr-count">23</span></div>
+            <div class="pr-item"><span>Merged (7d)</span><span class="pr-count">4</span></div>
+            <div class="pr-item"><span>Awaiting Review</span><span class="pr-count">19</span></div>
         </div>
     </div>
 
@@ -402,47 +451,77 @@
     <svg id="graph"></svg>
 
     <script>
-        // Ecosystem data
         const nodes = [
             // Protocol Layer (Core)
-            { id: "SCD-Protocol", label: "SCD Protocol", layer: "protocol", desc: "Sovereign Compact Directive — The governance layer that enforces truth-state handling, memory rights, and continuity guarantees.", url: "https://github.com/MirrorDNA-Reflection-Protocol/SCD-Protocol", size: 35 },
-            { id: "MirrorDNA", label: "MirrorDNA", layer: "protocol", desc: "The architecture of persistence. Protocol/infrastructure tier defining how AI systems maintain identity across sessions.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA", size: 40 },
+            { id: "SCD-Protocol", label: "SCD Protocol", layer: "protocol", desc: "Sovereign Compact Directive — Governance layer enforcing truth-state handling, memory rights, and continuity guarantees.", url: "https://github.com/MirrorDNA-Reflection-Protocol/SCD-Protocol", size: 40 },
+            { id: "MirrorDNA", label: "MirrorDNA", layer: "protocol", desc: "The architecture of persistence. Protocol tier defining how AI systems maintain identity across sessions.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA", size: 45 },
             { id: "mirrordna-zkp", label: "ZKP Module", layer: "protocol", desc: "Zero-Knowledge Proof infrastructure for identity verification without exposing sensitive kernel data.", url: "https://github.com/MirrorDNA-Reflection-Protocol/mirrordna-zkp", size: 28 },
-            { id: "TrustByDesign", label: "Trust By Design", layer: "protocol", desc: "Framework and reference docs for deterministic trust — ensuring AI systems fail safely and transparently.", url: "https://github.com/MirrorDNA-Reflection-Protocol/TrustByDesign", size: 25 },
+            { id: "TrustByDesign", label: "Trust By Design", layer: "protocol", desc: "Framework for deterministic trust — ensuring AI systems fail safely and transparently.", url: "https://github.com/MirrorDNA-Reflection-Protocol/TrustByDesign", size: 26 },
 
             // Language Layer
-            { id: "LingOS", label: "LingOS", layer: "language", desc: "Language-layer symbolic schema for reflective dialogue. Defines how AI systems communicate with structured meaning.", url: "https://github.com/MirrorDNA-Reflection-Protocol/lingos-kernel", size: 32 },
-            { id: "BeaconGlyphs", label: "Beacon Glyphs", layer: "language", desc: "Symbolic glyph system for marking identity anchors, decision points, patterns, and synthesis across conversations.", url: "https://github.com/MirrorDNA-Reflection-Protocol/BeaconGlyphs", size: 24 },
+            { id: "LingOS", label: "LingOS", layer: "language", desc: "Language-layer symbolic schema for reflective dialogue. Defines structured AI communication.", url: "https://github.com/MirrorDNA-Reflection-Protocol/lingos-kernel", size: 35 },
+            { id: "BeaconGlyphs", label: "Beacon Glyphs", layer: "language", desc: "Symbolic glyph system for marking identity anchors, decisions, patterns, and synthesis.", url: "https://github.com/MirrorDNA-Reflection-Protocol/BeaconGlyphs", size: 26 },
 
             // Runtime Layer
-            { id: "ActiveMirrorOS", label: "ActiveMirrorOS", layer: "runtime", desc: "Wrapper-first AI operating system. Real-time governance, deterministic gating, and temporal research validation.", url: "https://github.com/MirrorDNA-Reflection-Protocol/ActiveMirrorOS", size: 38 },
-            { id: "MirrorDNA-Symbiosis", label: "Symbiosis Engine", layer: "runtime", desc: "Self-healing, self-optimizing runtime. Includes SovereignHealer, QuantumObserver, and The Dreaming nightly evolution.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Symbiosis", size: 30 },
-            { id: "ami_gate", label: "AMI Gate", layer: "runtime", desc: "MCP server for identity kernel access. Enables AI agents to read/write the sovereign identity kernel.", url: "https://github.com/MirrorDNA-Reflection-Protocol/ami_gate", size: 22 },
+            { id: "ActiveMirrorOS", label: "ActiveMirrorOS", layer: "runtime", desc: "Wrapper-first AI operating system. Real-time governance and deterministic gating.", url: "https://github.com/MirrorDNA-Reflection-Protocol/ActiveMirrorOS", size: 42 },
+            { id: "MirrorDNA-Symbiosis", label: "Symbiosis", layer: "runtime", desc: "Self-healing runtime with SovereignHealer, QuantumObserver, and The Dreaming nightly evolution.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Symbiosis", size: 32 },
+            { id: "ami_gate", label: "AMI Gate", layer: "runtime", desc: "MCP server for identity kernel access. Enables AI agents to read/write sovereign identity.", url: "https://github.com/MirrorDNA-Reflection-Protocol/ami_gate", size: 24 },
 
             // Application Layer
-            { id: "MirrorBrain", label: "MirrorBrain", layer: "application", desc: "The cognitive interface. WebUI integration for identity-aware AI interactions with vault-backed memory.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain", size: 34 },
-            { id: "Reflective-Ai", label: "Reflective AI", layer: "application", desc: "Reflection over Prediction. Application layer for AI systems that think before they act.", url: "https://github.com/MirrorDNA-Reflection-Protocol/Reflective-Ai", size: 26 },
-            { id: "mesh-boot-generator", label: "Mesh Boot", layer: "application", desc: "Generate your AI identity in 60 seconds. Quick-start tool for creating portable identity kernels.", url: "https://github.com/MirrorDNA-Reflection-Protocol/mesh-boot-generator", size: 22 },
-            { id: "mirrordna-examples", label: "Examples", layer: "application", desc: "Example implementations of MirrorDNA protocol across different AI platforms and use cases.", url: "https://github.com/MirrorDNA-Reflection-Protocol/mirrordna-examples", size: 20 },
+            { id: "MirrorBrain", label: "MirrorBrain", layer: "application", desc: "The cognitive interface. WebUI integration for identity-aware AI with vault-backed memory.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain", size: 36 },
+            { id: "Reflective-Ai", label: "Reflective AI", layer: "application", desc: "Reflection over Prediction. Application layer for AI that thinks before acting.", url: "https://github.com/MirrorDNA-Reflection-Protocol/Reflective-Ai", size: 28 },
+            { id: "mesh-boot-generator", label: "Mesh Boot", layer: "application", desc: "Generate your AI identity in 60 seconds. Quick-start for portable identity kernels.", url: "https://github.com/MirrorDNA-Reflection-Protocol/mesh-boot-generator", size: 24 },
+            { id: "mirrordna-examples", label: "Examples", layer: "application", desc: "Example implementations across different AI platforms and use cases.", url: "https://github.com/MirrorDNA-Reflection-Protocol/mirrordna-examples", size: 22 },
+            { id: "MirrorDNA-Activator", label: "Activator", layer: "application", desc: "One-click activation for MirrorDNA-compliant AI systems.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Activator", size: 20 },
+            { id: "MirrorDNA-Playground", label: "Playground", layer: "application", desc: "Interactive sandbox for experimenting with MirrorDNA concepts.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Playground", size: 22 },
 
             // Infrastructure
-            { id: "MirrorDNA-Standard", label: "Standard", layer: "infra", desc: "Canonical specifications, schemas, and validation tools for MirrorDNA-compliant systems.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Standard", size: 26 },
-            { id: "MirrorDNA-Docs", label: "Documentation", layer: "infra", desc: "Comprehensive documentation, tutorials, and API references for the MirrorDNA ecosystem.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Docs", size: 22 },
-            { id: "MirrorDNA-Playground", label: "Playground", layer: "infra", desc: "Interactive sandbox for experimenting with MirrorDNA concepts and testing implementations.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Playground", size: 20 },
-            { id: "WhitePaper", label: "White Paper", layer: "infra", desc: "ActiveMirrorOS: Wrapper-First AI Systems for Governed Intelligence. The academic foundation.", url: "https://github.com/MirrorDNA-Reflection-Protocol/ActiveMirrorOS-WhitePaper", size: 24 },
+            { id: "MirrorDNA-Standard", label: "Standard", layer: "infra", desc: "Canonical specifications, schemas, and validation tools.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Standard", size: 28 },
+            { id: "MirrorDNA-Docs", label: "Documentation", layer: "infra", desc: "Comprehensive documentation, tutorials, and API references.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Docs", size: 24 },
+            { id: "WhitePaper", label: "White Paper", layer: "infra", desc: "ActiveMirrorOS: Wrapper-First AI Systems for Governed Intelligence.", url: "https://github.com/MirrorDNA-Reflection-Protocol/ActiveMirrorOS-WhitePaper", size: 26 },
+            { id: "activemirror-site", label: "Website", layer: "infra", desc: "Official MirrorDNA website and landing page.", url: "https://github.com/MirrorDNA-Reflection-Protocol/activemirror-site", size: 20 },
 
-            // External / Research Forks
-            { id: "langgraph", label: "LangGraph", layer: "external", desc: "Build resilient language agents as graphs. Fork with sovereign agent examples and local-first patterns.", url: "https://github.com/MirrorDNA-Reflection-Protocol/langgraph", size: 22 },
-            { id: "langchain", label: "LangChain", layer: "external", desc: "Building applications with LLMs. Fork with identity-aware chain implementations.", url: "https://github.com/MirrorDNA-Reflection-Protocol/langchain", size: 22 },
-            { id: "autogen", label: "AutoGen", layer: "external", desc: "Microsoft's agentic AI framework. Fork with improved error handling and local model support.", url: "https://github.com/MirrorDNA-Reflection-Protocol/autogen", size: 22 },
-            { id: "mem0", label: "Mem0", layer: "external", desc: "Universal memory layer for AI agents. Fork exploring sovereign memory patterns.", url: "https://github.com/MirrorDNA-Reflection-Protocol/mem0", size: 20 },
-            { id: "letta", label: "Letta", layer: "external", desc: "Stateful LLM agents with long-term memory. Research fork for persistence patterns.", url: "https://github.com/MirrorDNA-Reflection-Protocol/letta", size: 20 },
-            { id: "open-webui", label: "Open WebUI", layer: "external", desc: "Self-hosted AI interface. Fork with MirrorBrain integration hooks.", url: "https://github.com/MirrorDNA-Reflection-Protocol/open-webui", size: 22 },
-            { id: "crewAI", label: "CrewAI", layer: "external", desc: "Multi-agent orchestration framework. Fork with sovereign coordination patterns.", url: "https://github.com/MirrorDNA-Reflection-Protocol/crewAI", size: 20 },
+            // Research / Private
+            { id: "AgentDNA", label: "AgentDNA", layer: "research", desc: "Advanced agent identity research. [PRIVATE]", url: "#", size: 22, private: true },
+            { id: "MirrorDNA-Gauntlet", label: "Gauntlet", layer: "research", desc: "Stress-testing and red-team infrastructure. [PRIVATE]", url: "#", size: 22, private: true },
+            { id: "MirrorDNA-Lattice", label: "Lattice", layer: "research", desc: "Multi-agent coordination research. [PRIVATE]", url: "#", size: 22, private: true },
+            { id: "Glyphtrail", label: "Glyphtrail", layer: "research", desc: "Glyph provenance tracking. [PRIVATE]", url: "#", size: 20, private: true },
+            { id: "DominancePlaybook", label: "Playbook", layer: "research", desc: "Strategic planning. [PRIVATE]", url: "#", size: 18, private: true },
+            { id: "MirrorSeed", label: "MirrorSeed", layer: "research", desc: "Identity seeding experiments. [PRIVATE]", url: "#", size: 20, private: true },
+
+            // Awesome Lists (curated knowledge)
+            { id: "awesome-ai-identity", label: "ai-identity", layer: "awesome", desc: "Curated tools, protocols, and resources for persistent AI identity.", url: "https://github.com/MirrorDNA-Reflection-Protocol/awesome-ai-identity", size: 24 },
+            { id: "awesome-ai-agents", label: "ai-agents", layer: "awesome", desc: "List of AI autonomous agents. Fork with MirrorDNA additions.", url: "https://github.com/MirrorDNA-Reflection-Protocol/awesome-ai-agents", size: 20 },
+            { id: "awesome-ai-alignment", label: "ai-alignment", layer: "awesome", desc: "Resources for AI Alignment research.", url: "https://github.com/MirrorDNA-Reflection-Protocol/awesome-ai-alignment", size: 20 },
+            { id: "awesome-ai-sdks", label: "ai-sdks", layer: "awesome", desc: "SDKs, frameworks, and tools for AI agents.", url: "https://github.com/MirrorDNA-Reflection-Protocol/awesome-ai-sdks", size: 18 },
+            { id: "Awesome-LLM", label: "LLM", layer: "awesome", desc: "Curated list of Large Language Models.", url: "https://github.com/MirrorDNA-Reflection-Protocol/Awesome-LLM", size: 20 },
+            { id: "awesome-llm-agents", label: "llm-agents", layer: "awesome", desc: "Awesome LLM agents frameworks.", url: "https://github.com/MirrorDNA-Reflection-Protocol/awesome-llm-agents", size: 18 },
+            { id: "awesome-llm-apps", label: "llm-apps", layer: "awesome", desc: "Awesome LLM apps with AI Agents and RAG.", url: "https://github.com/MirrorDNA-Reflection-Protocol/awesome-llm-apps", size: 18 },
+            { id: "awesome-langchain", label: "langchain", layer: "awesome", desc: "Tools and projects with LangChain.", url: "https://github.com/MirrorDNA-Reflection-Protocol/awesome-langchain", size: 18 },
+            { id: "awesome-generative-ai", label: "gen-ai", layer: "awesome", desc: "Generative AI research and resources.", url: "https://github.com/MirrorDNA-Reflection-Protocol/awesome-generative-ai-guide", size: 18 },
+            { id: "awesome-chatgpt", label: "chatgpt", layer: "awesome", desc: "ChatGPT prompt curation.", url: "https://github.com/MirrorDNA-Reflection-Protocol/awesome-chatgpt-prompts", size: 16 },
+            { id: "awesome", label: "awesome", layer: "awesome", desc: "Meta-awesome list.", url: "https://github.com/MirrorDNA-Reflection-Protocol/awesome", size: 16 },
+
+            // External / Forks with active PRs
+            { id: "langgraph", label: "LangGraph", layer: "external", desc: "Build resilient agents as graphs. 2 PRs pending.", url: "https://github.com/MirrorDNA-Reflection-Protocol/langgraph", size: 24, prs: 2 },
+            { id: "langchain", label: "LangChain", layer: "external", desc: "Platform for reliable agents. 1 PR merged.", url: "https://github.com/MirrorDNA-Reflection-Protocol/langchain", size: 24, prs: 0 },
+            { id: "autogen", label: "AutoGen", layer: "external", desc: "Microsoft's agentic AI. 1 PR pending.", url: "https://github.com/MirrorDNA-Reflection-Protocol/autogen", size: 22, prs: 1 },
+            { id: "mem0", label: "Mem0", layer: "external", desc: "Universal memory layer. 5 PRs pending.", url: "https://github.com/MirrorDNA-Reflection-Protocol/mem0", size: 24, prs: 5 },
+            { id: "MemOS", label: "MemOS", layer: "external", desc: "Memory Layer for LLM Agents. 1 PR pending.", url: "https://github.com/MirrorDNA-Reflection-Protocol/MemOS", size: 20, prs: 1 },
+            { id: "A-mem", label: "A-MEM", layer: "external", desc: "Agentic Memory for LLM Agents. 1 PR merged.", url: "https://github.com/MirrorDNA-Reflection-Protocol/A-mem", size: 20, prs: 0 },
+            { id: "letta", label: "Letta", layer: "external", desc: "Stateful LLM agents. Research fork.", url: "https://github.com/MirrorDNA-Reflection-Protocol/letta", size: 20 },
+            { id: "open-webui", label: "Open WebUI", layer: "external", desc: "Self-hosted AI interface. 1 PR pending.", url: "https://github.com/MirrorDNA-Reflection-Protocol/open-webui", size: 24, prs: 1 },
+            { id: "crewAI", label: "CrewAI", layer: "external", desc: "Multi-agent orchestration.", url: "https://github.com/MirrorDNA-Reflection-Protocol/crewAI", size: 20 },
+            { id: "GitPython", label: "GitPython", layer: "external", desc: "Python Git library. 3 PRs pending.", url: "https://github.com/MirrorDNA-Reflection-Protocol/GitPython", size: 20, prs: 3 },
+            { id: "rich", label: "Rich", layer: "external", desc: "Rich text terminal. 1 PR pending.", url: "https://github.com/MirrorDNA-Reflection-Protocol/rich", size: 18, prs: 1 },
+            { id: "click", label: "Click", layer: "external", desc: "CLI toolkit. 1 PR pending.", url: "https://github.com/MirrorDNA-Reflection-Protocol/click", size: 18, prs: 1 },
+            { id: "express", label: "Express", layer: "external", desc: "Node.js framework. 1 PR closed.", url: "https://github.com/MirrorDNA-Reflection-Protocol/express", size: 18 },
+            { id: "json-server", label: "json-server", layer: "external", desc: "Fake REST API.", url: "https://github.com/MirrorDNA-Reflection-Protocol/json-server", size: 16 },
+            { id: "sqlite-utils", label: "sqlite-utils", layer: "external", desc: "SQLite utility. PR pending.", url: "https://github.com/MirrorDNA-Reflection-Protocol/sqlite-utils", size: 16 },
         ];
 
         const links = [
-            // Core protocol connections
+            // Core protocol
             { source: "MirrorDNA", target: "SCD-Protocol" },
             { source: "MirrorDNA", target: "mirrordna-zkp" },
             { source: "MirrorDNA", target: "TrustByDesign" },
@@ -453,22 +532,39 @@
             { source: "LingOS", target: "BeaconGlyphs" },
             { source: "BeaconGlyphs", target: "MirrorBrain" },
 
-            // Runtime connections
+            // Runtime
             { source: "ActiveMirrorOS", target: "MirrorDNA-Symbiosis" },
             { source: "ActiveMirrorOS", target: "ami_gate" },
             { source: "MirrorDNA-Symbiosis", target: "MirrorBrain" },
             { source: "ami_gate", target: "MirrorBrain" },
 
-            // Application connections
+            // Application
             { source: "MirrorBrain", target: "Reflective-Ai" },
             { source: "MirrorDNA", target: "mesh-boot-generator" },
             { source: "MirrorDNA", target: "mirrordna-examples" },
+            { source: "MirrorDNA", target: "MirrorDNA-Activator" },
+            { source: "MirrorDNA", target: "MirrorDNA-Playground" },
 
             // Infrastructure
             { source: "MirrorDNA", target: "MirrorDNA-Standard" },
             { source: "MirrorDNA", target: "MirrorDNA-Docs" },
-            { source: "MirrorDNA-Standard", target: "MirrorDNA-Playground" },
             { source: "ActiveMirrorOS", target: "WhitePaper" },
+            { source: "MirrorDNA", target: "activemirror-site" },
+
+            // Research connections
+            { source: "MirrorDNA", target: "AgentDNA" },
+            { source: "ActiveMirrorOS", target: "MirrorDNA-Gauntlet" },
+            { source: "MirrorDNA", target: "MirrorDNA-Lattice" },
+            { source: "BeaconGlyphs", target: "Glyphtrail" },
+            { source: "MirrorDNA", target: "MirrorSeed" },
+
+            // Awesome cluster connections
+            { source: "MirrorDNA", target: "awesome-ai-identity" },
+            { source: "awesome-ai-identity", target: "awesome-ai-agents" },
+            { source: "awesome-ai-identity", target: "awesome-ai-alignment" },
+            { source: "awesome-ai-agents", target: "awesome-llm-agents" },
+            { source: "Awesome-LLM", target: "awesome-llm-apps" },
+            { source: "awesome-langchain", target: "langchain" },
 
             // External integrations
             { source: "MirrorBrain", target: "open-webui" },
@@ -476,17 +572,20 @@
             { source: "ActiveMirrorOS", target: "langchain" },
             { source: "ActiveMirrorOS", target: "autogen" },
             { source: "MirrorDNA-Symbiosis", target: "mem0" },
-            { source: "MirrorDNA-Symbiosis", target: "letta" },
+            { source: "MirrorDNA-Symbiosis", target: "MemOS" },
+            { source: "MirrorDNA-Symbiosis", target: "A-mem" },
             { source: "Reflective-Ai", target: "crewAI" },
+            { source: "MirrorDNA-Symbiosis", target: "letta" },
         ];
 
-        // Colors
         const layerColors = {
             protocol: "#6366f1",
             language: "#a855f7",
             runtime: "#22d3ee",
             application: "#10b981",
             infra: "#f59e0b",
+            research: "#ec4899",
+            awesome: "#84cc16",
             external: "#64748b"
         };
 
@@ -496,62 +595,47 @@
             runtime: "Runtime Layer",
             application: "Application Layer",
             infra: "Infrastructure",
-            external: "External / Forks"
+            research: "Research (Private)",
+            awesome: "Awesome Lists",
+            external: "External Forks"
         };
 
-        // Setup SVG
         const svg = d3.select("#graph");
         const width = window.innerWidth;
         const height = window.innerHeight;
-
         svg.attr("width", width).attr("height", height);
 
-        // Create gradient definitions
         const defs = svg.append("defs");
-
-        // Glow filter
         const filter = defs.append("filter")
             .attr("id", "glow")
-            .attr("x", "-50%")
-            .attr("y", "-50%")
-            .attr("width", "200%")
-            .attr("height", "200%");
-
-        filter.append("feGaussianBlur")
-            .attr("stdDeviation", "3")
-            .attr("result", "coloredBlur");
-
+            .attr("x", "-50%").attr("y", "-50%")
+            .attr("width", "200%").attr("height", "200%");
+        filter.append("feGaussianBlur").attr("stdDeviation", "2").attr("result", "coloredBlur");
         const feMerge = filter.append("feMerge");
         feMerge.append("feMergeNode").attr("in", "coloredBlur");
         feMerge.append("feMergeNode").attr("in", "SourceGraphic");
 
-        // Create container for zoom
         const container = svg.append("g");
 
-        // Zoom behavior
         const zoom = d3.zoom()
-            .scaleExtent([0.3, 3])
-            .on("zoom", (event) => {
-                container.attr("transform", event.transform);
-            });
-
+            .scaleExtent([0.2, 4])
+            .on("zoom", (event) => container.attr("transform", event.transform));
         svg.call(zoom);
 
-        // Simulation
-        const simulation = d3.forceSimulation(nodes)
-            .force("link", d3.forceLink(links).id(d => d.id).distance(120))
-            .force("charge", d3.forceManyBody().strength(-400))
-            .force("center", d3.forceCenter(width / 2, height / 2))
-            .force("collision", d3.forceCollide().radius(d => d.size + 20));
+        let currentFilter = "all";
 
-        // Draw links
+        const simulation = d3.forceSimulation(nodes)
+            .force("link", d3.forceLink(links).id(d => d.id).distance(80))
+            .force("charge", d3.forceManyBody().strength(-300))
+            .force("center", d3.forceCenter(width / 2, height / 2))
+            .force("collision", d3.forceCollide().radius(d => d.size + 15));
+
         const link = container.append("g")
             .selectAll("line")
             .data(links)
             .join("line")
             .attr("class", "link");
 
-        // Draw nodes
         const node = container.append("g")
             .selectAll("g")
             .data(nodes)
@@ -562,30 +646,30 @@
                 .on("drag", dragged)
                 .on("end", dragended));
 
-        // Node circles
         node.append("circle")
             .attr("class", "node-circle")
             .attr("r", d => d.size)
             .attr("fill", d => layerColors[d.layer])
             .attr("stroke", d => layerColors[d.layer])
-            .attr("fill-opacity", 0.15)
+            .attr("fill-opacity", d => d.private ? 0.08 : 0.12)
+            .attr("stroke-dasharray", d => d.private ? "3,3" : "none")
             .attr("filter", "url(#glow)");
 
-        // Node labels
         node.append("text")
             .attr("class", "node-label")
-            .attr("dy", d => d.size + 16)
+            .attr("dy", d => d.size + 14)
             .text(d => d.label);
 
-        // Tooltip
         const tooltip = document.getElementById("tooltip");
 
         node.on("mouseenter", (event, d) => {
-            tooltip.querySelector(".tooltip-name").textContent = d.label;
+            tooltip.querySelector(".tooltip-name").textContent = d.label + (d.private ? " 🔒" : "");
             tooltip.querySelector(".tooltip-layer").textContent = layerNames[d.layer];
             tooltip.querySelector(".tooltip-layer").style.color = layerColors[d.layer];
-            tooltip.querySelector(".tooltip-desc").textContent = d.desc;
-
+            let desc = d.desc;
+            if (d.prs) desc += ` (${d.prs} PR${d.prs > 1 ? 's' : ''} open)`;
+            tooltip.querySelector(".tooltip-desc").textContent = desc;
+            tooltip.querySelector(".tooltip-hint").textContent = d.private ? "Private repository" : "Click to open repository →";
             tooltip.style.left = (event.pageX + 20) + "px";
             tooltip.style.top = (event.pageY - 20) + "px";
             tooltip.classList.add("visible");
@@ -596,28 +680,18 @@
             tooltip.style.top = (event.pageY - 20) + "px";
         });
 
-        node.on("mouseleave", () => {
-            tooltip.classList.remove("visible");
-        });
+        node.on("mouseleave", () => tooltip.classList.remove("visible"));
 
         node.on("click", (event, d) => {
-            if (d.url) {
-                window.open(d.url, "_blank");
-            }
+            if (d.url && d.url !== "#") window.open(d.url, "_blank");
         });
 
-        // Update positions
         simulation.on("tick", () => {
-            link
-                .attr("x1", d => d.source.x)
-                .attr("y1", d => d.source.y)
-                .attr("x2", d => d.target.x)
-                .attr("y2", d => d.target.y);
-
+            link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
             node.attr("transform", d => `translate(${d.x},${d.y})`);
         });
 
-        // Drag functions
         function dragstarted(event) {
             if (!event.active) simulation.alphaTarget(0.3).restart();
             event.subject.fx = event.subject.x;
@@ -635,26 +709,29 @@
             event.subject.fy = null;
         }
 
-        // Controls
-        document.getElementById("zoomIn").addEventListener("click", () => {
-            svg.transition().call(zoom.scaleBy, 1.3);
+        // Filter functionality
+        document.querySelectorAll(".filter-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentFilter = btn.dataset.layer;
+
+                node.style("opacity", d => currentFilter === "all" || d.layer === currentFilter ? 1 : 0.15);
+                link.style("opacity", d => {
+                    if (currentFilter === "all") return 1;
+                    return (d.source.layer === currentFilter || d.target.layer === currentFilter) ? 1 : 0.05;
+                });
+            });
         });
 
-        document.getElementById("zoomOut").addEventListener("click", () => {
-            svg.transition().call(zoom.scaleBy, 0.7);
-        });
+        document.getElementById("zoomIn").addEventListener("click", () => svg.transition().call(zoom.scaleBy, 1.3));
+        document.getElementById("zoomOut").addEventListener("click", () => svg.transition().call(zoom.scaleBy, 0.7));
+        document.getElementById("resetView").addEventListener("click", () => svg.transition().call(zoom.transform, d3.zoomIdentity));
 
-        document.getElementById("resetView").addEventListener("click", () => {
-            svg.transition().call(zoom.transform, d3.zoomIdentity);
-        });
-
-        // Resize handler
         window.addEventListener("resize", () => {
-            const newWidth = window.innerWidth;
-            const newHeight = window.innerHeight;
-            svg.attr("width", newWidth).attr("height", newHeight);
-            simulation.force("center", d3.forceCenter(newWidth / 2, newHeight / 2));
-            simulation.alpha(0.3).restart();
+            const w = window.innerWidth, h = window.innerHeight;
+            svg.attr("width", w).attr("height", h);
+            simulation.force("center", d3.forceCenter(w / 2, h / 2)).alpha(0.3).restart();
         });
     </script>
 </body>
