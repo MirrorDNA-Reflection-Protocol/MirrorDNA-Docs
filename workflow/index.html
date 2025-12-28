@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/MirrorDNA-Docs/">
+    <title>Development Workflow — How MirrorDNA Gets Built</title>
+    <meta name="description"
+        content="The development workflow, contribution process, and collaboration model for MirrorDNA.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="./" class="nav-logo">
+                <span class="nav-logo-glyph">⟡</span>
+                <span class="nav-logo-text">MirrorDNA</span>
+            </a>
+            <button class="nav-mobile-toggle"
+                onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <ul class="nav-links">
+                <li><a href="story/">Story</a></li>
+                <li><a href="principles/">Principles</a></li>
+                <li><a href="architecture/">Architecture</a></li>
+                <li><a href="security/">Security</a></li>
+                <li><a href="capabilities/">Capabilities</a></li>
+                <li><a href="research/">Research</a></li>
+                <li><a href="contributions/">Contributions</a></li>
+                <li><a href="workflow/" class="active">Workflow</a></li>
+                <li><a href="glyphs/">Glyphs</a></li>
+                <li><a href="ecosystem/">Ecosystem</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <p class="subtitle">Development Workflow</p>
+            <h1>How MirrorDNA Gets Built</h1>
+
+            <p class="lead">
+                A solo founder with AI twins. No standup meetings. No sprint planning. Just continuous iteration with
+                orchestrated agents.
+            </p>
+
+            <h2 id="daily">📅 Daily Workflow</h2>
+
+            <div class="card">
+                <h4>Morning — State Sync</h4>
+                <ul>
+                    <li>Run <code>startup_sync.sh</code> to capture system state</li>
+                    <li>Check handoffs from previous Claude/Antigravity sessions</li>
+                    <li>Review open loops in <code>open_loops.md</code></li>
+                    <li>Pick highest priority item</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Work Blocks — Agent Collaboration</h4>
+                <ul>
+                    <li><strong>Deep work:</strong> Claude Opus for architecture, validation, complex reasoning</li>
+                    <li><strong>Execution:</strong> Antigravity (Gemini) for file operations, coding, browser testing
+                    </li>
+                    <li><strong>Local inference:</strong> MirrorBrain (Ollama) for vault queries, drafts</li>
+                    <li>Each agent hands off context via structured handoff packets</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Evening — Close Loop</h4>
+                <ul>
+                    <li>Run <code>sync_pre.sh</code> to capture end-of-day state</li>
+                    <li>Create handoff for next session</li>
+                    <li>Update <code>open_loops.md</code> with completed/blocked items</li>
+                    <li>Commit any pending changes</li>
+                </ul>
+            </div>
+
+            <h2 id="nightly">🌙 Nightly — The Dreaming</h2>
+            <p>At 3:15 AM, automated processes run:</p>
+
+            <div class="card">
+                <h4>Autonomous Improvement Cycle</h4>
+                <ol>
+                    <li><strong>Dream Engine</strong> — Internal reflection on day's work</li>
+                    <li><strong>Project REVELATION</strong> — External knowledge synthesis, gap detection</li>
+                    <li><strong>Project GENESIS</strong> — Weight evolution, LoRA training trigger</li>
+                </ol>
+                <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                    Source: <a href="https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Symbiosis"
+                        target="_blank">MirrorDNA-Symbiosis/dreaming/</a>
+                </p>
+            </div>
+
+            <h2 id="contribution">🤝 Contribution Model</h2>
+
+            <div class="card">
+                <h4>How to Contribute</h4>
+                <ol>
+                    <li>Fork the relevant repository</li>
+                    <li>Create a feature branch</li>
+                    <li>Follow existing code style and patterns</li>
+                    <li>Submit PR with clear description</li>
+                    <li>Paul reviews with AI assistance</li>
+                </ol>
+                <p style="margin-top: 1rem; font-size: 0.85rem;">
+                    <em>Note: PR links being updated — check GitHub for latest</em>
+                </p>
+            </div>
+
+            <div class="card">
+                <h4>Contribution Areas</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Area</th>
+                            <th>Repos</th>
+                            <th>Complexity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Documentation</td>
+                            <td>Any repo</td>
+                            <td><span class="badge badge-success">Easy</span></td>
+                        </tr>
+                        <tr>
+                            <td>Bug fixes</td>
+                            <td>MirrorBrain, Symbiosis</td>
+                            <td><span class="badge badge-warning">Medium</span></td>
+                        </tr>
+                        <tr>
+                            <td>New features</td>
+                            <td>Discuss first</td>
+                            <td><span class="badge badge-danger">Hard</span></td>
+                        </tr>
+                        <tr>
+                            <td>Security</td>
+                            <td>AMGL Guard, ami_gate</td>
+                            <td><span class="badge badge-info">Expert</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="tooling">🛠 Tooling</h2>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h4>Version Control</h4>
+                    <ul>
+                        <li>Git + GitHub</li>
+                        <li>Conventional commits</li>
+                        <li>Feature branches</li>
+                        <li>Squash merge preferred</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>IDEs & Editors</h4>
+                    <ul>
+                        <li>Cursor (primary)</li>
+                        <li>VSCode extensions</li>
+                        <li>Obsidian (docs/vault)</li>
+                        <li>Terminal (wezterm)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>AI Tooling</h4>
+                    <ul>
+                        <li>Claude Pro (reflection)</li>
+                        <li>Gemini CLI (execution)</li>
+                        <li>Ollama (local LLM)</li>
+                        <li>MCP servers</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Infrastructure</h4>
+                    <ul>
+                        <li>Mac Mini M4 (prod)</li>
+                        <li>Mac Mini M1 (red-team)</li>
+                        <li>ChromaDB (vectors)</li>
+                        <li>iCloud (sync)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 id="handoffs">📋 Handoff Protocol</h2>
+
+            <div class="card">
+                <h4>Between Agents</h4>
+                <p>When Claude hands to Antigravity (or vice versa):</p>
+                <pre><code>{
+  "from_agent": "claude",
+  "to_agent": "antigravity", 
+  "summary": "What was accomplished",
+  "next_actions": "What to do next",
+  "project": "active_project",
+  "context": "File paths, decisions, blockers"
+}</code></pre>
+                <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                    Handoffs stored in: <code>MirrorDNA-Vault/MirrorFlow/Handoffs/</code>
+                </p>
+            </div>
+
+            <div class="callout callout-info" style="margin-top: 3rem;">
+                <p><strong>⟡ This workflow is itself a product of iteration.</strong> It evolved from trial, error, and
+                    reflection — not upfront planning.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-glyph">⟡</div>
+        <p>MirrorDNA — Built by <a href="https://github.com/MirrorDNA-Reflection-Protocol">Paul Desai</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">N1 Intelligence (OPC) Pvt Ltd · Goa, India</p>
+    </footer>
+</body>
+
+</html>
