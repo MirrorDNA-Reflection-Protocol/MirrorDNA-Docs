@@ -353,6 +353,87 @@
                 bottom: 1rem;
                 right: 1rem;
             }
+
+            .search-container {
+                display: none;
+            }
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: fixed;
+            top: 5rem;
+            right: 2rem;
+            z-index: 100;
+        }
+
+        .search-input {
+            padding: 0.6rem 1rem;
+            width: 200px;
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-protocol);
+            width: 250px;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Keyboard Hints */
+        .keyboard-hints {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            z-index: 100;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        .keyboard-hints kbd {
+            display: inline-block;
+            padding: 0.15rem 0.4rem;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            margin-right: 0.25rem;
+            font-family: monospace;
+            color: var(--text-secondary);
+        }
+
+        /* Node Entrance Animation */
+        .node {
+            opacity: 0;
+            animation: nodeEnter 0.5s ease-out forwards;
+        }
+
+        @keyframes nodeEnter {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Highlighted node (from search/URL) */
+        .node.highlighted .node-circle {
+            stroke-width: 4;
+            filter: url(#glow) drop-shadow(0 0 10px currentColor);
         }
     </style>
 </head>
@@ -425,6 +506,17 @@
         <button class="control-btn" id="zoomIn" title="Zoom In">+</button>
         <button class="control-btn" id="zoomOut" title="Zoom Out">−</button>
         <button class="control-btn" id="resetView" title="Reset View">⟲</button>
+    </div>
+
+    <div class="search-container">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search repos... (/)">
+    </div>
+
+    <div class="keyboard-hints">
+        <kbd>/</kbd> Search &nbsp;
+        <kbd>1-8</kbd> Layers &nbsp;
+        <kbd>0</kbd> All &nbsp;
+        <kbd>Esc</kbd> Reset
     </div>
 
     <div class="info-panel">
@@ -747,6 +839,129 @@
             svg.attr("width", w).attr("height", h);
             simulation.force("center", d3.forceCenter(w / 2, h / 2)).alpha(0.3).restart();
         });
+
+        // === ENHANCEMENTS ===
+
+        // Staggered Animation
+        node.each(function (d, i) {
+            d3.select(this).style("animation-delay", `${i * 30}ms`);
+        });
+
+        // Layer mapping for keyboard shortcuts
+        const layerKeys = {
+            "1": "protocol",
+            "2": "language",
+            "3": "runtime",
+            "4": "application",
+            "5": "infra",
+            "6": "research",
+            "7": "awesome",
+            "8": "external",
+            "0": "all"
+        };
+
+        // Keyboard Shortcuts
+        document.addEventListener("keydown", (e) => {
+            // Don't trigger if typing in search
+            if (document.activeElement.id === "searchInput") {
+                if (e.key === "Escape") {
+                    document.getElementById("searchInput").blur();
+                    document.getElementById("searchInput").value = "";
+                    filterBySearch("");
+                }
+                return;
+            }
+
+            // "/" to focus search
+            if (e.key === "/" || e.key === "?") {
+                e.preventDefault();
+                document.getElementById("searchInput").focus();
+                return;
+            }
+
+            // Number keys for layer filtering
+            if (layerKeys[e.key]) {
+                const layer = layerKeys[e.key];
+                document.querySelectorAll(".filter-btn").forEach(b => {
+                    b.classList.toggle("active", b.dataset.layer === layer);
+                });
+                currentFilter = layer;
+                node.style("opacity", d => currentFilter === "all" || d.layer === currentFilter ? 1 : 0.15);
+                link.style("opacity", d => {
+                    if (currentFilter === "all") return 1;
+                    return (d.source.layer === currentFilter || d.target.layer === currentFilter) ? 1 : 0.05;
+                });
+                // Update URL
+                history.replaceState(null, "", currentFilter === "all" ? "?" : `?layer=${layer}`);
+            }
+
+            // Escape to reset
+            if (e.key === "Escape") {
+                document.querySelectorAll(".filter-btn").forEach(b => {
+                    b.classList.toggle("active", b.dataset.layer === "all");
+                });
+                currentFilter = "all";
+                node.style("opacity", 1).classed("highlighted", false);
+                link.style("opacity", 1);
+                svg.transition().call(zoom.transform, d3.zoomIdentity);
+                history.replaceState(null, "", "?");
+            }
+        });
+
+        // Search Functionality
+        const searchInput = document.getElementById("searchInput");
+
+        function filterBySearch(query) {
+            query = query.toLowerCase().trim();
+            if (!query) {
+                node.style("opacity", d => currentFilter === "all" || d.layer === currentFilter ? 1 : 0.15);
+                node.classed("highlighted", false);
+                return;
+            }
+
+            node.style("opacity", d => {
+                const match = d.label.toLowerCase().includes(query) || d.id.toLowerCase().includes(query);
+                return match ? 1 : 0.1;
+            });
+            node.classed("highlighted", d => d.label.toLowerCase().includes(query) || d.id.toLowerCase().includes(query));
+        }
+
+        searchInput.addEventListener("input", (e) => filterBySearch(e.target.value));
+
+        // URL-based highlighting (shareable links)
+        function parseURLParams() {
+            const params = new URLSearchParams(window.location.search);
+            const highlight = params.get("highlight");
+            const layer = params.get("layer");
+
+            if (highlight) {
+                setTimeout(() => {
+                    const targetNode = nodes.find(n => n.id.toLowerCase() === highlight.toLowerCase());
+                    if (targetNode) {
+                        node.style("opacity", d => d.id === targetNode.id ? 1 : 0.15);
+                        node.classed("highlighted", d => d.id === targetNode.id);
+                        // Center on the node
+                        svg.transition().duration(750).call(
+                            zoom.transform,
+                            d3.zoomIdentity.translate(width / 2 - targetNode.x, height / 2 - targetNode.y).scale(1.5)
+                        );
+                    }
+                }, 1000);
+            }
+
+            if (layer && layerKeys[Object.keys(layerKeys).find(k => layerKeys[k] === layer)]) {
+                currentFilter = layer;
+                document.querySelectorAll(".filter-btn").forEach(b => {
+                    b.classList.toggle("active", b.dataset.layer === layer);
+                });
+                setTimeout(() => {
+                    node.style("opacity", d => d.layer === layer ? 1 : 0.15);
+                    link.style("opacity", d => (d.source.layer === layer || d.target.layer === layer) ? 1 : 0.05);
+                }, 500);
+            }
+        }
+
+        parseURLParams();
     </script>
 </body>
 
