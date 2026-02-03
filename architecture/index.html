@@ -7,7 +7,7 @@
     <base href="/MirrorDNA-Docs/">
     <title>Architecture — MirrorDNA System Overview</title>
     <meta name="description"
-        content="Tri-Twin model, 8 architectural layers, hardware stack, state synchronization. Complete system architecture of MirrorDNA.">
+        content="Tri-Twin model, 9 architectural layers, hardware stack, state synchronization. Complete system architecture of MirrorDNA.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -28,10 +28,8 @@
                 <li><a href="architecture/" class="active">Architecture</a></li>
                 <li><a href="security/">Security</a></li>
                 <li><a href="capabilities/">Capabilities</a></li>
+                <li><a href="activemirror/" style="color: #a855f7;">Active Mirror</a></li>
                 <li><a href="research/">Research</a></li>
-                <li><a href="contributions/">Contributions</a></li>
-                <li><a href="workflow/">Workflow</a></li>
-                <li><a href="glyphs/">Glyphs</a></li>
                 <li><a href="ecosystem/">Ecosystem</a></li>
             </ul>
         </div>
@@ -73,7 +71,7 @@
                 </div>
             </div>
 
-            <h2 id="layers">8 Architectural Layers</h2>
+            <h2 id="layers">9 Architectural Layers</h2>
             <table>
                 <thead>
                     <tr>
@@ -123,6 +121,11 @@
                         <td>Forks with patches</td>
                         <td>LangGraph, LangChain, Mem0, AutoGen, CrewAI</td>
                     </tr>
+                    <tr>
+                        <td><strong>Consumer</strong></td>
+                        <td>Public-facing products</td>
+                        <td><a href="activemirror/" style="color: #a855f7;">Active Mirror</a>, AI Twins, BrainScan, MirrorGate</td>
+                    </tr>
                 </tbody>
             </table>
             <p><a href="ecosystem/">→ View interactive ecosystem map</a></p>
@@ -164,6 +167,33 @@
                     </tr>
                 </tbody>
             </table>
+
+            <h2 id="consumer">Consumer Layer — Active Mirror</h2>
+            <p>
+                The consumer-facing product that brings MirrorDNA infrastructure to end users:
+            </p>
+            <div class="card-grid">
+                <div class="card">
+                    <h4 style="color: #a855f7;">AI Twins</h4>
+                    <p><strong>⟡ Guardian</strong> — Protective, grounding</p>
+                    <p><strong>◈ Scout</strong> — Curious, exploratory</p>
+                    <p><strong>◇ Synthesizer</strong> — Analytical, integrative</p>
+                    <p><strong>◎ Mirror</strong> — Reflective, questioning</p>
+                </div>
+                <div class="card">
+                    <h4>Dual Mode</h4>
+                    <p><strong>Cloud Mode</strong> — Groq Llama 3.3 70B</p>
+                    <p><strong>Sovereign Mode</strong> — WebLLM Phi-3.5 (on-device)</p>
+                    <p>Mirror Proof Protocol for consent attestation</p>
+                </div>
+                <div class="card">
+                    <h4>BrainScan</h4>
+                    <p>8 cognitive archetypes quiz</p>
+                    <p>Matches users to optimal AI Twin</p>
+                    <p>Personalized interaction patterns</p>
+                </div>
+            </div>
+            <p><a href="activemirror/" style="color: #a855f7;">→ Explore Active Mirror</a></p>
 
             <h2 id="software">Software Stack</h2>
             <div class="card-grid">
