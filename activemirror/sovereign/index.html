@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/MirrorDNA-Docs/">
+    <title>Sovereign Mode — On-Device AI</title>
+    <meta name="description" content="True privacy with WebLLM. AI runs entirely on your device. Your data never leaves.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="./" class="nav-logo">
+                <span class="nav-logo-glyph">⟡</span>
+                <span class="nav-logo-text">MirrorDNA</span>
+            </a>
+            <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <ul class="nav-links">
+                <li><a href="story/">Story</a></li>
+                <li><a href="architecture/">Architecture</a></li>
+                <li><a href="capabilities/">Capabilities</a></li>
+                <li><a href="activemirror/" class="active">Active Mirror</a></li>
+                <li><a href="ecosystem/">Ecosystem</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <p class="subtitle"><a href="activemirror/">Active Mirror</a> / Sovereign Mode</p>
+            <h1>🔒 Sovereign Mode</h1>
+
+            <p class="lead">
+                True privacy. AI runs entirely on your device via WebLLM. Your conversations never leave your browser.
+            </p>
+
+            <div class="callout callout-info">
+                <p><strong>⟡ This is real sovereignty.</strong> Not "we promise to delete your data" — your data literally never leaves your device.</p>
+            </div>
+
+            <h2 id="how">How It Works</h2>
+
+            <ol>
+                <li><strong>Toggle to Sovereign Mode</strong> — Click the mode toggle in the header</li>
+                <li><strong>Download Model (~2GB)</strong> — One-time download of Phi-3.5 Mini</li>
+                <li><strong>Run Locally</strong> — Model runs in your browser via WebGPU/WebLLM</li>
+                <li><strong>Zero Network</strong> — After download, works completely offline</li>
+            </ol>
+
+            <h2 id="technology">Technology Stack</h2>
+
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Technology</th>
+                </tr>
+                <tr>
+                    <td>Model</td>
+                    <td>Phi-3.5-mini-instruct-q4f16_1-MLC</td>
+                </tr>
+                <tr>
+                    <td>Runtime</td>
+                    <td>WebLLM (MLC AI)</td>
+                </tr>
+                <tr>
+                    <td>Acceleration</td>
+                    <td>WebGPU (falls back to WASM)</td>
+                </tr>
+                <tr>
+                    <td>Model Size</td>
+                    <td>~2GB (quantized 4-bit)</td>
+                </tr>
+                <tr>
+                    <td>Context Window</td>
+                    <td>4096 tokens</td>
+                </tr>
+            </table>
+
+            <h2 id="comparison">Cloud vs Sovereign</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>☁️ Cloud Mode</th>
+                        <th>🔒 Sovereign Mode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Model</td>
+                        <td>Llama 3.3 70B</td>
+                        <td>Phi-3.5 Mini (3.8B)</td>
+                    </tr>
+                    <tr>
+                        <td>Quality</td>
+                        <td>Higher (larger model)</td>
+                        <td>Good (optimized small model)</td>
+                    </tr>
+                    <tr>
+                        <td>Speed</td>
+                        <td>Fast (~1-2s)</td>
+                        <td>Slower (~5-10s)</td>
+                    </tr>
+                    <tr>
+                        <td>Privacy</td>
+                        <td>Data sent to Groq</td>
+                        <td>100% local</td>
+                    </tr>
+                    <tr>
+                        <td>Internet</td>
+                        <td>Required</td>
+                        <td>Not required (after download)</td>
+                    </tr>
+                    <tr>
+                        <td>First Load</td>
+                        <td>Instant</td>
+                        <td>~2GB download</td>
+                    </tr>
+                    <tr>
+                        <td>Cost</td>
+                        <td>Free (Groq API)</td>
+                        <td>Free (your hardware)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="requirements">Requirements</h2>
+
+            <ul>
+                <li><strong>Browser:</strong> Chrome 113+, Edge 113+, or any browser with WebGPU support</li>
+                <li><strong>Storage:</strong> ~2GB free space for model cache</li>
+                <li><strong>RAM:</strong> 4GB+ recommended</li>
+                <li><strong>GPU:</strong> WebGPU-capable (most modern GPUs); falls back to CPU if not available</li>
+            </ul>
+
+            <h2 id="implementation">Implementation</h2>
+
+            <pre><code>// WebLLM Engine Singleton
+class SovereignEngine {
+    constructor() {
+        this.engine = null;
+        this.isReady = false;
+    }
+
+    async init(onProgress) {
+        const webllm = await import('@mlc-ai/web-llm');
+        this.engine = await webllm.CreateMLCEngine(
+            'Phi-3.5-mini-instruct-q4f16_1-MLC',
+            {
+                initProgressCallback: (progress) => {
+                    this.loadProgress = progress.progress || 0;
+                    onProgress?.(progress);
+                }
+            }
+        );
+        this.isReady = true;
+    }
+
+    async generate(systemPrompt, userMessage) {
+        const response = await this.engine.chat.completions.create({
+            messages: [
+                { role: 'system', content: systemPrompt },
+                { role: 'user', content: userMessage }
+            ],
+            temperature: 0.7,
+            max_tokens: 200
+        });
+        return response.choices[0]?.message?.content || '';
+    }
+}</code></pre>
+
+            <h2 id="privacy">Privacy Guarantees</h2>
+
+            <div class="callout callout-warning">
+                <p><strong>In Sovereign Mode:</strong></p>
+                <ul style="margin: 0.5rem 0 0 1.5rem;">
+                    <li>No API calls to any server</li>
+                    <li>No telemetry or analytics</li>
+                    <li>No conversation logging</li>
+                    <li>Model runs in browser sandbox</li>
+                    <li>Works completely offline</li>
+                </ul>
+            </div>
+
+            <p>The only network request is the initial model download from the WebLLM CDN. After that, everything runs locally.</p>
+
+            <div class="callout callout-info" style="margin-top: 2rem;">
+                <p><strong>⟡ Try Sovereign Mode:</strong> <a href="https://activemirror.ai/twins" target="_blank">activemirror.ai/twins</a> → Toggle to "Sovereign"</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-glyph">⟡</div>
+        <p>MirrorDNA — Built by <a href="https://github.com/MirrorDNA-Reflection-Protocol">Paul Desai</a></p>
+    </footer>
+</body>
+</html>

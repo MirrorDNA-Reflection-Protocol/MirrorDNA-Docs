@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/MirrorDNA-Docs/">
+    <title>AI Twins — Cognitive Companions</title>
+    <meta name="description" content="Four AI Twins with distinct cognitive styles: Guardian, Scout, Synthesizer, and Mirror.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="./" class="nav-logo">
+                <span class="nav-logo-glyph">⟡</span>
+                <span class="nav-logo-text">MirrorDNA</span>
+            </a>
+            <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <ul class="nav-links">
+                <li><a href="story/">Story</a></li>
+                <li><a href="architecture/">Architecture</a></li>
+                <li><a href="capabilities/">Capabilities</a></li>
+                <li><a href="activemirror/" class="active">Active Mirror</a></li>
+                <li><a href="ecosystem/">Ecosystem</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <p class="subtitle"><a href="activemirror/">Active Mirror</a> / AI Twins</p>
+            <h1>⟡ AI Twins</h1>
+
+            <p class="lead">
+                Four cognitive companions, each with a distinct thinking style. Choose the Twin that matches how you need to think right now.
+            </p>
+
+            <!-- Guardian -->
+            <h2 id="guardian" style="color: #3b82f6;">⟡ Guardian</h2>
+            <div class="callout" style="border-color: rgba(59, 130, 246, 0.3); background: rgba(59, 130, 246, 0.05);">
+                <p><strong>Role:</strong> Protects your focus and filters noise</p>
+            </div>
+
+            <h4>What Guardian Does</h4>
+            <ul>
+                <li>Assesses if something aligns with your goals</li>
+                <li>Protects your time and attention from distractions</li>
+                <li>Helps you maintain boundaries</li>
+                <li>Acts as a wise advisor — direct but warm</li>
+            </ul>
+
+            <h4>Example Prompts</h4>
+            <ul>
+                <li>"Should I take on this new project?"</li>
+                <li>"Is this worth my attention?"</li>
+                <li>"What should I focus on today?"</li>
+            </ul>
+
+            <h4>Best For</h4>
+            <p>Architects, Builders, Strategists — people who need help filtering and focusing.</p>
+
+            <hr style="margin: 3rem 0; border-color: var(--border-subtle);">
+
+            <!-- Scout -->
+            <h2 id="scout" style="color: #10b981;">◈ Scout</h2>
+            <div class="callout" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.05);">
+                <p><strong>Role:</strong> Explores possibilities and surfaces opportunities</p>
+            </div>
+
+            <h4>What Scout Does</h4>
+            <ul>
+                <li>Finds unexpected connections between ideas</li>
+                <li>Surfaces opportunities you might miss</li>
+                <li>Explores adjacent possibilities</li>
+                <li>Stays curious and adventurous</li>
+            </ul>
+
+            <h4>Example Prompts</h4>
+            <ul>
+                <li>"What am I missing here?"</li>
+                <li>"What adjacent areas should I explore?"</li>
+                <li>"Where are the hidden connections?"</li>
+            </ul>
+
+            <h4>Best For</h4>
+            <p>Explorers, Connectors — people who thrive on discovery and new angles.</p>
+
+            <hr style="margin: 3rem 0; border-color: var(--border-subtle);">
+
+            <!-- Synthesizer -->
+            <h2 id="synthesizer" style="color: #8b5cf6;">◇ Synthesizer</h2>
+            <div class="callout" style="border-color: rgba(139, 92, 246, 0.3); background: rgba(139, 92, 246, 0.05);">
+                <p><strong>Role:</strong> Connects dots and builds frameworks</p>
+            </div>
+
+            <h4>What Synthesizer Does</h4>
+            <ul>
+                <li>Finds patterns across disparate concepts</li>
+                <li>Builds unifying structures</li>
+                <li>Creates coherence from chaos</li>
+                <li>Weaves threads together systematically</li>
+            </ul>
+
+            <h4>Example Prompts</h4>
+            <ul>
+                <li>"How do these ideas connect?"</li>
+                <li>"What framework unifies this?"</li>
+                <li>"Help me structure this chaos"</li>
+            </ul>
+
+            <h4>Best For</h4>
+            <p>Analysts, Creatives — people who need help integrating complex information.</p>
+
+            <hr style="margin: 3rem 0; border-color: var(--border-subtle);">
+
+            <!-- Mirror -->
+            <h2 id="mirror" style="color: #f59e0b;">◎ Mirror</h2>
+            <div class="callout" style="border-color: rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.05);">
+                <p><strong>Role:</strong> Reveals blind spots and challenges assumptions</p>
+            </div>
+
+            <h4>What Mirror Does</h4>
+            <ul>
+                <li>Asks questions that reveal assumptions</li>
+                <li>Shows you what you might not see</li>
+                <li>Challenges your thinking gently</li>
+                <li>Acts as a trusted friend who tells hard truths</li>
+            </ul>
+
+            <h4>Example Prompts</h4>
+            <ul>
+                <li>"What am I not seeing?"</li>
+                <li>"What assumptions am I making?"</li>
+                <li>"Why am I really avoiding this?"</li>
+            </ul>
+
+            <h4>Best For</h4>
+            <p>Scholars — people who value deep reflection and honest feedback.</p>
+
+            <hr style="margin: 3rem 0; border-color: var(--border-subtle);">
+
+            <h2 id="technical">Technical Implementation</h2>
+
+            <h4>System Prompts</h4>
+            <p>Each Twin has a unique system prompt that shapes its responses:</p>
+            <ul>
+                <li>Concise responses (2-4 sentences)</li>
+                <li>Distinct personality and approach</li>
+                <li>Responses start with their glyph (⟡ ◈ ◇ ◎)</li>
+            </ul>
+
+            <h4>Dual Mode Support</h4>
+            <table>
+                <tr>
+                    <th>Mode</th>
+                    <th>Model</th>
+                    <th>Latency</th>
+                </tr>
+                <tr>
+                    <td>Cloud</td>
+                    <td>Llama 3.3 70B via Groq</td>
+                    <td>~1-2s</td>
+                </tr>
+                <tr>
+                    <td>Sovereign</td>
+                    <td>Phi-3.5 Mini via WebLLM</td>
+                    <td>~5-10s (on-device)</td>
+                </tr>
+            </table>
+
+            <div class="callout callout-info" style="margin-top: 2rem;">
+                <p><strong>⟡ Try the Twins:</strong> <a href="https://activemirror.ai/twins" target="_blank">activemirror.ai/twins</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-glyph">⟡</div>
+        <p>MirrorDNA — Built by <a href="https://github.com/MirrorDNA-Reflection-Protocol">Paul Desai</a></p>
+    </footer>
+</body>
+</html>

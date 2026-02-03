@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/MirrorDNA-Docs/">
+    <title>Active Mirror — Consumer AI Experience</title>
+    <meta name="description"
+        content="Active Mirror is the consumer-facing layer of MirrorDNA. Reflective AI that asks questions to help you think.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="./" class="nav-logo">
+                <span class="nav-logo-glyph">⟡</span>
+                <span class="nav-logo-text">MirrorDNA</span>
+            </a>
+            <button class="nav-mobile-toggle"
+                onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <ul class="nav-links">
+                <li><a href="story/">Story</a></li>
+                <li><a href="principles/">Principles</a></li>
+                <li><a href="architecture/">Architecture</a></li>
+                <li><a href="security/">Security</a></li>
+                <li><a href="capabilities/">Capabilities</a></li>
+                <li><a href="activemirror/" class="active">Active Mirror</a></li>
+                <li><a href="research/">Research</a></li>
+                <li><a href="ecosystem/">Ecosystem</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <p class="subtitle">Consumer Product</p>
+            <h1>⟡ Active Mirror</h1>
+
+            <p class="lead">
+                Reflective AI that asks questions to help you think — not chatbots that tell you what to do.
+                <br><a href="https://activemirror.ai" target="_blank" style="color: var(--accent-primary);">Try it live →</a>
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-value">v15.1</div>
+                    <div class="stat-label">Version</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">AI Twins</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Archetypes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Modes</div>
+                </div>
+            </div>
+
+            <h2 id="features">Core Features</h2>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h4>⟡ AI Twins</h4>
+                    <p>Four cognitive companions — Guardian, Scout, Synthesizer, Mirror — each with distinct thinking styles.</p>
+                    <p><a href="activemirror/twins/">Learn about Twins →</a></p>
+                </div>
+                <div class="card">
+                    <h4>◈ BrainScan</h4>
+                    <p>8-question cognitive architecture quiz. Discover your archetype and get matched with your ideal AI Twin.</p>
+                    <p><a href="activemirror/brainscan/">Learn about BrainScan →</a></p>
+                </div>
+                <div class="card">
+                    <h4>△ Mirror Proof Protocol</h4>
+                    <p>Cryptographic attestation of human attention. Proof you actually read the consent.</p>
+                    <p><a href="activemirror/mirror-proof/">Learn about Mirror Proof →</a></p>
+                </div>
+                <div class="card">
+                    <h4>◇ Sovereign Mode</h4>
+                    <p>On-device AI via WebLLM. Your data never leaves your device. True privacy.</p>
+                    <p><a href="activemirror/sovereign/">Learn about Sovereign Mode →</a></p>
+                </div>
+            </div>
+
+            <h2 id="modes">Cloud vs Sovereign</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Cloud Mode</th>
+                        <th>Sovereign Mode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Model</td>
+                        <td>Llama 3.3 70B (via Groq)</td>
+                        <td>Phi-3.5 Mini (WebLLM)</td>
+                    </tr>
+                    <tr>
+                        <td>Speed</td>
+                        <td>Fast (~1s)</td>
+                        <td>Slower (~5-10s first load)</td>
+                    </tr>
+                    <tr>
+                        <td>Privacy</td>
+                        <td>Data sent to cloud</td>
+                        <td>100% on-device</td>
+                    </tr>
+                    <tr>
+                        <td>Offline</td>
+                        <td>Requires internet</td>
+                        <td>Works offline (after download)</td>
+                    </tr>
+                    <tr>
+                        <td>Model Size</td>
+                        <td>N/A</td>
+                        <td>~2GB download</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="twins">The Four Twins</h2>
+
+            <div class="capability-grid">
+                <div class="capability-card" style="border-color: rgba(59, 130, 246, 0.3);">
+                    <div class="capability-header">
+                        <span class="capability-icon">⟡</span>
+                        <h4>Guardian</h4>
+                    </div>
+                    <p>Protects your focus. Filters distractions, maintains boundaries, keeps you aligned with your goals.</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Best for: Architects, Builders, Strategists</p>
+                </div>
+
+                <div class="capability-card" style="border-color: rgba(16, 185, 129, 0.3);">
+                    <div class="capability-header">
+                        <span class="capability-icon">◈</span>
+                        <h4>Scout</h4>
+                    </div>
+                    <p>Explores possibilities. Finds connections, surfaces opportunities, ventures into unknown territory.</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Best for: Explorers, Connectors</p>
+                </div>
+
+                <div class="capability-card" style="border-color: rgba(139, 92, 246, 0.3);">
+                    <div class="capability-header">
+                        <span class="capability-icon">◇</span>
+                        <h4>Synthesizer</h4>
+                    </div>
+                    <p>Connects the dots. Weaves ideas into frameworks, finds patterns, creates coherence from complexity.</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Best for: Analysts, Creatives</p>
+                </div>
+
+                <div class="capability-card" style="border-color: rgba(245, 158, 11, 0.3);">
+                    <div class="capability-header">
+                        <span class="capability-icon">◎</span>
+                        <h4>Mirror</h4>
+                    </div>
+                    <p>Reveals blind spots. Asks uncomfortable questions, illuminates shadows in your thinking.</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Best for: Scholars</p>
+                </div>
+            </div>
+
+            <h2 id="archetypes">Cognitive Archetypes</h2>
+            <p>BrainScan identifies one of 8 cognitive archetypes:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Archetype</th>
+                        <th>Tagline</th>
+                        <th>Matched Twin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Architect</td><td>Systems thinker. Pattern builder.</td><td>Guardian</td></tr>
+                    <tr><td>Explorer</td><td>Boundary pusher. Unknown seeker.</td><td>Scout</td></tr>
+                    <tr><td>Builder</td><td>Maker of things. Shipping machine.</td><td>Guardian</td></tr>
+                    <tr><td>Analyst</td><td>Data whisperer. Truth finder.</td><td>Synthesizer</td></tr>
+                    <tr><td>Connector</td><td>Bridge builder. Network weaver.</td><td>Scout</td></tr>
+                    <tr><td>Creative</td><td>Idea generator. Pattern breaker.</td><td>Synthesizer</td></tr>
+                    <tr><td>Scholar</td><td>Deep diver. Knowledge keeper.</td><td>Mirror</td></tr>
+                    <tr><td>Strategist</td><td>Move maker. Future seer.</td><td>Guardian</td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="consent">Consent & Safety</h2>
+
+            <div class="callout callout-warning">
+                <p><strong>⚠️ Active Mirror is experimental AI.</strong> It is not therapy, medical advice, or a substitute for professional help. Results are for entertainment and reflection only.</p>
+            </div>
+
+            <h3>Mirror Proof Protocol</h3>
+            <p>Before using AI features, users must complete informed consent:</p>
+            <ul>
+                <li><strong>Full Mirror Proof</strong> — 3 acknowledgments + cryptographic hash (for AI chat)</li>
+                <li><strong>Light Consent</strong> — Quick banner acknowledgment (for quizzes)</li>
+            </ul>
+            <p>Consent is stored per-session and carries across all pages once granted.</p>
+
+            <h3>MirrorGate Protection</h3>
+            <p>All AI responses pass through MirrorGate, a safety layer that blocks harmful content before it reaches users.</p>
+
+            <div class="callout callout-info" style="margin-top: 2rem;">
+                <p><strong>⟡ Try Active Mirror:</strong> <a href="https://activemirror.ai" target="_blank">activemirror.ai</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-glyph">⟡</div>
+        <p>MirrorDNA — Built by <a href="https://github.com/MirrorDNA-Reflection-Protocol">Paul Desai</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">N1 Intelligence (OPC) Pvt Ltd · Goa, India</p>
+    </footer>
+
+    <style>
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0 2.5rem;
+        }
+        .capability-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .capability-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+        .capability-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .capability-icon { font-size: 1.25rem; }
+        .capability-header h4 { margin: 0; font-size: 1rem; color: var(--text-primary); }
+        .capability-card p { font-size: 0.875rem; margin-bottom: 0.5rem; line-height: 1.6; }
+    </style>
+</body>
+</html>

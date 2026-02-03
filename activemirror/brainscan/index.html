@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/MirrorDNA-Docs/">
+    <title>BrainScan — Cognitive Architecture Quiz</title>
+    <meta name="description" content="8 questions to discover your cognitive archetype and get matched with your ideal AI Twin.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="./" class="nav-logo">
+                <span class="nav-logo-glyph">⟡</span>
+                <span class="nav-logo-text">MirrorDNA</span>
+            </a>
+            <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <ul class="nav-links">
+                <li><a href="story/">Story</a></li>
+                <li><a href="architecture/">Architecture</a></li>
+                <li><a href="capabilities/">Capabilities</a></li>
+                <li><a href="activemirror/" class="active">Active Mirror</a></li>
+                <li><a href="ecosystem/">Ecosystem</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <p class="subtitle"><a href="activemirror/">Active Mirror</a> / BrainScan</p>
+            <h1>◈ BrainScan</h1>
+
+            <p class="lead">
+                8 questions. 60 seconds. Discover your cognitive archetype and get matched with your ideal AI Twin.
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Questions</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Archetypes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">60s</div>
+                    <div class="stat-label">Duration</div>
+                </div>
+            </div>
+
+            <h2 id="archetypes">The 8 Archetypes</h2>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h4>🏛️ Architect</h4>
+                    <p><strong>Systems thinker. Pattern builder.</strong></p>
+                    <p>You see the world as interconnected systems. Where others see chaos, you see structure waiting to be revealed.</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Strengths: Systems thinking, Pattern recognition, Long-term planning</p>
+                </div>
+
+                <div class="card">
+                    <h4>🧭 Explorer</h4>
+                    <p><strong>Boundary pusher. Unknown seeker.</strong></p>
+                    <p>You thrive at the edges of the known. Curiosity isn't just a trait—it's your operating system.</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Strengths: Curiosity, Adaptability, Finding connections</p>
+                </div>
+
+                <div class="card">
+                    <h4>🔨 Builder</h4>
+                    <p><strong>Maker of things. Shipping machine.</strong></p>
+                    <p>Ideas are worthless until they exist. You turn thoughts into tangible reality.</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Strengths: Execution, Pragmatism, Iteration speed</p>
+                </div>
+
+                <div class="card">
+                    <h4>📊 Analyst</h4>
+                    <p><strong>Data whisperer. Truth finder.</strong></p>
+                    <p>You don't trust intuition alone. Evidence is your compass, logic your map.</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Strengths: Critical thinking, Detail orientation, Objectivity</p>
+                </div>
+
+                <div class="card">
+                    <h4>🔗 Connector</h4>
+                    <p><strong>Bridge builder. Network weaver.</strong></p>
+                    <p>You see people as nodes in a network. Your power is in bringing the right minds together.</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Strengths: Networking, Empathy, Communication</p>
+                </div>
+
+                <div class="card">
+                    <h4>🎨 Creative</h4>
+                    <p><strong>Idea generator. Pattern breaker.</strong></p>
+                    <p>Rules are starting points, not endpoints. You see possibilities others miss.</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Strengths: Innovation, Lateral thinking, Vision</p>
+                </div>
+
+                <div class="card">
+                    <h4>📚 Scholar</h4>
+                    <p><strong>Deep diver. Knowledge keeper.</strong></p>
+                    <p>Depth over breadth. You master domains others only skim.</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Strengths: Deep expertise, Patience, Thoroughness</p>
+                </div>
+
+                <div class="card">
+                    <h4>♟️ Strategist</h4>
+                    <p><strong>Move maker. Future seer.</strong></p>
+                    <p>You play the long game. Every action is a move in a larger plan.</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Strengths: Strategic thinking, Anticipation, Resource optimization</p>
+                </div>
+            </div>
+
+            <h2 id="matching">Archetype → Twin Matching</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Archetype</th>
+                        <th>Matched Twin</th>
+                        <th>Why This Match</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Architect</td>
+                        <td>⟡ Guardian</td>
+                        <td>Helps maintain focus and protect cognitive boundaries</td>
+                    </tr>
+                    <tr>
+                        <td>Explorer</td>
+                        <td>◈ Scout</td>
+                        <td>Explores possibilities and surfaces opportunities</td>
+                    </tr>
+                    <tr>
+                        <td>Builder</td>
+                        <td>⟡ Guardian</td>
+                        <td>Filters distractions so you can ship</td>
+                    </tr>
+                    <tr>
+                        <td>Analyst</td>
+                        <td>◇ Synthesizer</td>
+                        <td>Integrates ideas into coherent insights</td>
+                    </tr>
+                    <tr>
+                        <td>Connector</td>
+                        <td>◈ Scout</td>
+                        <td>Finds connections between people and ideas</td>
+                    </tr>
+                    <tr>
+                        <td>Creative</td>
+                        <td>◇ Synthesizer</td>
+                        <td>Weaves disparate ideas into frameworks</td>
+                    </tr>
+                    <tr>
+                        <td>Scholar</td>
+                        <td>◎ Mirror</td>
+                        <td>Reflects thoughts and reveals blind spots</td>
+                    </tr>
+                    <tr>
+                        <td>Strategist</td>
+                        <td>⟡ Guardian</td>
+                        <td>Protects long-term focus from short-term noise</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="api">API Reference</h2>
+
+            <h4>Get Questions</h4>
+            <pre><code>GET https://brain.activemirror.ai/api/quiz/questions
+
+Response:
+{
+  "questions": [
+    {
+      "id": "q1",
+      "text": "When facing a complex problem...",
+      "options": ["Break it into parts", "Look for patterns", ...]
+    },
+    ...
+  ]
+}</code></pre>
+
+            <h4>Submit Answers</h4>
+            <pre><code>POST https://brain.activemirror.ai/api/quiz/submit
+Content-Type: application/json
+
+{
+  "answers": [
+    { "question_id": "q1", "answer_index": 0 },
+    { "question_id": "q2", "answer_index": 2 },
+    ...
+  ]
+}
+
+Response:
+{
+  "archetype": "architect",
+  "archetype_name": "The Architect",
+  "archetype_emoji": "🏛️",
+  "description": "Systems thinker. Pattern builder.",
+  "strengths": ["Systems thinking", "Pattern recognition", "Long-term planning"],
+  "brain_id": "brain_abc123"
+}</code></pre>
+
+            <div class="callout callout-info" style="margin-top: 2rem;">
+                <p><strong>⟡ Try BrainScan:</strong> <a href="https://activemirror.ai/scan" target="_blank">activemirror.ai/scan</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-glyph">⟡</div>
+        <p>MirrorDNA — Built by <a href="https://github.com/MirrorDNA-Reflection-Protocol">Paul Desai</a></p>
+    </footer>
+</body>
+</html>
