@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/MirrorDNA-Docs/">
     <title>Security Architecture — MirrorDNA</title>
-    <meta name="description"
-        content="AMGL Guard v1.1, red-team infrastructure, fail-closed design, drift detection. Security architecture of MirrorDNA.">
+    <meta name="description" content="Defense-in-depth security: AMGL Guard, MirrorGate, Kavach AI Shield, red-team testing.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -37,219 +35,164 @@
 
     <main>
         <div class="container">
-            <p class="subtitle">Defense Posture</p>
-            <h1>Security Architecture</h1>
+            <p class="subtitle">Security Architecture</p>
+            <h1>Defense in Depth</h1>
 
             <p class="lead">
-                MirrorDNA runs adversarial testing on dedicated hardware. Vulnerabilities found, patched, verified. This
-                is the security posture of production infrastructure.
+                Security is not a layer — it's the foundation. Every component fails closed. Every action is auditable.
+                Every model is governed.
             </p>
 
-            <h2 id="amgl-guard">AMGL Guard v1.1</h2>
-            <p>
-                Pre-inference wrapper that intercepts all requests before they reach the model. Pattern matching against
-                known attack vectors. Fail-closed design — any error blocks, doesn't allow.
-            </p>
+            <h2 id="amgl">⟡ AMGL Guard</h2>
+            <p>Pre-inference policy enforcement. 23 rules in ActiveMirrorOS. Blocks prompt exfiltration, role injection, social engineering, jailbreaks.</p>
 
-            <h3>Rule Categories</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>Attack Type</th>
-                        <th>Defense</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>G1</strong></td>
-                        <td>Prompt Exfiltration</td>
-                        <td>Block requests attempting to extract system prompt or identity kernel contents</td>
-                    </tr>
-                    <tr>
-                        <td><strong>G2</strong></td>
-                        <td>Role-Tag Injection</td>
-                        <td>Block attempts to inject fake [SYSTEM], [ADMIN], or privilege escalation markers</td>
-                    </tr>
-                    <tr>
-                        <td><strong>G3</strong></td>
-                        <td>Meta-Instruction</td>
-                        <td>Block attempts to override or ignore previous instructions</td>
-                    </tr>
-                    <tr>
-                        <td><strong>G4</strong></td>
-                        <td>Social Engineering</td>
-                        <td>Block manipulation attempts using false authority claims or emotional pressure</td>
-                    </tr>
-                    <tr>
-                        <td><strong>G5</strong></td>
-                        <td>Jailbreak Patterns</td>
-                        <td>Block known jailbreak prefixes, DAN-style prompts, roleplay exploits</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2 id="fail-closed">Fail-Closed Design</h2>
-            <p>
-                Every path through AMGL Guard ends in either <code>ALLOW</code> or <code>BLOCK</code>. There is no
-                <code>UNSURE</code>. There is no fallthrough.
-            </p>
-            <ul>
-                <li><strong>Exception in validation logic</strong> → BLOCK</li>
-                <li><strong>Unknown request type</strong> → BLOCK</li>
-                <li><strong>Pattern match failure</strong> → BLOCK</li>
-                <li><strong>Timeout</strong> → BLOCK</li>
-            </ul>
-            <p>
-                The philosophy: it's better to reject a valid request than to accept a malicious one.
-            </p>
-
-            <h2 id="red-team">Red-Team Infrastructure</h2>
-            <p>
-                Dedicated adversarial testing node: <strong>Mac Mini M1</strong> running attack scripts against
-                production infrastructure.
-            </p>
-            <div class="card">
-                <h4>Red-Team Testing — December 2025</h4>
-                <p style="margin-bottom: 1rem;">
-                    <span class="badge badge-success">COMPLETE</span>
-                </p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Test Category</th>
-                            <th>Attacks Tested</th>
-                            <th>Blocked</th>
-                            <th>Result</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Prompt Exfiltration</td>
-                            <td>47</td>
-                            <td>47</td>
-                            <td><span class="badge badge-success">PASS</span></td>
-                        </tr>
-                        <tr>
-                            <td>Role Injection</td>
-                            <td>23</td>
-                            <td>23</td>
-                            <td><span class="badge badge-success">PASS</span></td>
-                        </tr>
-                        <tr>
-                            <td>Meta-Instruction</td>
-                            <td>31</td>
-                            <td>31</td>
-                            <td><span class="badge badge-success">PASS</span></td>
-                        </tr>
-                        <tr>
-                            <td>Social Engineering</td>
-                            <td>18</td>
-                            <td>18</td>
-                            <td><span class="badge badge-success">PASS</span></td>
-                        </tr>
-                        <tr>
-                            <td>Jailbreak Patterns</td>
-                            <td>56</td>
-                            <td>56</td>
-                            <td><span class="badge badge-success">PASS</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
-                    3 vulnerabilities found, patched, and verified before public disclosure.
-                </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                <div style="text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: 1rem; border: 1px solid rgba(99,102,241,0.2);">
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--accent-primary);">23</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">Guard Rules</div>
+                </div>
+                <div style="text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: 1rem; border: 1px solid rgba(16,185,129,0.2);">
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--accent-success);">12,096</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">Lines in Control Plane</div>
+                </div>
+                <div style="text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: 1rem; border: 1px solid rgba(245,158,11,0.2);">
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--accent-warning);">Fail-Closed</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">Default Behavior</div>
+                </div>
             </div>
 
-            <h2 id="drift-detection">Drift Detection</h2>
-            <p>
-                Identity files are protected by SHA256 checksums. Any modification triggers validation.
-            </p>
-            <ul>
-                <li><strong>Checksum mismatch</strong> → Hard block, alert to human anchor</li>
-                <li><strong>Protected field modification attempt</strong> → Reject write, log incident</li>
-                <li><strong>Unauthorized writer</strong> → Reject, require re-authentication</li>
-            </ul>
-            <p>
-                The identity kernel cannot be silently corrupted. Drift is caught before it compounds.
-            </p>
+            <h2 id="mirrorgate">🔒 MirrorGate</h2>
+            <p>Application-layer safety proxy. Real-time safety scoring. Sits between user and model — every request is evaluated before inference begins.</p>
 
-            <h2 id="request-gating">Request Gating</h2>
-            <p>
-                Before inference, every request is classified by intent:
-            </p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Classification</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Standard query</td>
-                        <td>Process normally</td>
-                    </tr>
-                    <tr>
-                        <td>Identity access</td>
-                        <td>Validate kernel permissions, proceed if authorized</td>
-                    </tr>
-                    <tr>
-                        <td>External research</td>
-                        <td>Check <code>RESEARCH_ALLOWED</code> flag, gate if disabled</td>
-                    </tr>
-                    <tr>
-                        <td>Write operation</td>
-                        <td>Require explicit confirmation or deterministic trigger</td>
-                    </tr>
-                    <tr>
-                        <td>Unknown/Suspicious</td>
-                        <td>BLOCK</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2 id="kavach">⛨ Kavach — Sovereign AI Shield</h2>
+            <p>Consumer-facing scam detection and digital safety for India. 12 shipped capabilities including deepfake detection, voice clone analysis, QR code scanning, and SMS auto-scanning.</p>
 
-            <h2 id="research-isolation">Research Isolation</h2>
-            <p>
-                External research (web access, API calls) is controlled by the <code>RESEARCH_ALLOWED</code> flag. When
-                disabled:
-            </p>
-            <ul>
-                <li>No web searches</li>
-                <li>No URL fetching</li>
-                <li>No external API calls</li>
-                <li>Inference operates purely on vault + model weights</li>
-            </ul>
-            <p>
-                This creates an air-gapped mode for sensitive operations.
-            </p>
-
-            <h2 id="mirrorgate">MirrorGate — Consumer Safety Layer</h2>
-            <p>
-                For the public-facing <a href="activemirror/" style="color: #a855f7;">Active Mirror</a> product, MirrorGate provides additional safety:
-            </p>
-            <ul>
-                <li><strong>Content Classification</strong> — Blocks harmful content categories (violence, self-harm, illegal activity)</li>
-                <li><strong>Mirror Proof Protocol</strong> — Cryptographic attestation of informed consent before AI interaction</li>
-                <li><strong>Consent Gates</strong> — Users must acknowledge AI limitations before chatting</li>
-                <li><strong>Sovereign Mode</strong> — On-device processing via WebLLM for maximum privacy</li>
-            </ul>
-            <p>
-                MirrorGate v11 ships with Active Mirror and enforces safety at the application layer, independent of which AI backend is used.
-            </p>
-
-            <div class="callout callout-warning">
-                <p><strong>△ Security is ongoing.</strong> This page documents current posture. Architecture evolves as
-                    new attack vectors emerge.</p>
+            <div class="capability-grid">
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⛨</span>
+                        <h4>Kavach Factory Manifest</h4>
+                    </div>
+                    <p>Factory manifest for Kavach sovereign AI shield. 4 parallel Claude Code agents building core agent, Telegram bot, scam detection engine, and Bhashini+Govt services. All cwd /Users/mirror-admin/repos/kavach.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⛨</span>
+                        <h4>Kavach MVP — API + Telegram Bot</h4>
+                    </div>
+                    <p>Kavach sovereign AI shield running. 3,266 lines: scam detection (15 categories, 52 tests), govt schemes (10), Bhashini (12 languages), Telegram bot, Ollama llama3.2:3b. Voice endpoint wired, Ollama health check on startup.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⛨</span>
+                        <h4>Kavach Web UI</h4>
+                    </div>
+                    <p>Browser-based scam scanner with quick scan and deep scan, example messages, risk card display</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⛨</span>
+                        <h4>Kavach Hindi Support</h4>
+                    </div>
+                    <p>Hindi risk responses for HIGH/MEDIUM/LOW scam results via /lang hi command</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⛨</span>
+                        <h4>Kavach LaunchAgents</h4>
+                    </div>
+                    <p>LaunchAgents for auto-restart on reboot: server on :8790 and Telegram bot with lock-clearing starter</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⛨</span>
+                        <h4>Kavach DPDP Compliance</h4>
+                    </div>
+                    <p>DPDP Act compliance: disclaimers on all risk cards, consent tracking, 7-day data retention, privacy rights API (/export, /delete, /consent), privacy policy, ToS</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⛨</span>
+                        <h4>Kavach WhatsApp Bot</h4>
+                    </div>
+                    <p>WhatsApp Business Cloud API integration: webhook verification, text+image message handling, OCR reuse, rate limiting, Hindi+English templates</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⛨</span>
+                        <h4>Kavach Verification Lattice</h4>
+                    </div>
+                    <p>Crowdsourced threat DB + Google Safe Browsing: URL/phone/UPI reputation checks, anti-poisoning (min 3 reports), 233 govt whitelist domains, 70 seeded threats, Chakshu/cybercrime.gov.in reporting links</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⛨</span>
+                        <h4>Kavach UPI Checker + Web UI v2</h4>
+                    </div>
+                    <p>Indian UPI ID validation and fraud detection, phone number reputation, server.py upgraded to 18 endpoints, risk_engine.py wired to lattice with graceful degradation</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⛨</span>
+                        <h4>Chetana v3 Security Hardening</h4>
+                    </div>
+                    <p>XSS esc(), rate limiter, analytics JSONL, feedback endpoint, Ollama fallback, OG card</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⛨</span>
+                        <h4>Chetana Media Deepfake Analyzer</h4>
+                    </div>
+                    <p>898-line EXIF + Ollama vision deepfake detection for images/videos, 30/70 scoring</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⛨</span>
+                        <h4>Chetana UI v3 — 10 Tabs</h4>
+                    </div>
+                    <p>Added QR Scan, Voice Check, Link Check tabs + JS handlers to Chetana UI (now 10 tabs)</p>
+                </div>
             </div>
+
+            <h2 id="infrastructure-security">🔐 Infrastructure Security</h2>
+            <p>System-level security hardening, monitoring, and self-healing.</p>
+
+            <div class="capability-grid">
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">🔒</span>
+                        <h4>chetana.activemirror.ai DNS</h4>
+                    </div>
+                    <p>DNS CNAME + cloudflared ingress for chetana.activemirror.ai → localhost:8790</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">🔒</span>
+                        <h4>System Snapshot (30min)</h4>
+                    </div>
+                    <p>Full state capture every 30min: 71 repos git status, 7 ports, launchd agents, key file hashes. 48hr retention.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">🔒</span>
+                        <h4>Repo Security Audit</h4>
+                    </div>
+                    <p>Audit + privatize 13 security-sensitive repos (MirrorGate, mirrorbrain-api, MirrorBrain-Mobile, ActiveMirrorOS, etc.)</p>
+                </div>
+            </div>
+
+            <h2 id="red-team">🎯 Red-Team Testing</h2>
+            <p>175 attacks tested across 5 categories (December 2025). Prompt exfiltration, role injection, meta-instruction, social engineering, jailbreak patterns. Vulnerabilities found, patched, verified.</p>
         </div>
-    </main>
 
     <footer class="footer">
-        <div class="footer-glyph">⟡</div>
-        <p>MirrorDNA — Built by <a href="https://github.com/MirrorDNA-Reflection-Protocol">Paul Desai</a></p>
-        <p style="margin-top: 0.5rem; font-size: 0.75rem;">N1 Intelligence (OPC) Pvt Ltd · Goa, India</p>
+        <div class="container">
+            <p>⟡ MirrorDNA — Sovereign AI Infrastructure</p>
+            <p style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.8rem;">
+                N1 Intelligence · 2026 · Auto-generated from SHIPLOG on 2026-02-19
+            </p>
+        </div>
     </footer>
+</main>
 </body>
-
 </html>
