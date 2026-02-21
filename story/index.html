@@ -44,7 +44,7 @@
             </p>
 
             <p class="lead" style="color: var(--text-muted); font-size: 1rem;">
-                115 capabilities shipped. 10 active development days tracked. Latest ship: 2026-02-21.
+                120 capabilities shipped. 10 active development days tracked. Latest ship: 2026-02-21.
             </p>
 
             <h2>Ship Timeline</h2>
@@ -55,14 +55,16 @@
             <div class="timeline-item">
                 <div class="timeline-date">2026-02-21</div>
                 <div class="timeline-content">
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">6 ships</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">11 ships</p>
                     <ul style="list-style: none; padding: 0;">
                     <li><strong>Phone Actions Module</strong> (Infrastructure) — Unified ADB+Tasker+Flask phone control: whatsapp, email, screenshot, push, notify, vibrate, audio, p</li>
+                    <li><strong>scrcpy Demo Recorder</strong> (Infrastructure) — One-command MirrorBrain demo: scrcpy mirror+record, preflight, demo_runner.py sequence, configurable</li>
+                    <li><strong>Phone Notification Relay</strong> (Infrastructure) — Streams phone notifications to Mac via ADB dumpsys. OTP auto-capture to clipboard. macOS native aler</li>
+                    <li><strong>Clipboard Sync</strong> (Infrastructure) — Bidirectional Mac↔Phone clipboard sync via ADB. Sensitive content filtering. Loop prevention. Bus lo</li>
+                    <li><strong>Phone Document Scanner</strong> (Infrastructure) — Phone camera → OCR → vault note. macOS Vision (primary), Tesseract, Ollama vision fallbacks. Auto-ca</li>
+                    <li><strong>Phone Sensor Stream</strong> (Infrastructure) — Real-time phone state: battery, wifi, screen, top app, storage, memory, uptime, network. Writes to b</li>
                     <li><strong>Chetana Help/FAQ Screen</strong> (MirrorBrain) — Senior-friendly FAQ with how-to, color meanings, emergency numbers, data safety, Parivar explained</li>
-                    <li><strong>Chetana Pre-Launch Hardening</strong> (MirrorBrain) — Disabled /docs /redoc, sanitized 500 errors, added CORS, favicon.ico/og-image routes, removed model </li>
-                    <li><strong>Vajra→Chetana Global Rename</strong> (MirrorBrain) — Replaced all user-facing Vajra/Kavach references with Chetana across 5 files (50+ replacements)</li>
-                    <li><strong>Session Memory Backfill — 16 Memories Seeded</strong> (MirrorBrain) — Backfilled 16 semantic memories into Postgres (ships, decisions, learnings from today's session) for</li>
-                    <li><strong>MCP Memory Server — Knowledge Graph for Claude Code</strong> (MirrorBrain) — mcp-memory-service wired as MCP server: local ONNX embeddings, sqlite-vec, knowledge graph with auto</li>
+                    <li><strong>Chetana Pre-Launch Hardening</strong> (MirrorBrain) — Disabled /docs /redoc, sanitized 500 errors, added CORS, favicon.ico/og-image routes, removed model </li> <li style="color: var(--text-muted);">...and 3 more</li>
                     </ul>
                 </div>
             </div>
