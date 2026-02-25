@@ -44,7 +44,7 @@
             </p>
 
             <p class="lead" style="color: var(--text-muted); font-size: 1rem;">
-                146 capabilities shipped. 14 active development days tracked. Latest ship: 2026-02-25.
+                150 capabilities shipped. 14 active development days tracked. Latest ship: 2026-02-25.
             </p>
 
             <h2>Ship Timeline</h2>
@@ -55,16 +55,16 @@
             <div class="timeline-item">
                 <div class="timeline-date">2026-02-25</div>
                 <div class="timeline-content">
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">11 ships</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">15 ships</p>
                     <ul style="list-style: none; padding: 0;">
                     <li><strong>MirrorSupervisor LaunchAgent</strong> (Infrastructure) — LaunchAgent for MirrorSupervisor — unified process manager for all 42 services</li>
+                    <li><strong>SERVICE_REGISTRY audit</strong> (Infrastructure) — Added 3 missing services: MirrorBalance :8400, Pulse Swarm Hub :7771, Ollama Proxy :11435. 42→45 ser</li>
+                    <li><strong>site_sync daily LaunchAgent</strong> (Infrastructure) — site_sync.py now runs daily at 09:00 — builds.json auto-updated from SHIPLOG and pushed.</li>
                     <li><strong>ROL ChronoIndex Pipeline</strong> (MirrorBrain) — Time-sliced vault indexer → reflection deltas → training pairs → nightly distill pipeline. 2599 file</li>
                     <li><strong>vault_graph.py — MirrorGraph NetworkX engine</strong> (MirrorBrain) — NetworkX DiGraph from vault mirror_links: 3183 nodes, 64914 edges, BFS expand, centrality, 4h cache</li>
                     <li><strong>GVRL graph-augmented retrieval (--graph/--vault)</strong> (MirrorBrain) — GVRL --graph: centrality boosts + BFS expansion; --vault: queries 3183 vault notes directly via grap</li>
                     <li><strong>MirrorGate 6-Stage Pipeline (DeepPack v1.1)</strong> (MirrorGate) — Fail-closed 6-stage egress pipeline: DeterministicGates→EvidenceGuard→Enforcer→Judge→OPAEval→Ledger</li>
-                    <li><strong>Event Organism Stack v1.0 — Cut A</strong> (MirrorGate / Event Infrastructure) — Permit-gated governance-first event pipeline: 6 gates, Redis Streams bus, hash-chain ledger, 45 test</li>
-                    <li><strong>Ed25519 crypto stack</strong> (Security) — Ed25519 sign/verify for ledger entries, bus changelog, bus header, vault .sig sidecars</li>
-                    <li><strong>clean_training_data.py wired to train.sh</strong> (LoRA Training) — Dedup + quality-filter demonstrations.jsonl before every fine-tune; FAILs prioritized, cap 2000</li> <li style="color: var(--text-muted);">...and 3 more</li>
+                    <li><strong>Event Organism Stack v1.0 — Cut A</strong> (MirrorGate / Event Infrastructure) — Permit-gated governance-first event pipeline: 6 gates, Redis Streams bus, hash-chain ledger, 45 test</li> <li style="color: var(--text-muted);">...and 7 more</li>
                     </ul>
                 </div>
             </div>
