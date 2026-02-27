@@ -44,7 +44,7 @@
             </p>
 
             <p class="lead" style="color: var(--text-muted); font-size: 1rem;">
-                169 capabilities shipped. 16 active development days tracked. Latest ship: 2026-02-27.
+                173 capabilities shipped. 16 active development days tracked. Latest ship: 2026-02-27.
             </p>
 
             <h2>Ship Timeline</h2>
@@ -55,11 +55,15 @@
             <div class="timeline-item">
                 <div class="timeline-date">2026-02-27</div>
                 <div class="timeline-content">
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">3 ships</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">7 ships</p>
                     <ul style="list-style: none; padding: 0;">
+                    <li><strong>SERVICE_REGISTRY 7-Fix Patch</strong> (Infrastructure) — Label mismatch fix (Pulse Swarm Hub), MCP SSE label, schedule_only flag for periodic services — 10 D</li>
+                    <li><strong>Swarm Watcher Fix + Bootstrap</strong> (Infrastructure) — Fixed octal crash (date +%H → +%-H), bootstrapped LaunchAgent — nighttime orchestration now running</li>
                     <li><strong>MirrorDNA MCP Server (registered)</strong> (MCP Servers) — Infrastructure MCP server wired to Claude Code — 14 tools: health_check, full_stack_status, crash_lo</li>
                     <li><strong>LLM Sentinel</strong> (Resilience) — AI-powered stack watchdog — llama3.2:3b fast triage every 5min, qwen2.5:7b deep diagnosis every 2h, </li>
                     <li><strong>Swarm Coordinator Port Fix</strong> (Bug Fixes) — Root bug fix: SWARM_PORT was 8790 (Chetana's port) in plist — changed to 8791. This was the daily cr</li>
+                    <li><strong>Twin Character Seed</strong> (MirrorOS Core) — Identity anchor for Mirror Twin — character not rules, parallel to true-paul-seed.md. Wired into Cla</li>
+                    <li><strong>Disaster Recovery Doc</strong> (MirrorOS Core) — Boot order, manual restart procedures, Mac replacement guide, ADB reverse notes</li>
                     </ul>
                 </div>
             </div>
