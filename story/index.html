@@ -44,7 +44,7 @@
             </p>
 
             <p class="lead" style="color: var(--text-muted); font-size: 1rem;">
-                304 capabilities shipped. 25 active development days tracked. Latest ship: 2026-03-12.
+                294 capabilities shipped. 26 active development days tracked. Latest ship: 2026-03-13.
             </p>
 
             <h2>Ship Timeline</h2>
@@ -52,6 +52,15 @@
 
             <div class="timeline">
 
+            <div class="timeline-item">
+                <div class="timeline-date">2026-03-13</div>
+                <div class="timeline-content">
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">1 ships</p>
+                    <ul style="list-style: none; padding: 0;">
+                    <li><strong>Automation Kernel Consolidation</strong> (Mirror Governance Systems) — Added Claude skill projections, contained dry-run kernel semantics, live capability matrix generatio</li>
+                    </ul>
+                </div>
+            </div>
             <div class="timeline-item">
                 <div class="timeline-date">2026-03-12</div>
                 <div class="timeline-content">
@@ -378,26 +387,18 @@
             <div class="timeline-item">
                 <div class="timeline-date">2026-02-14</div>
                 <div class="timeline-content">
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">11 ships</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">2 ships</p>
                     <ul style="list-style: none; padding: 0;">
-                    <li><strong>Multi-Model Spawning</strong> (MirrorSwarm Orchestration Engine) — Spawns agents with Claude/Groq/Gemini/DeepSeek/Mistral/Ollama via `spawn_agent()` + model field in t</li>
-                    <li><strong>Output Chaining</strong> (MirrorSwarm Orchestration Engine) — `inject_dependency_results()` injects batch N results into batch N+1 prompts. Truncates at 2000 char</li>
-                    <li><strong>Dynamic Child Spawning</strong> (MirrorSwarm Orchestration Engine) — `SpawnWatcher` thread polls `/tmp/mirrorswarm/spawn_requests/` for child agent JSON. Children inheri</li>
-                    <li><strong>Run Memory</strong> (MirrorSwarm Orchestration Engine) — `save_run_history()`/`load_run_history()`/`build_history_preamble()` persist last 3 runs to `~/.mirr</li>
-                    <li><strong>Governance Gate</strong> (MirrorSwarm Orchestration Engine) — `check_governance()` POSTs to MirrorBalance :8400/evaluate. ALLOW/ASK/BLOCK. Fails open.</li>
-                    <li><strong>Delegation Heartbeat</strong> (MirrorSwarm Orchestration Engine) — `check_delegation_mode()`/`filter_tasks_by_delegation()` implements dead man switch. paused/degraded</li>
-                    <li><strong>Convergence Meta-Agent</strong> (MirrorSwarm Orchestration Engine) — `spawn_convergence_agent()` spawns Opus post-swarm for goal assessment, conflicts, quality, next ste</li>
-                    <li><strong>Kill Switch</strong> (MirrorSwarm Orchestration Engine) — `install_kill_switch()` SIGINT handler. Graceful 10s shutdown then force-kill.</li> <li style="color: var(--text-muted);">...and 3 more</li>
+                    <li><strong>Build Mode</strong> (MirrorSwarm Terminal Spawner) — Interactive CC sessions with visible thinking/tool use.</li>
+                    <li><strong>LaunchAgent</strong> (Factory Trigger) — `com.mirrordna.factory-trigger` RunAtLoad+KeepAlive.</li>
                     </ul>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-date">2026-02-13</div>
                 <div class="timeline-content">
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">6 ships</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">4 ships</p>
                     <ul style="list-style: none; padding: 0;">
-                    <li><strong>Batch DAG Execution</strong> (MirrorSwarm Orchestration Engine) — `resolve_dag()` topological sort. Parallel batches respecting depends_on.</li>
-                    <li><strong>Result Synthesis</strong> (MirrorSwarm Orchestration Engine) — Markdown report from all agent outputs with totals, costs, success/fail.</li>
                     <li><strong>Multi-Model Terminal Spawning</strong> (MirrorSwarm Terminal Spawner) — Spawns agents in BenQ grid (3x2). Claude via CLI, others via model_router.py.</li>
                     <li><strong>Print Mode</strong> (MirrorSwarm Terminal Spawner) — Headless JSON via `claude --print`.</li>
                     <li><strong>factory_panel</strong> (Cognitive Dashboard) — Run progress, agent grid, elapsed, log sizes.</li>

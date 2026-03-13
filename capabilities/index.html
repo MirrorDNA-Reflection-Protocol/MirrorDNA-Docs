@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/MirrorDNA-Docs/">
     <title>System Capabilities — What MirrorDNA Can Do</title>
-    <meta name="description" content="304 shipped capabilities across security, intelligence, memory, infrastructure, and consumer products.">
+    <meta name="description" content="294 shipped capabilities across security, intelligence, memory, infrastructure, and consumer products.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -39,12 +39,12 @@
             <h1>What MirrorDNA Can Do</h1>
 
             <p class="lead">
-                <strong>304 shipped capabilities</strong> across seven layers. Each component is tested, documented, and running daily on dedicated hardware.
+                <strong>294 shipped capabilities</strong> across seven layers. Each component is tested, documented, and running daily on dedicated hardware.
             </p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin: 2rem 0;">
                 <div style="text-align: center; padding: 1rem; background: var(--bg-card); border-radius: 1rem; border: 1px solid var(--border-subtle);">
-                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-primary);">304</div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-primary);">294</div>
                     <div style="font-size: 0.75rem; color: var(--text-muted);">Shipped</div>
                 </div>
                 <div style="text-align: center; padding: 1rem; background: var(--bg-card); border-radius: 1rem; border: 1px solid var(--border-subtle);">
@@ -52,7 +52,7 @@
                     <div style="font-size: 0.75rem; color: var(--text-muted);">Layers</div>
                 </div>
                 <div style="text-align: center; padding: 1rem; background: var(--bg-card); border-radius: 1rem; border: 1px solid var(--border-subtle);">
-                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-primary);">59</div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-primary);">58</div>
                     <div style="font-size: 0.75rem; color: var(--text-muted);">Systems</div>
                 </div>
             </div>
@@ -151,92 +151,43 @@
 
             <h2 id="intelligence-and-inference">◈ Intelligence & Inference</h2>
             <p>Multi-model orchestration with sovereign routing. Swarm intelligence. Research monitoring.</p>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">16 shipped capabilities</p>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">5 shipped capabilities</p>
 
             <div class="capability-grid">
-                <div class="capability-card">
-                    <div class="capability-header">
-                        <span class="capability-icon">⟡</span>
-                        <h4>Multi-Model Spawning</h4>
-                    </div>
-                    <p>Spawns agents with Claude/Groq/Gemini/DeepSeek/Mistral/Ollama via `spawn_agent()` + model field in task schema.</p>
-                </div>
-                <div class="capability-card">
-                    <div class="capability-header">
-                        <span class="capability-icon">⟡</span>
-                        <h4>Output Chaining</h4>
-                    </div>
-                    <p>`inject_dependency_results()` injects batch N results into batch N+1 prompts. Truncates at 2000 chars.</p>
-                </div>
-                <div class="capability-card">
-                    <div class="capability-header">
-                        <span class="capability-icon">⟡</span>
-                        <h4>Dynamic Child Spawning</h4>
-                    </div>
-                    <p>`SpawnWatcher` thread polls `/tmp/mirrorswarm/spawn_requests/` for child agent JSON. Children inherit 50% parent budget.</p>
-                </div>
-                <div class="capability-card">
-                    <div class="capability-header">
-                        <span class="capability-icon">⟡</span>
-                        <h4>Run Memory</h4>
-                    </div>
-                    <p>`save_run_history()`/`load_run_history()`/`build_history_preamble()` persist last 3 runs to `~/.mirrordna/swarm/history/`.</p>
-                </div>
-                <div class="capability-card">
-                    <div class="capability-header">
-                        <span class="capability-icon">⟡</span>
-                        <h4>Governance Gate</h4>
-                    </div>
-                    <p>`check_governance()` POSTs to MirrorBalance :8400/evaluate. ALLOW/ASK/BLOCK. Fails open.</p>
-                </div>
-                <div class="capability-card">
-                    <div class="capability-header">
-                        <span class="capability-icon">⟡</span>
-                        <h4>Delegation Heartbeat</h4>
-                    </div>
-                    <p>`check_delegation_mode()`/`filter_tasks_by_delegation()` implements dead man switch. paused/degraded/emergency/normal modes.</p>
-                </div>
-                <div class="capability-card">
-                    <div class="capability-header">
-                        <span class="capability-icon">⟡</span>
-                        <h4>Convergence Meta-Agent</h4>
-                    </div>
-                    <p>`spawn_convergence_agent()` spawns Opus post-swarm for goal assessment, conflicts, quality, next steps.</p>
-                </div>
-                <div class="capability-card">
-                    <div class="capability-header">
-                        <span class="capability-icon">⟡</span>
-                        <h4>Kill Switch</h4>
-                    </div>
-                    <p>`install_kill_switch()` SIGINT handler. Graceful 10s shutdown then force-kill.</p>
-                </div>
-                <div class="capability-card">
-                    <div class="capability-header">
-                        <span class="capability-icon">⟡</span>
-                        <h4>Batch DAG Execution</h4>
-                    </div>
-                    <p>`resolve_dag()` topological sort. Parallel batches respecting depends_on.</p>
-                </div>
-                <div class="capability-card">
-                    <div class="capability-header">
-                        <span class="capability-icon">⟡</span>
-                        <h4>Result Synthesis</h4>
-                    </div>
-                    <p>Markdown report from all agent outputs with totals, costs, success/fail.</p>
-                </div>
-                <div class="capability-card">
-                    <div class="capability-header">
-                        <span class="capability-icon">⟡</span>
-                        <h4>Bus Integration</h4>
-                    </div>
-                    <p>Writes swarm completion to `~/.mirrordna/bus/changelog.jsonl`.</p>
-                </div>
                 <div class="capability-card">
                     <div class="capability-header">
                         <span class="capability-icon">⟡</span>
                         <h4>Multi-Model Terminal Spawning</h4>
                     </div>
                     <p>Spawns agents in BenQ grid (3x2). Claude via CLI, others via model_router.py.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⟡</span>
+                        <h4>Build Mode</h4>
+                    </div>
+                    <p>Interactive CC sessions with visible thinking/tool use.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⟡</span>
+                        <h4>Print Mode</h4>
+                    </div>
+                    <p>Headless JSON via `claude --print`.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⟡</span>
+                        <h4>BenQ Window Placement</h4>
+                    </div>
+                    <p>Right monitor (1920+). Dashboard top 40%, agents bottom 60%. No `activate` (prevents focus steal).</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-header">
+                        <span class="capability-icon">⟡</span>
+                        <h4>MirrorIntelligence Bot</h4>
+                    </div>
+                    <p>Web intelligence scanner: HN, arXiv, GitHub, 18 RSS feeds, Groq LLM briefs. Outputs to bus + beacon</p>
                 </div>
             </div>
 
