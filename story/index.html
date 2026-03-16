@@ -44,7 +44,7 @@
             </p>
 
             <p class="lead" style="color: var(--text-muted); font-size: 1rem;">
-                296 capabilities shipped. 27 active development days tracked. Latest ship: 2026-03-14.
+                324 capabilities shipped. 28 active development days tracked. Latest ship: 2026-03-16.
             </p>
 
             <h2>Ship Timeline</h2>
@@ -52,6 +52,22 @@
 
             <div class="timeline">
 
+            <div class="timeline-item">
+                <div class="timeline-date">2026-03-16</div>
+                <div class="timeline-content">
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">16 ships</p>
+                    <ul style="list-style: none; padding: 0;">
+                    <li><strong>Mirror Seed CTA Fix + Link Consolidation</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — Fixed broken CTA links and consolidated navigation across Mirror Seed identity page.</li>
+                    <li><strong>Live Radar Ticker</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — Real-time threat radar ticker on Chetana showing latest scam patterns and threat intel.</li>
+                    <li><strong>Risk Gauge + WhatsApp Share + Feedback Logging</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — Visual risk gauge, WhatsApp share button, and user feedback logging on Chetana detection results.</li>
+                    <li><strong>36 Plist mpython Migrations + 20 PYTHONPATH Fixes</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — Migrated all 36 LaunchAgent plists from system python to mpython and fixed 20 PYTHONPATH issues.</li>
+                    <li><strong>Paul Biography Backfill</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — Backfilled Paul's biography from vault notes into identity context.</li>
+                    <li><strong>M1 Red Mini Hourly Red-Team Runner</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — Hourly automated red-team testing against Chetana from M1 Red Mini.</li>
+                    <li><strong>137K SMS Training Dataset</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — Assembled 137,520 SMS messages (60K scam, 77K safe) for Chetana model training.</li>
+                    <li><strong>3 Daily Automations</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — Scam-of-the-day, weekly threat report, and sitemap ping automations.</li> <li style="color: var(--text-muted);">...and 8 more</li>
+                    </ul>
+                </div>
+            </div>
             <div class="timeline-item">
                 <div class="timeline-date">2026-03-14</div>
                 <div class="timeline-content">
@@ -64,8 +80,9 @@
             <div class="timeline-item">
                 <div class="timeline-date">2026-03-13</div>
                 <div class="timeline-content">
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">2 ships</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">3 ships</p>
                     <ul style="list-style: none; padding: 0;">
+                    <li><strong>Legacy LaunchAgent Bounded Healer</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — Added cooldown, quarantine, and bootstrap fallback plus healed the Kavach ownership/port conflict an</li>
                     <li><strong>Automation Kernel Consolidation</strong> (Mirror Governance Systems) — Added Claude skill projections, contained dry-run kernel semantics, live capability matrix generatio</li>
                     <li><strong>Cognitive Dashboard Public Surface Wiring</strong> (Mirror Governance Systems) — Rewrote the public cognitive dashboard page to align with the live cockpit, MirrorDash desktop profi</li>
                     </ul>
@@ -397,18 +414,26 @@
             <div class="timeline-item">
                 <div class="timeline-date">2026-02-14</div>
                 <div class="timeline-content">
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">2 ships</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">11 ships</p>
                     <ul style="list-style: none; padding: 0;">
-                    <li><strong>Build Mode</strong> (MirrorSwarm Terminal Spawner) — Interactive CC sessions with visible thinking/tool use.</li>
-                    <li><strong>LaunchAgent</strong> (Factory Trigger) — `com.mirrordna.factory-trigger` RunAtLoad+KeepAlive.</li>
+                    <li><strong>Multi-Model Spawning</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — Spawns agents with Claude/Groq/Gemini/DeepSeek/Mistral/Ollama via `spawn_agent()` + model field in t</li>
+                    <li><strong>Output Chaining</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — `inject_dependency_results()` injects batch N results into batch N+1 prompts. Truncates at 2000 char</li>
+                    <li><strong>Dynamic Child Spawning</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — `SpawnWatcher` thread polls `/tmp/mirrorswarm/spawn_requests/` for child agent JSON. Children inheri</li>
+                    <li><strong>Run Memory</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — `save_run_history()`/`load_run_history()`/`build_history_preamble()` persist last 3 runs to `~/.mirr</li>
+                    <li><strong>Governance Gate</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — `check_governance()` POSTs to MirrorBalance :8400/evaluate. ALLOW/ASK/BLOCK. Fails open.</li>
+                    <li><strong>Delegation Heartbeat</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — `check_delegation_mode()`/`filter_tasks_by_delegation()` implements dead man switch. paused/degraded</li>
+                    <li><strong>Convergence Meta-Agent</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — `spawn_convergence_agent()` spawns Opus post-swarm for goal assessment, conflicts, quality, next ste</li>
+                    <li><strong>Kill Switch</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — `install_kill_switch()` SIGINT handler. Graceful 10s shutdown then force-kill.</li> <li style="color: var(--text-muted);">...and 3 more</li>
                     </ul>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-date">2026-02-13</div>
                 <div class="timeline-content">
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">4 ships</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">6 ships</p>
                     <ul style="list-style: none; padding: 0;">
+                    <li><strong>Batch DAG Execution</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — `resolve_dag()` topological sort. Parallel batches respecting depends_on.</li>
+                    <li><strong>Result Synthesis</strong> (Chetana Hardening + Infrastructure Day — 2026-03-16) — Markdown report from all agent outputs with totals, costs, success/fail.</li>
                     <li><strong>Multi-Model Terminal Spawning</strong> (MirrorSwarm Terminal Spawner) — Spawns agents in BenQ grid (3x2). Claude via CLI, others via model_router.py.</li>
                     <li><strong>Print Mode</strong> (MirrorSwarm Terminal Spawner) — Headless JSON via `claude --print`.</li>
                     <li><strong>factory_panel</strong> (Cognitive Dashboard) — Run progress, agent grid, elapsed, log sizes.</li>
