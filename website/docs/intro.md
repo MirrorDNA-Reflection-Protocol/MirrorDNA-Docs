@@ -1,78 +1,56 @@
 ---
 sidebar_position: 1
 slug: /
-title: Welcome to MirrorDNA Ecosystem
+title: MirrorDNA
 ---
 
-# Welcome to MirrorDNA Ecosystem
+# MirrorDNA
 
-The **MirrorDNA Ecosystem** is a comprehensive suite of tools and frameworks designed to revolutionize how we build, deploy, and manage AI agents with transparency, accountability, and trust.
+MirrorDNA is a governance and observability ecosystem for AI systems. This site is the public documentation layer for the MirrorDNA stack.
 
-## What is MirrorDNA?
+## Read this first
 
-MirrorDNA is an open standard for **AI agent observability and reflection**. It provides a structured way to capture, store, and analyze the complete decision-making process of AI agents, creating an immutable audit trail that enables:
+This documentation set now separates four things that were previously blended together:
 
-- **Transparency**: Full visibility into AI reasoning and actions
-- **Accountability**: Traceable decision paths for compliance and debugging
-- **Trust**: Verifiable AI behavior for critical applications
-- **Learning**: Continuous improvement through behavioral analysis
+- **Spec**: what is defined
+- **Runtime**: what exists as system architecture
+- **Status**: what is real today
+- **Narrative**: where the ecosystem is heading
 
-## Ecosystem Components
+If you only read one page after this, read [Component Status](/status/components).
 
-### 🧬 [MirrorDNA Standard](/mirrordna)
-The foundational specification defining how AI agents record their internal processes, decisions, and interactions. Think of it as a "DNA strand" for AI behavior.
+## Canonical reading order
 
-### 🖥️ [ActiveMirrorOS](/activemirror)
-The operating system layer that manages MirrorDNA traces, providing runtime support, storage, and real-time monitoring capabilities.
+1. [Ecosystem Overview](/ecosystem)
+2. [Component Status](/status/components)
+3. [Source of Truth](/governance/source-of-truth)
+4. [MirrorDNA Standard](/mirrordna)
+5. [ActiveMirrorOS](/activemirror)
+6. [Lingos / LingOS](/lingos)
 
-### 💬 [LingOS](/lingos)
-A conversational AI framework built on MirrorDNA principles, available in Lite (open-source) and Pro (enterprise) editions.
+## What changed
 
-### ✅ [TrustByDesign](/trustbydesign)
-A compliance and certification framework ensuring AI systems meet regulatory requirements (GDPR, AI Act, SOC2) through MirrorDNA's built-in auditability.
+This docs layer now explicitly adds:
 
-### 🎭 [AgentDNA](/agentdna)
-A persona engine that defines consistent, reliable AI agent personalities and behaviors, encoded in MirrorDNA format.
+- a **status truth rail**
+- a **proof rail**
+- a **source-of-truth rule**
+- a **naming law** for Lingos / LingOS
 
-### 📊 [Glyphtrail](/glyphtrail)
-An interactive timeline viewer for exploring MirrorDNA traces, visualizing agent decision-making processes with rich, intuitive interfaces.
+## Public rule
 
-### 🔐 [Vault Manager / LingOS Pro](/vault-manager)
-Enterprise-grade secure storage and management for MirrorDNA traces, with encryption, access control, and compliance features.
+No component page should imply “shipping” without a status block and a proof rail.
 
-## Quick Start
+## Stack at a glance
 
-```bash
-# Clone the ecosystem repositories
-git clone https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Standard
-git clone https://github.com/MirrorDNA-Reflection-Protocol/ActiveMirrorOS
-git clone https://github.com/MirrorDNA-Reflection-Protocol/LingOS
-
-# Follow individual component guides for setup
-```
-
-## Use Cases
-
-- **Enterprise AI Governance**: Deploy AI with full audit trails
-- **Regulatory Compliance**: Meet AI transparency requirements
-- **AI Development**: Debug and improve agent behavior
-- **Research**: Study AI decision-making processes
-- **Production AI**: Deploy trustworthy AI systems
-
-## Getting Started
-
-1. 📖 **Learn the Concepts**: Start with [MirrorDNA Standard](/mirrordna) to understand the core principles
-2. 🛠️ **Try the Tools**: Explore [ActiveMirrorOS](/activemirror) for runtime capabilities
-3. 💡 **Build Applications**: Use [LingOS](/lingos) to create conversational AI
-4. 📊 **Visualize**: Check out [Glyphtrail](/glyphtrail) for trace visualization
-5. 🎯 **Go to Production**: Implement [TrustByDesign](/trustbydesign) for compliance
-
-## Community & Support
-
-- **GitHub**: [MirrorDNA-Reflection-Protocol](https://github.com/MirrorDNA-Reflection-Protocol)
-- **Documentation**: This site!
-- **Issues**: Report bugs and request features on individual component repos
+- **MirrorDNA Standard**: trace / reflection / observability language
+- **ActiveMirrorOS**: runtime and storage layer
+- **Lingos**: symbolic / conversational operating layer
+- **TrustByDesign**: compliance and trust framework
+- **AgentDNA**: persona and behavior layer
+- **Glyphtrail**: visualization layer
+- **Vault Manager**: secure storage and controls
 
 ---
 
-*Building trustworthy AI, one trace at a time.* 🧬
+*Build the category, but keep the truth boundary visible.*

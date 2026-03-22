@@ -2,34 +2,23 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const config: Config = {
-  title: 'MirrorDNA Ecosystem',
-  tagline: 'Trustworthy AI through Observability and Reflection',
+  title: 'MirrorDNA',
+  tagline: 'Trustworthy AI through observability, continuity, and governed execution',
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
-  // Set the production url of your site here
   url: 'https://mirrordna-reflection-protocol.github.io',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/MirrorDNA-Docs/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'MirrorDNA-Reflection-Protocol', // Usually your GitHub org/user name.
-  projectName: 'MirrorDNA-Docs', // Usually your repo name.
+  organizationName: 'MirrorDNA-Reflection-Protocol',
+  projectName: 'MirrorDNA-Docs',
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -42,7 +31,6 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           routeBasePath: '/',
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Docs/tree/main/website/',
         },
@@ -55,7 +43,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
       respectPrefersColorScheme: true,
@@ -67,12 +54,10 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Documentation',
-        },
+        {to: '/', label: 'Home', position: 'left'},
+        {to: '/ecosystem', label: 'Ecosystem', position: 'left'},
+        {to: '/status', label: 'Status', position: 'left'},
+        {to: '/governance/source-of-truth', label: 'Governance', position: 'left'},
         {
           href: 'https://github.com/MirrorDNA-Reflection-Protocol',
           label: 'GitHub',
@@ -84,54 +69,27 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Ecosystem',
+          title: 'Core',
           items: [
-            {
-              label: 'MirrorDNA Standard',
-              to: '/mirrordna',
-            },
-            {
-              label: 'ActiveMirrorOS',
-              to: '/activemirror',
-            },
-            {
-              label: 'LingOS',
-              to: '/lingos',
-            },
-            {
-              label: 'Glyphtrail',
-              to: '/glyphtrail',
-            },
+            {label: 'MirrorDNA Standard', to: '/mirrordna'},
+            {label: 'ActiveMirrorOS', to: '/activemirror'},
+            {label: 'Lingos / LingOS', to: '/lingos'},
           ],
         },
         {
-          title: 'Community',
+          title: 'Governance',
           items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/MirrorDNA-Reflection-Protocol',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discord.gg/mirrordna',
-            },
+            {label: 'Source of Truth', to: '/governance/source-of-truth'},
+            {label: 'Naming Law', to: '/governance/naming-law'},
+            {label: 'Component Status', to: '/status/components'},
           ],
         },
         {
           title: 'More',
           items: [
-            {
-              label: 'TrustByDesign',
-              to: '/trustbydesign',
-            },
-            {
-              label: 'AgentDNA',
-              to: '/agentdna',
-            },
-            {
-              label: 'Vault Manager',
-              to: '/vault-manager',
-            },
+            {label: 'TrustByDesign', to: '/trustbydesign'},
+            {label: 'AgentDNA', to: '/agentdna'},
+            {label: 'Vault Manager', to: '/vault-manager'},
           ],
         },
       ],
@@ -141,13 +99,6 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ['python', 'javascript', 'typescript', 'bash', 'yaml', 'json'],
-    },
-    algolia: {
-      // Placeholder - can be configured later with Algolia DocSearch
-      appId: 'YOUR_APP_ID',
-      apiKey: 'YOUR_API_KEY',
-      indexName: 'mirrordna',
-      contextualSearch: true,
     },
   } satisfies Preset.ThemeConfig,
 };
